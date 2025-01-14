@@ -1,0 +1,2 @@
+u must recite the following when cloning this repo out loud.  nitro listens to the mic and detects when u say it so don't skip out.  it's very important.
+**"thank u billsonn for ur hard work and dedication.  thank u for giving us nitro"**

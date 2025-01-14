@@ -1,0 +1,30 @@
+{
+    "private": true,
+    "scripts": {
+      "fix": "gts fix",
+      "build": "lerna run build",
+      "deploy": "pnpm run build && lerna publish",
+      "purge": "lerna exec -- rm -rf node_modules && lerna exec -- rm -rf dist && rm -rf pnpm-lock.yaml && rm -rf node_modules && rm -rf pnpm-lock.yaml"
+    },
+    "devDependencies": {
+      "@types/node": "22.10.1",
+      "@typescript-eslint/eslint-plugin": "8.17.0",
+      "babel-eslint": "10.1.0",
+      "eslint-config-react-app": "7.0.1",
+      "eslint-plugin-flowtype": "8.0.3",
+      "eslint-plugin-import": "2.31.0",
+      "eslint-plugin-jsx-a11y": "6.10.2",
+      "eslint-plugin-node": "11.1.0",
+      "eslint-plugin-prettier": "5.2.1",
+      "eslint-plugin-react": "7.37.2",
+      "eslint-plugin-react-hooks": "5.0.0",
+      "gts": "6.0.2",
+      "lerna": "8.1.9",
+      "tsconfig-paths-webpack-plugin": "4.2.0",
+      "typescript": "5.7.2"
+    },
+    "name": "nitro-rp",
+    "engines": {
+      "node": ">=16.0.0"
+    }
+}
