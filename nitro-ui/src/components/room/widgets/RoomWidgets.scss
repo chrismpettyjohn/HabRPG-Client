@@ -98,7 +98,101 @@
     width: $nitro-doorbell-width;
     height: $nitro-doorbell-height;
 }
+.buildtool-dropdown {
+    background-color: #252525;
+    color: #fff;
+    width: 100%;
+    border: 1px solid #fff;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
 
+    &:hover {
+        filter: brightness(1.5);
+    }
+}
+
+.buildtool-box {
+    align-items: center;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    padding: 4px;
+}
+
+.wallitem-w-button {
+    background-color: #252525;
+    color: #fff;
+    width: 30px;
+    border: 1px solid #fff;
+    text-align: center;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1.1;
+    height: 20px;
+    border-radius: 5px;
+
+    &:hover {
+        filter: brightness(1.5);
+    }
+}
+
+.buildtool-l-button {
+    background-color: #252525;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #fff;
+    text-align: center;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 5px;
+    line-height: 1.5;
+
+    &:hover {
+        filter: brightness(1.5);
+    }
+}
+
+.icon-color polyline {
+    stroke: #fff !important;
+}
+
+.button-1-w-rotation {
+    transform: rotate(35deg);
+}
+
+.button-2-w-rotation {
+    transform: rotate(325deg);
+}
+
+.button-3-w-rotation {
+    transform: rotate(-35deg);
+}
+
+.button-4-w-rotation {
+    transform: rotate(35deg);
+}
+
+.button-1-l-rotation {
+    transform: rotate(135deg);
+}
+
+.button-2-l-rotation {
+    transform: rotate(225deg);
+}
+
+.button-3-l-rotation {
+    transform: rotate(45deg);
+}
+
+.button-4-l-rotation {
+    transform: rotate(315deg);
+}
+
+.floor-button-l-gap {
+    gap: 0.5em!important;
+}
 @import './avatar-info/AvatarInfoWidgetView';
 @import './chat/ChatWidgetView';
 @import './chat-input/ChatInputView';

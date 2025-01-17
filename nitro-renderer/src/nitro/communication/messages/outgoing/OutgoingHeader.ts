@@ -27,6 +27,7 @@ export class OutgoingHeader
     public static FIND_NEW_FRIENDS = 516;
     public static FURNITURE_ALIASES = 3898;
     public static FURNITURE_FLOOR_UPDATE = 248;
+    public static FURNITURE_FLOOR_POSITION_UPDATE = 2481;
     public static FURNITURE_MULTISTATE = 99;
     public static FURNITURE_PICKUP = 3456;
     public static FURNITURE_PLACE = 1258;
