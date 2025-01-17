@@ -1,7 +1,7 @@
 {
     "image.library.notifications.url": "${image.library.url}notifications/%image%.png",
     "achievements.images.url": "${image.library.url}Quests/%image%.png",
-    "camera.url": "https://habtwist.co.uk/client/camera",
+    "camera.url": "https://camera.habtwist.co.uk",
     "thumbnails.url": "${camera.url}/thumbnails/%thumbnail%.png",
     "url.prefix": "https://habtwist.co.uk",
     "habbopages.url": "${url.prefix}/",
