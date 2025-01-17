@@ -2,7 +2,7 @@
     "socket.url": "wss://emu.habtwist.co.uk/websocket",
     "asset.url": "https://swfs.habtwist.co.uk",
     "flash.asset.url": "https://swfs.habtwist.co.uk",
-    "image.library.url": "${flash.asset.url}/c_images",
+    "image.library.url": "${flash.asset.url}/c_images/",
     "hof.furni.url": "${flash.asset.url}/bundled/furniture",
     "images.url": "${asset.url}/images",
     "gamedata.url": "${asset.url}/gamedata",
