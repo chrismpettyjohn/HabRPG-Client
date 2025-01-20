@@ -1,10 +1,10 @@
 import { Column, Flex, Grid, Text } from "../../../common";
-import { useCharacterAttributesData, useCharacterData, useSessionInfo } from "../../../hooks";
+import { useCharacterSkills, useCharacter, useSessionInfo } from "../../../hooks";
 
 export function CharacterInfo() {
     const { userInfo } = useSessionInfo();
-    const characterData = useCharacterData(userInfo?.userId);
-    const characterAttributesData = useCharacterAttributesData(userInfo?.userId);
+    const characterData = useCharacter(userInfo?.userId);
+    const characterAttributesData = useCharacterSkills(userInfo?.userId);
 
     const healthPercent = Math.round((characterData.healthNow / characterData.healthMax) * 100);
     const energyPercent = Math.round((characterData.energyNow / characterData.energyMax) * 100);

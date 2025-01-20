@@ -1,7 +1,10 @@
 import { IMessageDataWrapper, IMessageParser } from '../../../../../../api';
 
 export interface CharacterData {
-    userId: number;
+    id: number;
+    botId: number | null;
+    userId: number | null;
+    petId: number | null;
     healthNow: number;
     healthMax: number;
     energyNow: number;
@@ -20,7 +23,10 @@ export class CharacterDataEventParser implements IMessageParser {
         if (!wrapper) return false;
 
         this._characterData = {
+            id: wrapper.readInt(),
+            botId: wrapper.readInt(),
             userId: wrapper.readInt(),
+            petId: wrapper.readInt(),
             healthNow: wrapper.readInt(),
             healthMax: wrapper.readInt(),
             energyNow: wrapper.readInt(),

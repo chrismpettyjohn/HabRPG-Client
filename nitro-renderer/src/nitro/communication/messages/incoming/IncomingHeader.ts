@@ -471,5 +471,5 @@ export class IncomingHeader {
     public static HANDSHAKE_IDENTITY_ACCOUNT = 3523;
 
     public static ROLEPLAY_CHARACTER_DATA = 4001;
-    public static ROLEPLAY_CHARACTER_ATTRIBUTES_DATA = 4002;
+    public static ROLEPLAY_CHARACTER_SKILLS_DATA = 4002;
 }

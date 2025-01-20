@@ -4,14 +4,17 @@ import { SendMessageComposer } from "../../api";
 import { useMessageEvent } from "../events";
 
 const BASE_CHARACTER: CharacterData = {
+    id: -1,
+    botId: -1,
     userId: -1,
+    petId: -1,
     healthNow: -1,
     healthMax: -1,
     energyNow: -1,
     energyMax: -1,
 }
 
-export function useCharacterData(userId: number): CharacterData {
+export function useCharacter(userId: number): CharacterData {
     const [data, setData] = useState<CharacterData>(BASE_CHARACTER);
 
     useEffect(() => {

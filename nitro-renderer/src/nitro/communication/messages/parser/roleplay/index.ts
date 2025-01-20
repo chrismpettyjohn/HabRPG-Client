@@ -1,2 +1,2 @@
-export * from './character/CharacterAttributesDataEventParser';
+export * from './character/CharacterSkillsDataEventParser';
 export * from './character/CharacterDataEventParser';

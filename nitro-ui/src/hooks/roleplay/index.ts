@@ -1,2 +1,2 @@
-export * from './useCharacterAttributesData';
-export * from './useCharacterData';
+export * from './useCharacterSkills';
+export * from './useCharacter';
