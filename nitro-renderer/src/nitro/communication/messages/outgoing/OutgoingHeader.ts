@@ -1,5 +1,4 @@
-export class OutgoingHeader
-{
+export class OutgoingHeader {
     public static ACHIEVEMENT_LIST = 219;
     public static AUTHENTICATION = -1;
     public static BOT_CONFIGURATION = 1986;
@@ -368,7 +367,7 @@ export class OutgoingHeader
     public static GET_INTERSTITIAL = 2519;
     public static CHANGE_USERNAME = 2977;
     public static CHECK_USERNAME = 3950;
-    public static OPEN_CAMPAIGN_CALENDAR_DOOR_STAFF= 3889;
+    public static OPEN_CAMPAIGN_CALENDAR_DOOR_STAFF = 3889;
     public static OPEN_CAMPAIGN_CALENDAR_DOOR = 2257;
     public static BUILDERS_CLUB_PLACE_ROOM_ITEM = 1051;
     public static BUILDERS_CLUB_PLACE_WALL_ITEM = 462;
@@ -469,4 +468,6 @@ export class OutgoingHeader
     public static RENTABLE_EXTEND_RENT_OR_BUYOUT_STRIP_ITEM = 2115;
     public static RENTABLE_EXTEND_RENT_OR_BUYOUT_FURNI = 1071;
     public static RENTABLE_GET_RENT_OR_BUYOUT_OFFER = 2518;
+
+    public static ROLEPLAY_CHARACTER_LOOKUP = 4001;
 }

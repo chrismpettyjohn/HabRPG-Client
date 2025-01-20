@@ -1,9 +1,9 @@
 {
     "image.library.notifications.url": "${image.library.url}notifications/%image%.png",
     "achievements.images.url": "${image.library.url}Quests/%image%.png",
-    "camera.url": "https://camera.habtwist.co.uk",
+    "camera.url": "http://localhost/client/camera",
     "thumbnails.url": "${camera.url}/thumbnails/%thumbnail%.png",
-    "url.prefix": "https://habtwist.co.uk",
+    "url.prefix": "http://localhost",
     "habbopages.url": "${url.prefix}/",
     "group.homepage.url": "${url.prefix}/groups/%groupid%/id",
     "guide.help.alpha.groupid": 0,
@@ -1180,27 +1180,5 @@
             "display": "BUBBLE",
             "image": "${image.library.url}/album1584/X1517.gif"
         }
-    },
-    "roleplay.crimes": [
-        {
-            "crime": "Mischief",
-            "sentence": 6
-        },
-        {
-            "crime": "Assault",
-            "sentence": 10
-        },
-        {
-            "crime": "Murder",
-            "sentence": 15
-        },
-        {
-            "crime": "Cop-Killing",
-            "sentence": 20
-        },
-        {
-            "crime": "Mass-Murder",
-            "sentence": 25
-        }
-    ]
+    }
 }
