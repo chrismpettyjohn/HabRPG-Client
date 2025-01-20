@@ -4,7 +4,7 @@ import { useCharacterSkills, useCharacter, useSessionInfo } from "../../../hooks
 export function CharacterInfo() {
     const { userInfo } = useSessionInfo();
     const characterData = useCharacter(userInfo?.userId);
-    const characterAttributesData = useCharacterSkills(userInfo?.userId);
+    const characterAttributesData = useCharacterSkills(characterData.id);
 
     const healthPercent = Math.round((characterData.healthNow / characterData.healthMax) * 100);
     const energyPercent = Math.round((characterData.energyNow / characterData.energyMax) * 100);
@@ -14,32 +14,59 @@ export function CharacterInfo() {
             <Flex className="nitro-purse rounded-bottom p-1" fullWidth>
                 <Grid fullWidth gap={3}>
                     <Column fullWidth justifyContent="center" size={6} gap={0}>
-                        <Text fontSize={6} variant="white">{characterAttributesData.strength} Strength</Text>
+                        <Text fontSize={6} variant="white">
+                            <b>Strength: </b>
+                            LVL {characterAttributesData.strengthLevel}
+                        </Text>
                     </Column>
                     <Column fullWidth justifyContent="center" size={6} gap={0}>
-                        <Text fontSize={6} variant="white">{characterAttributesData.intelligence} Intelligence</Text>
+                        <Text fontSize={6} variant="white">
+                            <b>Stamina:</b>
+                            LVL {characterAttributesData.staminaLevel}
+                        </Text>
                     </Column>
                     <Column fullWidth justifyContent="center" size={6} gap={0}>
-                        <Text fontSize={6} variant="white">{characterAttributesData.dexterity} Dexterity</Text>
+                        <Text fontSize={6} variant="white">
+                            <b>Agility:</b>
+                            LVL {characterAttributesData.agilityLevel}
+                        </Text>
                     </Column>
                     <Column fullWidth justifyContent="center" size={6} gap={0}>
-                        <Text fontSize={6} variant="white">{characterAttributesData.charisma} Charisma</Text>
+                        <Text fontSize={6} variant="white">
+                            <b>Resilience:</b>
+                            LVL {characterAttributesData.resilienceLevel}
+                        </Text>
                     </Column>
                     <Column fullWidth justifyContent="center" size={6} gap={0}>
-                        <Text fontSize={6} variant="white">{characterAttributesData.perception} Perception</Text>
+                        <Text fontSize={6} variant="white">
+                            <b>Melee:</b>
+                            LVL {characterAttributesData.meleeLevel}
+                        </Text>
                     </Column>
                     <Column fullWidth justifyContent="center" size={6} gap={0}>
-                        <Text fontSize={6} variant="white">{characterAttributesData.endurance} Endurance</Text>
+                        <Text fontSize={6} variant="white">
+                            <b>Ranged:</b>
+                            LVL {characterAttributesData.rangedLevel}
+                        </Text>
                     </Column>
                     <Column fullWidth justifyContent="center" size={6} gap={0}>
-                        <Text fontSize={6} variant="white">{characterAttributesData.luck} Luck</Text>
+                        <Text fontSize={6} variant="white">
+                            <b>Defense:</b>
+                            LVL {characterAttributesData.defenseLevel}
+                        </Text>
                     </Column>
                     <Column fullWidth />
                     <Column fullWidth justifyContent="center" size={6} gap={0}>
-                        <Text fontSize={6} variant="white">{healthPercent}% Health</Text>
+                        <Text fontSize={6} variant="white">
+                            <b>Health: </b>
+                            {healthPercent}%
+                        </Text>
                     </Column>
                     <Column fullWidth justifyContent="center" size={6} gap={0}>
-                        <Text fontSize={6} variant="white">{energyPercent}% Energy</Text>
+                        <Text fontSize={6} variant="white">
+                            <b>Energy</b>
+                            {energyPercent}%
+                        </Text>
                     </Column>
                 </Grid>
             </Flex>
