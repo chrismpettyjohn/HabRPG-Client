@@ -450,6 +450,7 @@ export class RoomObjectEventHandler extends Disposable implements IRoomCanvasMou
             return;
         }
 
+
         this._roomEngine.connection.send(new AttackComposer(event.object.location.x, event.object.location.y));
     }
 
