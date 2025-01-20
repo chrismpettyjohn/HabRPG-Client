@@ -14,6 +14,7 @@ export * from './mod-tools';
 export * from './navigator';
 export * from './notification';
 export * from './purse';
+export * from './roleplay';
 export * from './rooms';
 export * from './session';
 export * from './useLocalStorage';

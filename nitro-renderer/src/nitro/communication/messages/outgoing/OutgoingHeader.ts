@@ -470,4 +470,5 @@ export class OutgoingHeader {
     public static RENTABLE_GET_RENT_OR_BUYOUT_OFFER = 2518;
 
     public static ROLEPLAY_CHARACTER_LOOKUP = 4001;
+    public static ROLEPLAY_CHARACTER_ATTRIBUTES_LOOKUP = 4002;
 }

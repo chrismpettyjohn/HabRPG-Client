@@ -6,16 +6,17 @@ import { NotificationCenterView } from '../notification-center/NotificationCente
 import { PurseView } from '../purse/PurseView';
 import { MysteryBoxExtensionView } from '../room/widgets/mysterybox/MysteryBoxExtensionView';
 import { RoomPromotesWidgetView } from '../room/widgets/room-promotes/RoomPromotesWidgetView';
+import { CharacterInfo } from './character-info/CharacterInfo';
 
-export const RightSideView: FC<{}> = props =>
-{
+export const RightSideView: FC<{}> = props => {
     return (
         <div className="nitro-right-side">
-            <Column position="relative" gap={ 1 }>
+            <Column position="relative" gap={1}>
+                <CharacterInfo />
                 <PurseView />
                 <GroupRoomInformationView />
                 <MysteryBoxExtensionView />
-                <OfferView/>
+                <OfferView />
                 <RoomPromotesWidgetView />
                 <NotificationCenterView />
             </Column>
