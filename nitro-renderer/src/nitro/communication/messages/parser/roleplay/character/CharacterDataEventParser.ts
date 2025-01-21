@@ -5,6 +5,8 @@ export interface CharacterData {
     botId: number | null;
     userId: number | null;
     petId: number | null;
+    isDead: boolean;
+    isExhausted: boolean;
     healthNow: number;
     healthMax: number;
     energyNow: number;
@@ -27,6 +29,8 @@ export class CharacterDataEventParser implements IMessageParser {
             botId: wrapper.readInt(),
             userId: wrapper.readInt(),
             petId: wrapper.readInt(),
+            isDead: wrapper.readBoolean(),
+            isExhausted: wrapper.readBoolean(),
             healthNow: wrapper.readInt(),
             healthMax: wrapper.readInt(),
             energyNow: wrapper.readInt(),

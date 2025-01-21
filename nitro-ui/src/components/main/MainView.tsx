@@ -27,38 +27,32 @@ import { ToolbarView } from '../toolbar/ToolbarView';
 import { UserProfileView } from '../user-profile/UserProfileView';
 import { UserSettingsView } from '../user-settings/UserSettingsView';
 import { WiredView } from '../wired/WiredView';
+import { LeftSideView } from '../left-side/LeftSideView';
 
-export const MainView: FC<{}> = props =>
-{
-    const [ isReady, setIsReady ] = useState(false);
-    const [ landingViewVisible, setLandingViewVisible ] = useState(true);
+export const MainView: FC<{}> = props => {
+    const [isReady, setIsReady] = useState(false);
+    const [landingViewVisible, setLandingViewVisible] = useState(true);
 
     useRoomSessionManagerEvent<RoomSessionEvent>(RoomSessionEvent.CREATED, event => setLandingViewVisible(false));
     useRoomSessionManagerEvent<RoomSessionEvent>(RoomSessionEvent.ENDED, event => setLandingViewVisible(event.openLandingView));
 
-    useEffect(() =>
-    {
+    useEffect(() => {
         setIsReady(true);
 
         GetCommunication().connection.onReady();
     }, []);
 
-    useEffect(() =>
-    {
-        const linkTracker: ILinkEventTracker = { 
-            linkReceived: (url: string) =>
-            {
+    useEffect(() => {
+        const linkTracker: ILinkEventTracker = {
+            linkReceived: (url: string) => {
                 const parts = url.split('/');
-        
-                if(parts.length < 2) return;
-        
-                switch(parts[1])
-                {
+
+                if (parts.length < 2) return;
+
+                switch (parts[1]) {
                     case 'open':
-                        if(parts.length > 2)
-                        {
-                            switch(parts[2])
-                            {
+                        if (parts.length > 2) {
+                            switch (parts[2]) {
                                 case 'credits':
                                     //HabboWebTools.openWebPageAndMinimizeClient(this._windowManager.getProperty(ExternalVariables.WEB_SHOP_RELATIVE_URL));
                                     break;
@@ -81,10 +75,10 @@ export const MainView: FC<{}> = props =>
 
     return (
         <Base fit>
-            <TransitionAnimation type={ TransitionAnimationTypes.FADE_IN } inProp={ landingViewVisible } timeout={ 300 }>
+            <TransitionAnimation type={TransitionAnimationTypes.FADE_IN} inProp={landingViewVisible} timeout={300}>
                 <HotelView />
             </TransitionAnimation>
-            <ToolbarView isInRoom={ !landingViewVisible } />
+            <ToolbarView isInRoom={!landingViewVisible} />
             <ModToolsView />
             <RoomView />
             <ChatHistoryView />
@@ -95,6 +89,7 @@ export const MainView: FC<{}> = props =>
             <InventoryView />
             <CatalogView />
             <FriendsView />
+            <LeftSideView />
             <RightSideView />
             <UserSettingsView />
             <UserProfileView />
