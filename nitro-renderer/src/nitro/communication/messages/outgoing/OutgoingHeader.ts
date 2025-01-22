@@ -474,4 +474,11 @@ export class OutgoingHeader {
     public static ROLEPLAY_ATTACK = 4003;
     public static ROLEPLAY_CALL_PARAMEDIC = 4004;
     public static ROLEPLAY_HEAL = 4005;
+    public static CHARACTER_LOOKUP_ROLEPLAY_ITEMS = 4006;
+
+    public static ROLEPLAY_ITEM_ADD_ONE = 4007;
+    public static ROLEPLAY_ITEM_DELETE_ONE = 4008;
+    public static ROLEPLAY_ITEM_LOOKUP_BY_TYPE = 4009;
+    public static ROLEPLAY_ITEM_UPDATE_BY_ID = 4010;
+    public static CHARACTER_UPDATE_BY_ID = 4011;
 }
