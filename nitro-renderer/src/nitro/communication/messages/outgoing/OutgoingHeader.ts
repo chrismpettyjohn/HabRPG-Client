@@ -473,4 +473,5 @@ export class OutgoingHeader {
     public static ROLEPLAY_CHARACTER_ATTRIBUTES_LOOKUP = 4002;
     public static ROLEPLAY_ATTACK = 4003;
     public static ROLEPLAY_CALL_PARAMEDIC = 4004;
+    public static ROLEPLAY_HEAL = 4005;
 }

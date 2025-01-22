@@ -1,6 +1,6 @@
 {
     "socket.url": "ws://localhost:2096",
-    "asset.url": "http://localhost:8080/nitro/",
+    "asset.url": "http://localhost:8080",
     "flash.asset.url": "http://localhost:8080/flash",
     "image.library.url": "${flash.asset.url}/c_images/",
     "hof.furni.url": "${flash.asset.url}/dcr/hof_furni",
