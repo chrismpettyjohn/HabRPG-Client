@@ -6,24 +6,23 @@ import { useMessageEvent } from '../../../../hooks';
 import { ModToolsUserModActionView } from './ModToolsUserModActionView';
 import { ModToolsUserRoomVisitsView } from './ModToolsUserRoomVisitsView';
 import { ModToolsUserSendMessageView } from './ModToolsUserSendMessageView';
+import { ModToolsUserChangeCharacterView } from './ModToolsUserChangeCharacterView';
 
-interface ModToolsUserViewProps
-{
+interface ModToolsUserViewProps {
     userId: number;
     onCloseClick: () => void;
 }
 
-export const ModToolsUserView: FC<ModToolsUserViewProps> = props =>
-{
+export const ModToolsUserView: FC<ModToolsUserViewProps> = props => {
     const { onCloseClick = null, userId = null } = props;
-    const [ userInfo, setUserInfo ] = useState<ModeratorUserInfoData>(null);
-    const [ sendMessageVisible, setSendMessageVisible ] = useState(false);
-    const [ modActionVisible, setModActionVisible ] = useState(false);
-    const [ roomVisitsVisible, setRoomVisitsVisible ] = useState(false);
+    const [userInfo, setUserInfo] = useState<ModeratorUserInfoData>(null);
+    const [sendMessageVisible, setSendMessageVisible] = useState(false);
+    const [modActionVisible, setModActionVisible] = useState(false);
+    const [roomVisitsVisible, setRoomVisitsVisible] = useState(false);
+    const [changeCharacterVisible, setChangeCharacterVisible] = useState(false);
 
-    const userProperties = useMemo(() =>
-    {
-        if(!userInfo) return null;
+    const userProperties = useMemo(() => {
+        if (!userInfo) return null;
 
         return [
             {
@@ -84,73 +83,75 @@ export const ModToolsUserView: FC<ModToolsUserViewProps> = props =>
                 value: userInfo.userClassification
             }
         ];
-    }, [ userInfo ]);
+    }, [userInfo]);
 
-    useMessageEvent<ModeratorUserInfoEvent>(ModeratorUserInfoEvent, event =>
-    {
+    useMessageEvent<ModeratorUserInfoEvent>(ModeratorUserInfoEvent, event => {
         const parser = event.getParser();
-    
-        if(!parser || parser.data.userId !== userId) return;
-    
+
+        if (!parser || parser.data.userId !== userId) return;
+
         setUserInfo(parser.data);
     });
 
-    useEffect(() =>
-    {
+    useEffect(() => {
         SendMessageComposer(new GetModeratorUserInfoMessageComposer(userId));
-    }, [ userId ]);
+    }, [userId]);
 
-    if(!userInfo) return null;
+    if (!userInfo) return null;
 
     return (
         <>
-            <NitroCardView className="nitro-mod-tools-user" theme="primary-slim" windowPosition={ DraggableWindowPosition.TOP_LEFT }>
-                <NitroCardHeaderView headerText={ LocalizeText('modtools.userinfo.title', [ 'username' ], [ userInfo.userName ]) } onCloseClick={ () => onCloseClick() } />
+            <NitroCardView className="nitro-mod-tools-user" theme="primary-slim" windowPosition={DraggableWindowPosition.TOP_LEFT}>
+                <NitroCardHeaderView headerText={LocalizeText('modtools.userinfo.title', ['username'], [userInfo.userName])} onCloseClick={() => onCloseClick()} />
                 <NitroCardContentView className="text-black">
                     <Grid overflow="hidden">
-                        <Column size={ 8 } overflow="auto">
+                        <Column size={8} overflow="auto">
                             <table className="table table-striped table-sm table-text-small text-black m-0">
                                 <tbody>
-                                    { userProperties.map( (property, index) =>
-                                    {
+                                    {userProperties.map((property, index) => {
 
                                         return (
-                                            <tr key={ index }>
-                                                <th scope="row">{ LocalizeText(property.localeKey) }</th>
+                                            <tr key={index}>
+                                                <th scope="row">{LocalizeText(property.localeKey)}</th>
                                                 <td>
-                                                    { property.value }
-                                                    { property.showOnline &&
-                                                    <i className={ `icon icon-pf-${ userInfo.online ? 'online' : 'offline' } ms-2` } /> }
+                                                    {property.value}
+                                                    {property.showOnline &&
+                                                        <i className={`icon icon-pf-${userInfo.online ? 'online' : 'offline'} ms-2`} />}
                                                 </td>
                                             </tr>
                                         );
-                                    }) }
+                                    })}
                                 </tbody>
                             </table>
                         </Column>
-                        <Column size={ 4 } gap={ 1 }>
-                            <Button onClick={ event => CreateLinkEvent(`mod-tools/open-user-chatlog/${ userId }`) }>
+                        <Column size={4} gap={1}>
+                            <Button onClick={event => CreateLinkEvent(`mod-tools/open-user-chatlog/${userId}`)}>
                                 Room Chat
                             </Button>
-                            <Button onClick={ event => setSendMessageVisible(!sendMessageVisible) }>
+                            <Button onClick={event => setSendMessageVisible(!sendMessageVisible)}>
                                 Send Message
                             </Button>
-                            <Button onClick={ event => setRoomVisitsVisible(!roomVisitsVisible) }>
+                            <Button onClick={event => setRoomVisitsVisible(!roomVisitsVisible)}>
                                 Room Visits
                             </Button>
-                            <Button onClick={ event => setModActionVisible(!modActionVisible) }>
+                            <Button onClick={event => setModActionVisible(!modActionVisible)}>
                                 Mod Action
+                            </Button>
+                            <Button onClick={event => setChangeCharacterVisible(!changeCharacterVisible)}>
+                                Change Character
                             </Button>
                         </Column>
                     </Grid>
                 </NitroCardContentView>
             </NitroCardView>
-            { sendMessageVisible &&
-                <ModToolsUserSendMessageView user={ { userId: userId, username: userInfo.userName } } onCloseClick={ () => setSendMessageVisible(false) } /> }
-            { modActionVisible &&
-                <ModToolsUserModActionView user={ { userId: userId, username: userInfo.userName } } onCloseClick={ () => setModActionVisible(false) } /> }
-            { roomVisitsVisible &&
-                <ModToolsUserRoomVisitsView userId={ userId } onCloseClick={ () => setRoomVisitsVisible(false) } /> }
+            {sendMessageVisible &&
+                <ModToolsUserSendMessageView user={{ userId: userId, username: userInfo.userName }} onCloseClick={() => setSendMessageVisible(false)} />}
+            {modActionVisible &&
+                <ModToolsUserModActionView user={{ userId: userId, username: userInfo.userName }} onCloseClick={() => setModActionVisible(false)} />}
+            {roomVisitsVisible &&
+                <ModToolsUserRoomVisitsView userId={userId} onCloseClick={() => setRoomVisitsVisible(false)} />}
+            {changeCharacterVisible &&
+                <ModToolsUserChangeCharacterView userId={userId} onCloseClick={() => setChangeCharacterVisible(false)} />}
         </>
     );
 }
