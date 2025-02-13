@@ -1,0 +1,163 @@
+import {
+  ChangeEvent,
+  FC,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import {
+  Button,
+  DraggableWindowPosition,
+  Flex,
+  NitroCardContentView,
+  NitroCardHeaderView,
+  NitroCardView,
+  Text,
+} from "../../../../common";
+import { useCharacter } from "../../../../hooks";
+import { SendMessageComposer } from "../../../../api";
+import { CharacterUpdateByIdComposer } from "@nitrots/nitro-renderer/src/nitro/communication/messages/outgoing/roleplay/character/CharacterUpdateByIdComposer";
+import { CharacterData } from "@nitrots/nitro-renderer";
+
+interface ModToolsUserChangeCharacterViewProps {
+  userId: number;
+  onCloseClick: () => void;
+}
+
+export const ModToolsUserChangeCharacterView: FC<
+  ModToolsUserChangeCharacterViewProps
+> = ({ userId, onCloseClick }) => {
+  const character = useCharacter(userId);
+  const characterData = useMemo(
+    () => ({
+      id: character?.id ?? -1,
+      botId: character?.botId ?? -1,
+      userId: character?.userId ?? -1,
+      petId: character?.petId ?? -1,
+      isDead: character?.isDead ?? true,
+      isExhausted: character?.isExhausted ?? true,
+      healthNow: character?.healthNow ?? -1,
+      healthMax: character?.healthMax ?? -1,
+      energyNow: character?.energyNow ?? -1,
+      energyMax: character?.energyMax ?? -1,
+    }),
+    [character]
+  );
+  const [stats, setStats] = useState<CharacterData>(characterData);
+
+  useEffect(() => {
+    if (stats.id === characterData.id) {
+      return;
+    }
+    setStats(characterData);
+  }, [characterData]);
+
+  const onChanges = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    event.persist();
+    setStats((_) => ({
+      ..._,
+      [event.target.name]: !Number.isNaN(event.target.value)
+        ? Number(event.target.value)
+        : event.target.value,
+    }));
+  }, []);
+
+  const onSaveChanges = useCallback(() => {
+    console.log(
+      userId,
+      stats.healthNow,
+      stats.healthMax,
+      stats.energyNow,
+      stats.energyMax
+    );
+    SendMessageComposer(
+      new CharacterUpdateByIdComposer(
+        userId,
+        stats.healthNow,
+        stats.healthMax,
+        stats.energyNow,
+        stats.energyMax
+      )
+    );
+  }, [userId, stats]);
+
+  useEffect(() => {
+    setStats(character);
+  }, [character]);
+
+  if (!userId || !stats) {
+    return null;
+  }
+
+  return (
+    <NitroCardView
+      className="nitro-mod-tools-change-character-action"
+      theme="primary-slim"
+      windowPosition={DraggableWindowPosition.TOP_LEFT}
+      style={{ width: 400 }}
+    >
+      <NitroCardHeaderView
+        headerText="Roleplay Stats"
+        onCloseClick={() => onCloseClick()}
+      />
+      <NitroCardContentView className="text-black">
+        <Flex gap={1}>
+          <Flex fullWidth style={{ flexDirection: "column" }}>
+            <Text bold>Health Now ({stats.healthNow})</Text>
+            <input
+              type="range"
+              className="form-control form-control-sm"
+              name="healthNow"
+              value={stats.healthNow}
+              min={0}
+              max={stats.healthMax}
+              onChange={onChanges}
+            />
+          </Flex>
+          <Flex fullWidth style={{ flexDirection: "column" }}>
+            <Text bold>Health Max ({stats.healthMax})</Text>
+            <input
+              type="range"
+              className="form-control form-control-sm"
+              name="healthMax"
+              value={stats.healthMax}
+              min={0}
+              max={500}
+              onChange={onChanges}
+            />
+          </Flex>
+        </Flex>
+        <Flex gap={1}>
+          <Flex fullWidth style={{ flexDirection: "column" }}>
+            <Text bold>Energy Now ({stats.energyNow})</Text>
+            <input
+              type="range"
+              className="form-control form-control-sm"
+              name="energyNow"
+              value={stats.energyNow}
+              min={0}
+              max={stats.energyMax}
+              onChange={onChanges}
+            />
+          </Flex>
+          <Flex fullWidth style={{ flexDirection: "column" }}>
+            <Text bold>Energy Max ({stats.energyMax})</Text>
+            <input
+              type="range"
+              className="form-control form-control-sm"
+              name="energyMax"
+              value={stats.energyMax}
+              min={0}
+              max={500}
+              onChange={onChanges}
+            />
+          </Flex>
+        </Flex>
+        <Button fullWidth variant="success" onClick={onSaveChanges}>
+          Save
+        </Button>
+      </NitroCardContentView>
+    </NitroCardView>
+  );
+};

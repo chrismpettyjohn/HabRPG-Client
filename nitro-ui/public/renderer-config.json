@@ -1,9 +1,9 @@
 {
-    "socket.url": "ws://localhost:2096",
+    "socket.url": "ws://localhost:8001",
     "asset.url": "http://localhost:8080",
-    "flash.asset.url": "http://localhost:8080/flash",
+    "flash.asset.url": "http://localhost:8080",
     "image.library.url": "${flash.asset.url}/c_images/",
-    "hof.furni.url": "${flash.asset.url}/dcr/hof_furni",
+    "hof.furni.url": "${flash.asset.url}/bundled/furniture",
     "images.url": "${asset.url}/images",
     "gamedata.url": "${asset.url}/gamedata",
     "sounds.url": "${asset.url}/sounds/%sample%.mp3",
