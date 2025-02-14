@@ -1,6 +1,7 @@
 export enum BotType {
   None = "none",
   FishMerchant = "fish_merchant",
+  FarmMerchant = "farmer_merchant",
 }
 export class UserMessageData {
   public static M: string = "M";

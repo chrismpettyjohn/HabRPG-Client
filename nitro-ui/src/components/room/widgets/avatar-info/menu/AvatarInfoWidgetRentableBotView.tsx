@@ -7,6 +7,7 @@ import {
   RoomObjectCategory,
   RoomObjectType,
   SellCaughtFishComposer,
+  SellFarmedCornComposer,
 } from "@nitrots/nitro-renderer";
 import { FC, useEffect, useState } from "react";
 import {
@@ -125,6 +126,10 @@ export const AvatarInfoWidgetRentableBotView: FC<AvatarInfoWidgetRentableBotView
           SendMessageComposer(new SellCaughtFishComposer(avatarInfo.webID));
           hideMenu = true;
           break;
+        case "farm_merchant_sell_corn":
+          SendMessageComposer(new SellFarmedCornComposer(avatarInfo.webID));
+          hideMenu = true;
+          break;
         case "moderate":
           setMode(MODE_MODERATE);
           hideMenu = false;
@@ -151,12 +156,17 @@ export const AvatarInfoWidgetRentableBotView: FC<AvatarInfoWidgetRentableBotView
       onClose={onClose}
       collapsable={true}
     >
-      <ContextMenuHeaderView>{avatarInfo.name}</ContextMenuHeaderView>
+      <ContextMenuHeaderView>{avatarInfo.botType}</ContextMenuHeaderView>
       {mode === MODE_NORMAL && (
         <>
           {avatarInfo.botType === BotType.FishMerchant && (
             <>
               <ContextMenuListItemView onClick={() => processAction("fish_merchant_sell")}>Sell Fish</ContextMenuListItemView>
+            </>
+          )}
+          {avatarInfo.botType === BotType.FarmMerchant && (
+            <>
+              <ContextMenuListItemView onClick={() => processAction("farm_merchant_sell_corn")}>Sell Corn</ContextMenuListItemView>
             </>
           )}
           {canControl && <ContextMenuListItemView onClick={() => processAction("moderate")}>Edit Bot</ContextMenuListItemView>}
