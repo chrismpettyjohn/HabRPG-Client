@@ -86,9 +86,6 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = (props) => {
             </Flex>
             {!isInRoom && <Base pointer className="navigation-item icon icon-house" onClick={(event) => CreateLinkEvent("navigator/goto/home")} />}
             <Base pointer className="navigation-item icon icon-rooms" onClick={(event) => CreateLinkEvent("navigator/toggle")} />
-            {GetConfiguration("game.center.enabled") && (
-              <Base pointer className="navigation-item icon icon-game" onClick={(event) => CreateLinkEvent("games/toggle")} />
-            )}
             <Base pointer className="navigation-item icon icon-catalog" onClick={(event) => CreateLinkEvent("catalog/toggle")} />
             <Base pointer className="navigation-item icon icon-inventory" onClick={(event) => CreateLinkEvent("inventory/toggle")}>
               {getFullCount > 0 && <LayoutItemCountView count={getFullCount} />}
