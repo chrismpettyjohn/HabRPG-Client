@@ -6,6 +6,7 @@ import {
   RequestBotCommandConfigurationComposer,
   RoomObjectCategory,
   RoomObjectType,
+  SellCaughtFishComposer,
 } from "@nitrots/nitro-renderer";
 import { FC, useEffect, useState } from "react";
 import {
@@ -121,6 +122,7 @@ export const AvatarInfoWidgetRentableBotView: FC<AvatarInfoWidgetRentableBotView
           SendMessageComposer(new BotRemoveComposer(avatarInfo.webID));
           break;
         case "fish_merchant_sell":
+          SendMessageComposer(new SellCaughtFishComposer(avatarInfo.webID));
           hideMenu = true;
           break;
         case "moderate":

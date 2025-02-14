@@ -920,6 +920,7 @@ import {
   RoleplayItemAddOneComposer,
   RoleplayItemUpdateByIdComposer,
   ItemConsumeComposer,
+  SellCaughtFishComposer,
 } from "./messages";
 import { CharacterUpdateByIdComposer } from "./messages/outgoing/roleplay/character/CharacterUpdateByIdComposer";
 
@@ -2102,6 +2103,7 @@ export class NitroMessages implements IMessageConfiguration {
     this._composers.set(OutgoingHeader.ROLEPLAY_ITEM_LOOKUP_BY_TYPE, RoleplayItemLookupByTypeComposer);
     this._composers.set(OutgoingHeader.ROLEPLAY_ITEM_UPDATE_BY_ID, RoleplayItemUpdateByIdComposer);
     this._composers.set(OutgoingHeader.ITEM_CONSUME_BY_ID, ItemConsumeComposer);
+    this._composers.set(OutgoingHeader.SELL_CAUGHT_FISH, SellCaughtFishComposer);
   }
 
   public get events(): Map<number, Function> {

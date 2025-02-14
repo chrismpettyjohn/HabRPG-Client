@@ -4,6 +4,8 @@ export * from "./character/CharacterLookupRoleplayItemsComposer";
 
 export * from "./combat/AttackComposer";
 
+export * from "./fishing/SellCaughtFishComposer";
+
 export * from "./item/ItemConsumeComposer";
 export * from "./item/RoleplayItemAddOneComposer";
 export * from "./item/RoleplayItemDeleteOneComposer";

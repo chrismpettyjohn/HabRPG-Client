@@ -482,4 +482,5 @@ export class OutgoingHeader {
   public static ROLEPLAY_ITEM_UPDATE_BY_ID = 4010;
   public static CHARACTER_UPDATE_BY_ID = 4011;
   public static ITEM_CONSUME_BY_ID = 4012;
+  public static SELL_CAUGHT_FISH = 4013;
 }

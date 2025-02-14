@@ -91,7 +91,6 @@ export class RoomUnitParser implements IMessageParser {
         user.ownerId = wrapper.readInt();
         user.ownerName = wrapper.readString();
         user.botType = wrapper.readString() as any;
-        alert(user.botType);
 
         const totalSkills = wrapper.readInt();
 
