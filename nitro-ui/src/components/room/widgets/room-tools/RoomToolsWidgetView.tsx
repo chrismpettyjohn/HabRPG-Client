@@ -61,36 +61,31 @@ export const RoomToolsWidgetView: FC<{}> = (props) => {
         )}
       </Column>
       <Column justifyContent="center">
-        <TransitionAnimation type={TransitionAnimationTypes.SLIDE_LEFT} inProp={isOpen} timeout={300}>
-          <Column center>
-            <Column className="nitro-room-tools-info rounded py-2 px-3">
-              <Column gap={1}>
-                <Text wrap variant="white" fontSize={4}>
-                  {roomName}
-                </Text>
-                <Text variant="muted" fontSize={5}>
-                  {roomOwner}
-                </Text>
-              </Column>
-              {roomTags && roomTags.length > 0 && (
-                <Flex gap={2}>
-                  {roomTags.map((tag, index) => (
-                    <Text
-                      key={index}
-                      small
-                      pointer
-                      variant="white"
-                      className="rounded bg-primary p-1"
-                      onClick={() => handleToolClick("navigator_search_tag", tag)}
-                    >
-                      #{tag}
-                    </Text>
-                  ))}
-                </Flex>
-              )}
+        <Column center>
+          <Column className="nitro-room-tools-info rounded py-2 px-3">
+            <Column gap={1}>
+              <Text wrap variant="white" fontSize={4}>
+                {roomName}
+              </Text>
             </Column>
+            {roomTags && roomTags.length > 0 && (
+              <Flex gap={2}>
+                {roomTags.map((tag, index) => (
+                  <Text
+                    key={index}
+                    small
+                    pointer
+                    variant="white"
+                    className="rounded bg-primary p-1"
+                    onClick={() => handleToolClick("navigator_search_tag", tag)}
+                  >
+                    #{tag}
+                  </Text>
+                ))}
+              </Flex>
+            )}
           </Column>
-        </TransitionAnimation>
+        </Column>
       </Column>
     </Flex>
   );
