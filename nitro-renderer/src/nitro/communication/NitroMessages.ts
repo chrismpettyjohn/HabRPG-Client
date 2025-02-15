@@ -932,6 +932,7 @@ import {
   CorpOfferUserJobComposer,
   CorpStartWorkComposer,
   CorpQuitJobComposer,
+  CorpAcceptJobOfferComposer,
 } from "./messages";
 import { CharacterUpdateByIdComposer } from "./messages/outgoing/roleplay/character/CharacterUpdateByIdComposer";
 
@@ -2126,6 +2127,7 @@ export class NitroMessages implements IMessageConfiguration {
     this._composers.set(OutgoingHeader.CORP_DEMOTE_USER, CorpDemoteUserComposer);
     this._composers.set(OutgoingHeader.CORP_START_WORK, CorpStartWorkComposer);
     this._composers.set(OutgoingHeader.CORP_QUIT_JOB, CorpQuitJobComposer);
+    this._composers.set(OutgoingHeader.CORP_ACCEPT_JOB, CorpAcceptJobOfferComposer);
   }
 
   public get events(): Map<number, Function> {

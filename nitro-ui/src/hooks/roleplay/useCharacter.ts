@@ -10,6 +10,7 @@ const BASE_CHARACTER: CharacterData = {
   petId: -1,
   isDead: true,
   isExhausted: true,
+  isWorking: false,
   corpId: -1,
   corpName: "",
   corpRoleId: -1,

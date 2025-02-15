@@ -22,6 +22,7 @@ export const ModToolsUserChangeCharacterView: FC<ModToolsUserChangeCharacterView
       petId: character?.petId ?? -1,
       isDead: character?.isDead ?? true,
       isExhausted: character?.isExhausted ?? true,
+      isWorking: character?.isWorking ?? false,
       corpId: character?.corpId ?? -1,
       corpName: "",
       corpRoleId: character?.corpRoleId ?? -1,

@@ -1,6 +1,7 @@
 import {
   AvatarAction,
   AvatarExpressionEnum,
+  CorpAcceptJobOfferComposer,
   CorpQuitJobComposer,
   CorpStartWorkComposer,
   RoomObjectCategory,
@@ -258,6 +259,7 @@ export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProp
       )}
       {mode === MODE_CORP && (
         <>
+          <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpAcceptJobOfferComposer())}>Accept Job</ContextMenuListItemView>
           <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpStartWorkComposer())}>Start Shift</ContextMenuListItemView>
           <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpStartWorkComposer())}>Stop Shift</ContextMenuListItemView>
           <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpQuitJobComposer())}>Quit Job</ContextMenuListItemView>

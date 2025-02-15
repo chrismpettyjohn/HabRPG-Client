@@ -4,6 +4,7 @@ export * from "./character/CharacterLookupRoleplayItemsComposer";
 
 export * from "./combat/AttackComposer";
 
+export * from "./corp/CorpAcceptJobOfferComposer";
 export * from "./corp/CorpDemoteUserComposer";
 export * from "./corp/CorpFireUserComposer";
 export * from "./corp/CorpListAllComposer";
