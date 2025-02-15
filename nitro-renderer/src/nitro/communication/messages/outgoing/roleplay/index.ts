@@ -10,6 +10,8 @@ export * from "./corp/CorpListAllComposer";
 export * from "./corp/CorpRoleListAllComposer";
 export * from "./corp/CorpOfferUserJobComposer";
 export * from "./corp/CorpPromoteUserComposer";
+export * from "./corp/CorpStartWorkComposer";
+export * from "./corp/CorpQuitJobComposer";
 
 export * from "./farming/SellFarmedCornComposer";
 

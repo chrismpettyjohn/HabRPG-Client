@@ -490,4 +490,6 @@ export class OutgoingHeader {
   public static CORP_FIRE_USER = 4018;
   public static CORP_PROMOTE_USER = 4019;
   public static CORP_DEMOTE_USER = 4020;
+  public static CORP_START_WORK = 4021;
+  public static CORP_QUIT_JOB = 4022;
 }
