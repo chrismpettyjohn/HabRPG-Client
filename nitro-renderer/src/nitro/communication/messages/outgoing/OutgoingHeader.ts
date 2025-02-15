@@ -486,4 +486,8 @@ export class OutgoingHeader {
   public static SELL_FARMED_CORN = 4014;
   public static CORP_LIST_ALL = 4015;
   public static CORP_ROLE_LIST_ALL = 4016;
+  public static CORP_OFFER_USER_JOB = 4017;
+  public static CORP_FIRE_USER = 4018;
+  public static CORP_PROMOTE_USER = 4019;
+  public static CORP_DEMOTE_USER = 4020;
 }

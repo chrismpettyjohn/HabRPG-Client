@@ -4,8 +4,12 @@ export * from "./character/CharacterLookupRoleplayItemsComposer";
 
 export * from "./combat/AttackComposer";
 
+export * from "./corp/CorpDemoteUserComposer";
+export * from "./corp/CorpFireUserComposer";
 export * from "./corp/CorpListAllComposer";
 export * from "./corp/CorpRoleListAllComposer";
+export * from "./corp/CorpOfferUserJobComposer";
+export * from "./corp/CorpPromoteUserComposer";
 
 export * from "./farming/SellFarmedCornComposer";
 

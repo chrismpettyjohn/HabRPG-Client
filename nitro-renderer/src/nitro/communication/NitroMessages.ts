@@ -926,6 +926,10 @@ import {
   CorpRoleListAllComposer,
   CorpRoleListAllEvent,
   CorpListAllEvent,
+  CorpDemoteUserComposer,
+  CorpPromoteUserComposer,
+  CorpFireUserComposer,
+  CorpOfferUserJobComposer,
 } from "./messages";
 import { CharacterUpdateByIdComposer } from "./messages/outgoing/roleplay/character/CharacterUpdateByIdComposer";
 
@@ -2114,6 +2118,10 @@ export class NitroMessages implements IMessageConfiguration {
     this._composers.set(OutgoingHeader.SELL_FARMED_CORN, SellFarmedCornComposer);
     this._composers.set(OutgoingHeader.CORP_LIST_ALL, CorpListAllComposer);
     this._composers.set(OutgoingHeader.CORP_ROLE_LIST_ALL, CorpRoleListAllComposer);
+    this._composers.set(OutgoingHeader.CORP_OFFER_USER_JOB, CorpOfferUserJobComposer);
+    this._composers.set(OutgoingHeader.CORP_FIRE_USER, CorpFireUserComposer);
+    this._composers.set(OutgoingHeader.CORP_PROMOTE_USER, CorpPromoteUserComposer);
+    this._composers.set(OutgoingHeader.CORP_DEMOTE_USER, CorpDemoteUserComposer);
   }
 
   public get events(): Map<number, Function> {
