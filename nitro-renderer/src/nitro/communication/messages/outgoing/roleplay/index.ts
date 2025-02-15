@@ -4,6 +4,9 @@ export * from "./character/CharacterLookupRoleplayItemsComposer";
 
 export * from "./combat/AttackComposer";
 
+export * from "./corp/CorpListAllComposer";
+export * from "./corp/CorpRoleListAllComposer";
+
 export * from "./farming/SellFarmedCornComposer";
 
 export * from "./fishing/SellCaughtFishComposer";

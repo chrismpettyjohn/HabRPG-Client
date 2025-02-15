@@ -1,33 +1,18 @@
-import {
-  ChangeEvent,
-  FC,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
-import {
-  Button,
-  DraggableWindowPosition,
-  Flex,
-  NitroCardContentView,
-  NitroCardHeaderView,
-  NitroCardView,
-  Text,
-} from "../../../../common";
+import { ChangeEvent, FC, useCallback, useEffect, useMemo, useState } from "react";
+import { Button, DraggableWindowPosition, Flex, NitroCardContentView, NitroCardHeaderView, NitroCardView, Text } from "../../../../common";
 import { useCharacter } from "../../../../hooks";
 import { SendMessageComposer } from "../../../../api";
 import { CharacterUpdateByIdComposer } from "@nitrots/nitro-renderer/src/nitro/communication/messages/outgoing/roleplay/character/CharacterUpdateByIdComposer";
 import { CharacterData } from "@nitrots/nitro-renderer";
+import { CorpRoleSelect } from "../../../../common/roleplay/corp-role-select/CorpRoleSelect";
+import { CorpSelect } from "../../../../common/roleplay/corp-select/CorpSelect";
 
 interface ModToolsUserChangeCharacterViewProps {
   userId: number;
   onCloseClick: () => void;
 }
 
-export const ModToolsUserChangeCharacterView: FC<
-  ModToolsUserChangeCharacterViewProps
-> = ({ userId, onCloseClick }) => {
+export const ModToolsUserChangeCharacterView: FC<ModToolsUserChangeCharacterViewProps> = ({ userId, onCloseClick }) => {
   const character = useCharacter(userId);
   const characterData = useMemo(
     () => ({
@@ -37,6 +22,10 @@ export const ModToolsUserChangeCharacterView: FC<
       petId: character?.petId ?? -1,
       isDead: character?.isDead ?? true,
       isExhausted: character?.isExhausted ?? true,
+      corpId: character?.corpId ?? -1,
+      corpName: "",
+      corpRoleId: character?.corpRoleId ?? -1,
+      corpRoleName: "",
       healthNow: character?.healthNow ?? -1,
       healthMax: character?.healthMax ?? -1,
       energyNow: character?.energyNow ?? -1,
@@ -57,30 +46,28 @@ export const ModToolsUserChangeCharacterView: FC<
     event.persist();
     setStats((_) => ({
       ..._,
-      [event.target.name]: !Number.isNaN(event.target.value)
-        ? Number(event.target.value)
-        : event.target.value,
+      [event.target.name]: !Number.isNaN(event.target.value) ? Number(event.target.value) : event.target.value,
     }));
   }, []);
 
   const onSaveChanges = useCallback(() => {
-    console.log(
-      userId,
-      stats.healthNow,
-      stats.healthMax,
-      stats.energyNow,
-      stats.energyMax
-    );
-    SendMessageComposer(
-      new CharacterUpdateByIdComposer(
-        userId,
-        stats.healthNow,
-        stats.healthMax,
-        stats.energyNow,
-        stats.energyMax
-      )
-    );
+    console.log(userId, stats.healthNow, stats.healthMax, stats.energyNow, stats.energyMax);
+    SendMessageComposer(new CharacterUpdateByIdComposer(userId, stats.healthNow, stats.healthMax, stats.energyNow, stats.energyMax));
   }, [userId, stats]);
+
+  const onChangeCorp = useCallback((corpId: number) => {
+    setStats((_) => ({
+      ..._,
+      corpId,
+    }));
+  }, []);
+
+  const onChangeCorpRole = useCallback((corpRoleId: number) => {
+    setStats((_) => ({
+      ..._,
+      corpRoleId,
+    }));
+  }, []);
 
   useEffect(() => {
     setStats(character);
@@ -97,11 +84,11 @@ export const ModToolsUserChangeCharacterView: FC<
       windowPosition={DraggableWindowPosition.TOP_LEFT}
       style={{ width: 400 }}
     >
-      <NitroCardHeaderView
-        headerText="Roleplay Stats"
-        onCloseClick={() => onCloseClick()}
-      />
+      <NitroCardHeaderView headerText="Roleplay Character" onCloseClick={() => onCloseClick()} />
       <NitroCardContentView className="text-black">
+        <Text bold fontSize={4}>
+          Stats
+        </Text>
         <Flex gap={1}>
           <Flex fullWidth style={{ flexDirection: "column" }}>
             <Text bold>Health Now ({stats.healthNow})</Text>
@@ -117,15 +104,7 @@ export const ModToolsUserChangeCharacterView: FC<
           </Flex>
           <Flex fullWidth style={{ flexDirection: "column" }}>
             <Text bold>Health Max ({stats.healthMax})</Text>
-            <input
-              type="range"
-              className="form-control form-control-sm"
-              name="healthMax"
-              value={stats.healthMax}
-              min={0}
-              max={500}
-              onChange={onChanges}
-            />
+            <input type="range" className="form-control form-control-sm" name="healthMax" value={stats.healthMax} min={0} max={500} onChange={onChanges} />
           </Flex>
         </Flex>
         <Flex gap={1}>
@@ -143,15 +122,21 @@ export const ModToolsUserChangeCharacterView: FC<
           </Flex>
           <Flex fullWidth style={{ flexDirection: "column" }}>
             <Text bold>Energy Max ({stats.energyMax})</Text>
-            <input
-              type="range"
-              className="form-control form-control-sm"
-              name="energyMax"
-              value={stats.energyMax}
-              min={0}
-              max={500}
-              onChange={onChanges}
-            />
+            <input type="range" className="form-control form-control-sm" name="energyMax" value={stats.energyMax} min={0} max={500} onChange={onChanges} />
+          </Flex>
+        </Flex>
+        <hr style={{ margin: 0 }} />
+        <Text bold fontSize={4}>
+          Life
+        </Text>
+        <Flex gap={1}>
+          <Flex fullWidth style={{ flexDirection: "column" }}>
+            <Text bold>Employer</Text>
+            <CorpSelect corpId={stats.corpId} onChange={onChangeCorp} />
+          </Flex>
+          <Flex fullWidth style={{ flexDirection: "column" }}>
+            <Text bold>Position</Text>
+            <CorpRoleSelect corpRoleId={stats.corpRoleId} onChange={onChangeCorpRole} />
           </Flex>
         </Flex>
         <Button fullWidth variant="success" onClick={onSaveChanges}>

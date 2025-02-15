@@ -1,7 +1,7 @@
 {
     "socket.url": "ws://localhost:8001",
-    "asset.url": "http://localhost:8080",
-    "flash.asset.url": "http://localhost:8080",
+    "asset.url": "http://localhost:8081",
+    "flash.asset.url": "http://localhost:8081",
     "image.library.url": "${flash.asset.url}/c_images/",
     "hof.furni.url": "${flash.asset.url}/bundled/furniture",
     "images.url": "${asset.url}/images",

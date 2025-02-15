@@ -484,4 +484,6 @@ export class OutgoingHeader {
   public static ITEM_CONSUME_BY_ID = 4012;
   public static SELL_CAUGHT_FISH = 4013;
   public static SELL_FARMED_CORN = 4014;
+  public static CORP_LIST_ALL = 4015;
+  public static CORP_ROLE_LIST_ALL = 4016;
 }

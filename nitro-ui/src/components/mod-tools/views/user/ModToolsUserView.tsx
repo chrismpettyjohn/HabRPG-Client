@@ -1,24 +1,7 @@
-import {
-  FriendlyTime,
-  GetModeratorUserInfoMessageComposer,
-  ModeratorUserInfoData,
-  ModeratorUserInfoEvent,
-} from "@nitrots/nitro-renderer";
+import { FriendlyTime, GetModeratorUserInfoMessageComposer, ModeratorUserInfoData, ModeratorUserInfoEvent } from "@nitrots/nitro-renderer";
 import { FC, useEffect, useMemo, useState } from "react";
-import {
-  CreateLinkEvent,
-  LocalizeText,
-  SendMessageComposer,
-} from "../../../../api";
-import {
-  Button,
-  Column,
-  DraggableWindowPosition,
-  Grid,
-  NitroCardContentView,
-  NitroCardHeaderView,
-  NitroCardView,
-} from "../../../../common";
+import { CreateLinkEvent, LocalizeText, SendMessageComposer } from "../../../../api";
+import { Button, Column, DraggableWindowPosition, Grid, NitroCardContentView, NitroCardHeaderView, NitroCardView } from "../../../../common";
 import { useMessageEvent } from "../../../../hooks";
 import { ModToolsUserModActionView } from "./ModToolsUserModActionView";
 import { ModToolsUserRoomVisitsView } from "./ModToolsUserRoomVisitsView";
@@ -30,9 +13,7 @@ interface ModToolsUserRoleplayStatsProps {
   onCloseClick: () => void;
 }
 
-export const ModToolsUserRoleplayStatsView: FC<
-  ModToolsUserRoleplayStatsProps
-> = (props) => {
+export const ModToolsUserRoleplayStatsView: FC<ModToolsUserRoleplayStatsProps> = (props) => {
   const { onCloseClick = null, userId = null } = props;
   const [userInfo, setUserInfo] = useState<ModeratorUserInfoData>(null);
   const [sendMessageVisible, setSendMessageVisible] = useState(false);
@@ -79,11 +60,7 @@ export const ModToolsUserRoleplayStatsView: FC<
       },
       {
         localeKey: "modtools.userinfo.minutesSinceLastLogin",
-        value: FriendlyTime.format(
-          userInfo.minutesSinceLastLogin * 60,
-          ".ago",
-          2
-        ),
+        value: FriendlyTime.format(userInfo.minutesSinceLastLogin * 60, ".ago", 2),
       },
       {
         localeKey: "modtools.userinfo.lastPurchaseDate",
@@ -99,11 +76,7 @@ export const ModToolsUserRoleplayStatsView: FC<
       },
       {
         localeKey: "modtools.userinfo.registrationAgeInMinutes",
-        value: FriendlyTime.format(
-          userInfo.registrationAgeInMinutes * 60,
-          ".ago",
-          2
-        ),
+        value: FriendlyTime.format(userInfo.registrationAgeInMinutes * 60, ".ago", 2),
       },
       {
         localeKey: "modtools.userinfo.userClassification",
@@ -128,19 +101,8 @@ export const ModToolsUserRoleplayStatsView: FC<
 
   return (
     <>
-      <NitroCardView
-        className="nitro-mod-tools-user"
-        theme="primary-slim"
-        windowPosition={DraggableWindowPosition.TOP_LEFT}
-      >
-        <NitroCardHeaderView
-          headerText={LocalizeText(
-            "modtools.userinfo.title",
-            ["username"],
-            [userInfo.userName]
-          )}
-          onCloseClick={() => onCloseClick()}
-        />
+      <NitroCardView className="nitro-mod-tools-user" theme="primary-slim" windowPosition={DraggableWindowPosition.TOP_LEFT}>
+        <NitroCardHeaderView headerText={LocalizeText("modtools.userinfo.title", ["username"], [userInfo.userName])} onCloseClick={() => onCloseClick()} />
         <NitroCardContentView className="text-black">
           <Grid overflow="hidden">
             <Column size={8} overflow="auto">
@@ -152,11 +114,7 @@ export const ModToolsUserRoleplayStatsView: FC<
                         <th scope="row">{LocalizeText(property.localeKey)}</th>
                         <td>
                           {property.value}
-                          {property.showOnline && (
-                            <i
-                              className={`icon icon-pf-${userInfo.online ? "online" : "offline"} ms-2`}
-                            />
-                          )}
+                          {property.showOnline && <i className={`icon icon-pf-${userInfo.online ? "online" : "offline"} ms-2`} />}
                         </td>
                       </tr>
                     );
@@ -165,63 +123,21 @@ export const ModToolsUserRoleplayStatsView: FC<
               </table>
             </Column>
             <Column size={4} gap={1}>
-              <Button
-                onClick={(event) =>
-                  CreateLinkEvent(`mod-tools/open-user-chatlog/${userId}`)
-                }
-              >
-                Room Chat
-              </Button>
-              <Button
-                onClick={(event) => setSendMessageVisible(!sendMessageVisible)}
-              >
-                Send Message
-              </Button>
-              <Button
-                onClick={(event) => setRoomVisitsVisible(!roomVisitsVisible)}
-              >
-                Room Visits
-              </Button>
-              <Button
-                onClick={(event) => setModActionVisible(!modActionVisible)}
-              >
-                Mod Action
-              </Button>
-              <Button
-                onClick={(event) =>
-                  setChangeCharacterVisible(!changeCharacterVisible)
-                }
-              >
-                Roleplay Stats
-              </Button>
+              <Button onClick={(event) => CreateLinkEvent(`mod-tools/open-user-chatlog/${userId}`)}>Room Chat</Button>
+              <Button onClick={(event) => setSendMessageVisible(!sendMessageVisible)}>Send Message</Button>
+              <Button onClick={(event) => setRoomVisitsVisible(!roomVisitsVisible)}>Room Visits</Button>
+              <Button onClick={(event) => setModActionVisible(!modActionVisible)}>Mod Action</Button>
+              <Button onClick={(event) => setChangeCharacterVisible(!changeCharacterVisible)}>Roleplay Character</Button>
             </Column>
           </Grid>
         </NitroCardContentView>
       </NitroCardView>
       {sendMessageVisible && (
-        <ModToolsUserSendMessageView
-          user={{ userId: userId, username: userInfo.userName }}
-          onCloseClick={() => setSendMessageVisible(false)}
-        />
+        <ModToolsUserSendMessageView user={{ userId: userId, username: userInfo.userName }} onCloseClick={() => setSendMessageVisible(false)} />
       )}
-      {modActionVisible && (
-        <ModToolsUserModActionView
-          user={{ userId: userId, username: userInfo.userName }}
-          onCloseClick={() => setModActionVisible(false)}
-        />
-      )}
-      {roomVisitsVisible && (
-        <ModToolsUserRoomVisitsView
-          userId={userId}
-          onCloseClick={() => setRoomVisitsVisible(false)}
-        />
-      )}
-      {changeCharacterVisible && (
-        <ModToolsUserChangeCharacterView
-          userId={userId}
-          onCloseClick={() => setChangeCharacterVisible(false)}
-        />
-      )}
+      {modActionVisible && <ModToolsUserModActionView user={{ userId: userId, username: userInfo.userName }} onCloseClick={() => setModActionVisible(false)} />}
+      {roomVisitsVisible && <ModToolsUserRoomVisitsView userId={userId} onCloseClick={() => setRoomVisitsVisible(false)} />}
+      {changeCharacterVisible && <ModToolsUserChangeCharacterView userId={userId} onCloseClick={() => setChangeCharacterVisible(false)} />}
     </>
   );
 };
