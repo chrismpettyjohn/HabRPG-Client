@@ -16,22 +16,16 @@ export class CorpListAllEventParser implements IMessageParser {
   public parse(wrapper: IMessageDataWrapper): boolean {
     if (!wrapper) return false;
 
-    this._corpData = []; // Ensure it's initialized
+    const corpCount = wrapper.readInt();
 
-    try {
-      const corpCount = wrapper.readInt();
-
-      for (let i = 0; i < corpCount; i += 1) {
-        const [id, name] = wrapper.readString().split(";");
-        this._corpData.push({
-          id: Number(id),
-          name,
-        });
-      }
-    } catch (e) {
-      console.error("Error parsing corp data:", e);
-      return false;
+    for (let i = 0; i < corpCount; i += 1) {
+      const [id, name] = wrapper.readString().split(";");
+      this._corpData.push({
+        id: Number(id),
+        name,
+      });
     }
+
     return true;
   }
 

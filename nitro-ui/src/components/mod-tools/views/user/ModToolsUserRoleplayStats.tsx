@@ -51,23 +51,30 @@ export const ModToolsUserChangeCharacterView: FC<ModToolsUserChangeCharacterView
   }, []);
 
   const onSaveChanges = useCallback(() => {
-    console.log(userId, stats.healthNow, stats.healthMax, stats.energyNow, stats.energyMax);
-    SendMessageComposer(new CharacterUpdateByIdComposer(userId, stats.healthNow, stats.healthMax, stats.energyNow, stats.energyMax));
+    SendMessageComposer(
+      new CharacterUpdateByIdComposer(userId, stats.corpId, stats.corpRoleId, stats.healthNow, stats.healthMax, stats.energyNow, stats.energyMax)
+    );
   }, [userId, stats]);
 
-  const onChangeCorp = useCallback((corpId: number) => {
-    setStats((_) => ({
-      ..._,
-      corpId,
-    }));
-  }, []);
+  const onChangeCorp = useCallback(
+    (corpId: number) => {
+      setStats((_) => ({
+        ..._,
+        corpId,
+      }));
+    },
+    [setStats]
+  );
 
-  const onChangeCorpRole = useCallback((corpRoleId: number) => {
-    setStats((_) => ({
-      ..._,
-      corpRoleId,
-    }));
-  }, []);
+  const onChangeCorpRole = useCallback(
+    (corpRoleId: number) => {
+      setStats((_) => ({
+        ..._,
+        corpRoleId,
+      }));
+    },
+    [setStats]
+  );
 
   useEffect(() => {
     setStats(character);
@@ -136,7 +143,7 @@ export const ModToolsUserChangeCharacterView: FC<ModToolsUserChangeCharacterView
           </Flex>
           <Flex fullWidth style={{ flexDirection: "column" }}>
             <Text bold>Position</Text>
-            <CorpRoleSelect corpRoleId={stats.corpRoleId} onChange={onChangeCorpRole} />
+            <CorpRoleSelect corpId={stats.corpId} corpRoleId={stats.corpRoleId} onChange={onChangeCorpRole} />
           </Flex>
         </Flex>
         <Button fullWidth variant="success" onClick={onSaveChanges}>

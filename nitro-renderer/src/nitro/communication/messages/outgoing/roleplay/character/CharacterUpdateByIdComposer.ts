@@ -1,17 +1,17 @@
-import { IMessageComposer } from '../../../../../../api';
+import { IMessageComposer } from "../../../../../../api";
 
 export class CharacterUpdateByIdComposer implements IMessageComposer<ConstructorParameters<typeof CharacterUpdateByIdComposer>> {
-    private _data: ConstructorParameters<typeof CharacterUpdateByIdComposer>;
+  private _data: ConstructorParameters<typeof CharacterUpdateByIdComposer>;
 
-    constructor(userId: number, healthNow: number, healthMax: number, energyNow: number, energyMax: number) {
-        this._data = [userId, healthNow, healthMax, energyNow, energyMax];
-    }
+  constructor(userId: number, corpId: number, corpRoleId: number, healthNow: number, healthMax: number, energyNow: number, energyMax: number) {
+    this._data = [userId, corpId, corpRoleId, healthNow, healthMax, energyNow, energyMax];
+  }
 
-    public getMessageArray() {
-        return this._data;
-    }
+  public getMessageArray() {
+    return this._data;
+  }
 
-    public dispose(): void {
-        return;
-    }
+  public dispose(): void {
+    return;
+  }
 }

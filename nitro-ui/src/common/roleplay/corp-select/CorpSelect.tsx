@@ -9,10 +9,13 @@ export function CorpSelect({ corpId, onChange }: CorpSelectProps) {
   const corps = useCorpList();
 
   return (
-    <select className="form-control form-control-sm">
-      {corps.map((_) => (
-        <option value={_.id} onSelect={() => onChange(_.id)} selected={corpId === _.id}>
-          {_.name}
+    <select className="form-control form-control-sm" value={corpId ?? ""} onChange={(e) => onChange(Number(e.target.value))}>
+      <option value="" disabled>
+        Select a corporation
+      </option>
+      {corps.map((corp) => (
+        <option key={corp.id} value={corp.id}>
+          {corp.name}
         </option>
       ))}
     </select>
