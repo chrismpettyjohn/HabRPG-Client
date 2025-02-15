@@ -1,14 +1,12 @@
 .nitro-toolbar {
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
     left: 0;
     width: 100%;
     height: $toolbar-height;
     z-index: $toolbar-zindex;
     pointer-events: all;
-    background: rgba($dark, 0.95);
-    box-shadow: inset 0px 5px lighten(rgba($dark, 0.6), 2.5),
-        inset 0 -4px darken(rgba($dark, 0.6), 4);
+    background: transparent;
 
     .navigation-item {
         position: relative;
@@ -39,6 +37,10 @@
     }
 
     #toolbar-chat-input-container {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        flex: 1;
 
         @include media-breakpoint-down(sm) {
             width: 0px;

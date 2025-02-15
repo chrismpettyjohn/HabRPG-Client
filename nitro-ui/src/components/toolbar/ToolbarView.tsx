@@ -78,7 +78,7 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = (props) => {
         <ToolbarMeView useGuideTool={useGuideTool} unseenAchievementCount={getTotalUnseen} setMeExpanded={setMeExpanded} />
       </TransitionAnimation>
       <Flex alignItems="center" justifyContent="between" gap={2} className="nitro-toolbar py-1 px-3">
-        <Flex gap={2} alignItems="center">
+        <Flex gap={2} alignItems="center" style={{ flex: 1 }}>
           <Flex alignItems="center" gap={2}>
             <Flex center pointer className={"navigation-item item-avatar " + (isMeExpanded ? "active " : "")} onClick={(event) => setMeExpanded(!isMeExpanded)}>
               <LayoutAvatarImageView figure={userFigure} direction={2} position="absolute" />
