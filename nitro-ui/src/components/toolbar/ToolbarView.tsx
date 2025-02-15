@@ -1,37 +1,16 @@
-import {
-  Dispose,
-  DropBounce,
-  EaseOut,
-  JumpBy,
-  Motions,
-  NitroToolbarAnimateIconEvent,
-  PerkAllowancesMessageEvent,
-  PerkEnum,
-  Queue,
-  Wait,
-} from "@nitrots/nitro-renderer";
-import { FC, useState } from "react";
-import { CreateLinkEvent, GetConfiguration, GetSessionDataManager, MessengerIconState, OpenMessengerChat } from "../../api";
-import { Base, Flex, LayoutAvatarImageView, LayoutItemCountView, TransitionAnimation, TransitionAnimationTypes } from "../../common";
-import { useAchievements, useFriends, useInventoryUnseenTracker, useMessageEvent, useMessenger, useRoomEngineEvent, useSessionInfo } from "../../hooks";
-import { ToolbarMeView } from "./ToolbarMeView";
+import { Dispose, DropBounce, EaseOut, JumpBy, Motions, NitroToolbarAnimateIconEvent, Queue, Wait } from "@nitrots/nitro-renderer";
+import { FC } from "react";
+import { CreateLinkEvent, GetSessionDataManager, MessengerIconState, OpenMessengerChat } from "../../api";
+import { Base, Flex, LayoutItemCountView } from "../../common";
+import { useFriends, useInventoryUnseenTracker, useMessenger, useRoomEngineEvent } from "../../hooks";
+import { ChatInputView } from "../room/widgets/chat-input/ChatInputView";
 
 export const ToolbarView: FC<{ isInRoom: boolean }> = (props) => {
   const { isInRoom } = props;
-  const [isMeExpanded, setMeExpanded] = useState(false);
-  const [useGuideTool, setUseGuideTool] = useState(false);
-  const { userFigure = null } = useSessionInfo();
   const { getFullCount = 0 } = useInventoryUnseenTracker();
-  const { getTotalUnseen = 0 } = useAchievements();
   const { requests = [] } = useFriends();
   const { iconState = MessengerIconState.HIDDEN } = useMessenger();
   const isMod = GetSessionDataManager().isModerator;
-
-  useMessageEvent<PerkAllowancesMessageEvent>(PerkAllowancesMessageEvent, (event) => {
-    const parser = event.getParser();
-
-    setUseGuideTool(parser.isAllowed(PerkEnum.USE_GUIDE_TOOL));
-  });
 
   useRoomEngineEvent<NitroToolbarAnimateIconEvent>(NitroToolbarAnimateIconEvent.ANIMATE_ICON, (event) => {
     const animationIconToToolbar = (iconName: string, image: HTMLImageElement, x: number, y: number) => {
@@ -74,16 +53,9 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = (props) => {
 
   return (
     <>
-      <TransitionAnimation type={TransitionAnimationTypes.FADE_IN} inProp={isMeExpanded} timeout={300}>
-        <ToolbarMeView useGuideTool={useGuideTool} unseenAchievementCount={getTotalUnseen} setMeExpanded={setMeExpanded} />
-      </TransitionAnimation>
-      <Flex alignItems="center" justifyContent="between" gap={2} className="nitro-toolbar py-1 px-3">
+      <Flex alignItems="center" justifyContent="between" gap={2} className="nitro-toolbar py-4 px-4">
         <Flex gap={2} alignItems="center" style={{ flex: 1 }}>
           <Flex alignItems="center" gap={2}>
-            <Flex center pointer className={"navigation-item item-avatar " + (isMeExpanded ? "active " : "")} onClick={(event) => setMeExpanded(!isMeExpanded)}>
-              <LayoutAvatarImageView figure={userFigure} direction={2} position="absolute" />
-              {getTotalUnseen > 0 && <LayoutItemCountView count={getTotalUnseen} />}
-            </Flex>
             {!isInRoom && <Base pointer className="navigation-item icon icon-house" onClick={(event) => CreateLinkEvent("navigator/goto/home")} />}
             <Base pointer className="navigation-item icon icon-rooms" onClick={(event) => CreateLinkEvent("navigator/toggle")} />
             <Base pointer className="navigation-item icon icon-catalog" onClick={(event) => CreateLinkEvent("catalog/toggle")} />
@@ -93,9 +65,10 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = (props) => {
             {isInRoom && <Base pointer className="navigation-item icon icon-camera" onClick={(event) => CreateLinkEvent("camera/toggle")} />}
             {isMod && <Base pointer className="navigation-item icon icon-modtools" onClick={(event) => CreateLinkEvent("mod-tools/toggle")} />}
           </Flex>
-          <Flex alignItems="center" id="toolbar-chat-input-container" />
         </Flex>
-        <Flex alignItems="center" gap={2}>
+
+        <ChatInputView />
+        <Flex alignItems="center" gap={2} style={{ flex: 1, justifyContent: "flex-end" }}>
           <Flex gap={2}>
             <Base pointer className="navigation-item icon icon-friendall" onClick={(event) => CreateLinkEvent("friends/toggle")}>
               {requests.length > 0 && <LayoutItemCountView count={requests.length} />}

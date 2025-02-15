@@ -2,15 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     height: 60px;
-    border-radius: 6px;
+    border-radius: $radius-two;
     border: 2px solid rgb(20, 22, 53, .35);
-    background: #2C2F33;
-    padding-right: 10px;
+    background: $bg-three;
     width: 100%;
     width: 459px;
-    overflow: hidden;
+    position: relative;
 
     .input-sizer {
         display: inline-grid;
@@ -21,14 +19,34 @@
         input, textarea {
             color: white;
             border: none;
-            background: #2C2F33;
+            background: $bg-three;
             padding: 4px;
             height: 100%;
             width: 100%;
+            padding: 4px;
 
             &:focus {
                 outline: none;
             }
         }
+    }
+}
+
+.nitro-chat-input-user {
+    align-items: center;
+    background: $bg-four;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    height: 100%;
+    padding-left: 4px;
+    padding-right: 4px;
+    position: relative;
+
+    .avatar-image {
+        width: 45px;
+        height: 90px;
+        pointer-events: all;
     }
 }

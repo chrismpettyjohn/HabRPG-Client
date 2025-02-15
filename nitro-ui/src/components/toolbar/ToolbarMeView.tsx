@@ -1,36 +1,19 @@
-import { MouseEventType, RoomObjectCategory } from "@nitrots/nitro-renderer";
-import { Dispatch, FC, PropsWithChildren, SetStateAction, useEffect, useRef } from "react";
-import { CreateLinkEvent, GetRoomEngine, GetRoomSession, GetSessionDataManager, GetUserProfile } from "../../api";
+import { FC, PropsWithChildren, useRef } from "react";
+import { CreateLinkEvent, GetSessionDataManager, GetUserProfile } from "../../api";
 import { Base, Flex, LayoutItemCountView } from "../../common";
 
 interface ToolbarMeViewProps {
   useGuideTool: boolean;
   unseenAchievementCount: number;
-  setMeExpanded: Dispatch<SetStateAction<boolean>>;
+  onClose(): void;
 }
 
 export const ToolbarMeView: FC<PropsWithChildren<ToolbarMeViewProps>> = (props) => {
-  const { useGuideTool = false, unseenAchievementCount = 0, setMeExpanded = null, children = null, ...rest } = props;
+  const { useGuideTool = false, unseenAchievementCount = 0, onClose = null, children = null, ...rest } = props;
   const elementRef = useRef<HTMLDivElement>();
 
-  useEffect(() => {
-    const roomSession = GetRoomSession();
-
-    if (!roomSession) return;
-
-    GetRoomEngine().selectRoomObject(roomSession.roomId, roomSession.ownRoomIndex, RoomObjectCategory.UNIT);
-  }, []);
-
-  useEffect(() => {
-    const onClick = (event: MouseEvent) => setMeExpanded(false);
-
-    document.addEventListener("click", onClick);
-
-    return () => document.removeEventListener(MouseEventType.MOUSE_CLICK, onClick);
-  }, [setMeExpanded]);
-
   return (
-    <Flex innerRef={elementRef} alignItems="center" className="nitro-toolbar-me p-2" gap={2}>
+    <Flex innerRef={elementRef} alignItems="center" className="nitro-toolbar-me p-2" gap={2} onMouseLeave={onClose}>
       <Base pointer className="navigation-item icon icon-me-achievements" onClick={(event) => CreateLinkEvent("achievements/toggle")}>
         {unseenAchievementCount > 0 && <LayoutItemCountView count={unseenAchievementCount} />}
       </Base>

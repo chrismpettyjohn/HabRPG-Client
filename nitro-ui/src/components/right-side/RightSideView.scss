@@ -6,5 +6,4 @@
     max-width: 200px;
     height: calc(100% - #{$toolbar-height});
     z-index: $rightside-zindex;
-    pointer-events: none;
 }

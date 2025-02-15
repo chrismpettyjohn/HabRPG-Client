@@ -1,22 +1,16 @@
-import { HabboClubLevelEnum, RoomControllerLevel } from "@nitrots/nitro-renderer";
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { createPortal } from "react-dom";
-import {
-  ChatMessageTypeEnum,
-  GetClubMemberLevel,
-  GetConfiguration,
-  GetSessionDataManager,
-  LocalizeText,
-  RoomWidgetUpdateChatInputContentEvent,
-} from "../../../../api";
-import { Text } from "../../../../common";
+import { ChatMessageTypeEnum, GetConfiguration, LocalizeText, RoomWidgetUpdateChatInputContentEvent } from "../../../../api";
+import { LayoutAvatarImageView, Text } from "../../../../common";
 import { useChatInputWidget, useRoom, useSessionInfo, useUiEvent } from "../../../../hooks";
+import { ToolbarMeView } from "../../../toolbar/ToolbarMeView";
 
-export const ChatInputView: FC<{}> = (props) => {
+export const ChatInputView: FC<{}> = () => {
+  const { userFigure = null } = useSessionInfo();
   const [chatValue, setChatValue] = useState<string>("");
-  const { chatStyleId = 0, updateChatStyleId = null } = useSessionInfo();
   const { selectedUsername = "", floodBlocked = false, floodBlockedSeconds = 0, setIsTyping = null, setIsIdle = null, sendChat = null } = useChatInputWidget();
   const { roomSession = null } = useRoom();
+
+  const [isMeExpanded, setMeExpanded] = useState(false);
   const inputRef = useRef<HTMLInputElement>();
 
   const chatModeIdWhisper = useMemo(() => LocalizeText("widgets.chatinput.mode.whisper"), []);
@@ -93,13 +87,13 @@ export const ChatInputView: FC<{}> = (props) => {
           setChatValue("");
         } else {
           setChatValue("");
-          sendChat(text, chatType, recipientName, chatStyleId);
+          sendChat(text, chatType, recipientName, 0);
         }
       }
 
       setChatValue(append);
     },
-    [chatModeIdWhisper, chatModeIdShout, chatModeIdSpeak, maxChatLength, chatStyleId, setIsTyping, setIsIdle, sendChat]
+    [chatModeIdWhisper, chatModeIdShout, chatModeIdSpeak, maxChatLength, setIsTyping, setIsIdle, sendChat]
   );
 
   const updateChatInput = useCallback(
@@ -158,49 +152,6 @@ export const ChatInputView: FC<{}> = (props) => {
     }
   });
 
-  const chatStyleIds = useMemo(() => {
-    let styleIds: number[] = [];
-
-    const styles =
-      GetConfiguration<{ styleId: number; minRank: number; isSystemStyle: boolean; isHcOnly: boolean; isAmbassadorOnly: boolean }[]>("chat.styles");
-
-    for (const style of styles) {
-      if (!style) continue;
-
-      if (style.minRank > 0) {
-        if (GetSessionDataManager().hasSecurity(style.minRank)) styleIds.push(style.styleId);
-
-        continue;
-      }
-
-      if (style.isSystemStyle) {
-        if (GetSessionDataManager().hasSecurity(RoomControllerLevel.MODERATOR)) {
-          styleIds.push(style.styleId);
-
-          continue;
-        }
-      }
-
-      if (GetConfiguration<number[]>("chat.styles.disabled").indexOf(style.styleId) >= 0) continue;
-
-      if (style.isHcOnly && GetClubMemberLevel() >= HabboClubLevelEnum.CLUB) {
-        styleIds.push(style.styleId);
-
-        continue;
-      }
-
-      if (style.isAmbassadorOnly && GetSessionDataManager().isAmbassador) {
-        styleIds.push(style.styleId);
-
-        continue;
-      }
-
-      if (!style.isHcOnly && !style.isAmbassadorOnly) styleIds.push(style.styleId);
-    }
-
-    return styleIds;
-  }, []);
-
   useEffect(() => {
     document.body.addEventListener("keydown", onKeyDownEvent);
 
@@ -217,8 +168,16 @@ export const ChatInputView: FC<{}> = (props) => {
 
   if (!roomSession || roomSession.isSpectator) return null;
 
-  return createPortal(
+  return (
     <div className="nitro-chat-input-container">
+      <div className="nitro-chat-input-user" onClick={() => setMeExpanded((_) => !_)}>
+        <LayoutAvatarImageView figure={userFigure} direction={2} headOnly />
+      </div>
+      {isMeExpanded && (
+        <div style={{ left: -70, top: 20, position: "relative" }}>
+          <ToolbarMeView useGuideTool={null as any} unseenAchievementCount={0} onClose={() => setMeExpanded(false)} />
+        </div>
+      )}
       <div className="input-sizer align-items-center">
         {!floodBlocked && (
           <input
@@ -234,7 +193,6 @@ export const ChatInputView: FC<{}> = (props) => {
         )}
         {floodBlocked && <Text variant="danger">{LocalizeText("chat.input.alert.flood", ["time"], [floodBlockedSeconds.toString()])} </Text>}
       </div>
-    </div>,
-    document.getElementById("toolbar-chat-input-container")
+    </div>
   );
 };
