@@ -2,11 +2,15 @@
 
 .nitro-left-side {
     position: absolute;
-    pointer-events: all;
+    pointer-events: none; 
     top: 20px;
     left: 20px;
     min-width: 200px;
     max-width: 200px;
-    height: calc(100% - #{$toolbar-height});
+    height: calc(100% - var(--toolbar-height)); 
     z-index: 100;
+}
+
+.nitro-left-side * {
+    pointer-events: auto; 
 }
