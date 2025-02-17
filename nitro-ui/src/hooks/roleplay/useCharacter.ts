@@ -8,6 +8,8 @@ const BASE_CHARACTER: CharacterData = {
   botId: -1,
   userId: -1,
   petId: -1,
+  username: "",
+  figure: "",
   isDead: true,
   isExhausted: true,
   isWorking: false,

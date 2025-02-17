@@ -5,6 +5,8 @@ export interface CharacterData {
   botId: number | null;
   userId: number | null;
   petId: number | null;
+  username: string;
+  figure: string;
   isDead: boolean;
   isExhausted: boolean;
   isWorking: boolean;
@@ -34,6 +36,8 @@ export class CharacterDataEventParser implements IMessageParser {
       botId: wrapper.readInt(),
       userId: wrapper.readInt(),
       petId: wrapper.readInt(),
+      username: wrapper.readString(),
+      figure: wrapper.readString(),
       isDead: wrapper.readBoolean(),
       isExhausted: wrapper.readBoolean(),
       isWorking: wrapper.readBoolean(),
