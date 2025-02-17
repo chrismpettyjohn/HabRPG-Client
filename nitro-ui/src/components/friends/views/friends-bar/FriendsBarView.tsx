@@ -3,7 +3,7 @@ import { CreateLinkEvent, GetConfiguration, MessengerFriend } from "../../../../
 import { Flex } from "../../../../common";
 import { FriendBarItemView } from "./FriendBarItemView";
 
-const MAX_DISPLAY_COUNT = 5;
+const MAX_DISPLAY_COUNT = 3;
 
 export const FriendBarView: FC<{ onlineFriends: MessengerFriend[] }> = (props) => {
   const { onlineFriends = null } = props;
