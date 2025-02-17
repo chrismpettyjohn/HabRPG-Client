@@ -81,3 +81,14 @@
         drop-shadow(-2px 1px 0 rgba($white, 1))
         drop-shadow(0 -2px 0 rgba($white, 1));
 }
+
+.toolbar-tools {
+    align-items: center;
+    background: $bg-two;
+    border-radius: $radius-two;
+    display: flex;
+    gap: 8px;
+    height: 60px;
+    justify-content: center;
+    padding: 8px;
+}

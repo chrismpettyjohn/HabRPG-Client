@@ -4,8 +4,7 @@
     align-items: center;
     height: 60px;
     border-radius: $radius-two;
-    border: 2px solid rgb(20, 22, 53, .35);
-    background: $bg-three;
+    background: $bg-two;
     width: 100%;
     width: 459px;
     position: relative;
@@ -19,7 +18,7 @@
         input, textarea {
             color: white;
             border: none;
-            background: $bg-three;
+            background: $bg-two;
             padding: 4px;
             height: 100%;
             width: 100%;
@@ -34,7 +33,7 @@
 
 .nitro-chat-input-user {
     align-items: center;
-    background: $bg-three;
+    background: $bg-two;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -46,7 +45,7 @@
     object-fit: cover;
 
     &:hover {
-        background: $bg-two;
+        background: $bg-three;
     }
 
     .avatar-image {

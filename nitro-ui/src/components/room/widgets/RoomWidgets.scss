@@ -1,13 +1,11 @@
 .nitro-room-tools-container {
     position: absolute;
-    bottom: $toolbar-height + 65px;
-    left: 0;
+    bottom: $toolbar-height + 35px;
+    left: 25px;
 
     .nitro-room-tools {
-        background: rgba($dark, .95);
-        box-shadow: inset 0px 5px lighten(rgba($dark, .6), 2.5), inset 0 -4px darken(rgba($dark, .6), 4);
-        border-top-right-radius: $border-radius;
-        border-bottom-right-radius: $border-radius;
+        background: $bg-two;
+        border-radius: $radius-two;
         transition: all .2s ease;
         z-index: 2;
 
@@ -46,10 +44,10 @@
     }
 
     .nitro-room-tools-info {
-        background: rgba($dark, .95);
-        box-shadow: inset 0px 5px lighten(rgba($dark, .6), 2.5), inset 0 -4px darken(rgba($dark, .6), 4);
+        background: $bg-two;
+        border-radius: $radius-two;
         transition: all .2s ease;
-        width: 200px;
+        width: 295px;
         height: 100%;
     }
 }

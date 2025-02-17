@@ -1,7 +1,7 @@
 import { Dispose, DropBounce, EaseOut, JumpBy, Motions, NitroToolbarAnimateIconEvent, Queue, Wait } from "@nitrots/nitro-renderer";
 import { FC } from "react";
 import { CreateLinkEvent, GetSessionDataManager, MessengerIconState, OpenMessengerChat } from "../../api";
-import { Base, Flex, LayoutItemCountView } from "../../common";
+import { Base, Flex, LayoutItemCountView, Text } from "../../common";
 import { useFriends, useInventoryUnseenTracker, useMessenger, useRoomEngineEvent } from "../../hooks";
 import { ChatInputView } from "../room/widgets/chat-input/ChatInputView";
 
@@ -55,7 +55,12 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = (props) => {
     <>
       <Flex alignItems="center" justifyContent="between" gap={2} className="nitro-toolbar py-4 px-4">
         <Flex gap={2} alignItems="center" style={{ flex: 1 }}>
-          <Flex alignItems="center" gap={2}>
+          <Flex alignItems="center" gap={2} className="toolbar-tools">
+            <Text bold fontSize={3} variant="white">
+              HabRPG
+            </Text>
+          </Flex>
+          <Flex alignItems="center" gap={2} className="toolbar-tools">
             {!isInRoom && <Base pointer className="navigation-item icon icon-house" onClick={(event) => CreateLinkEvent("navigator/goto/home")} />}
             <Base pointer className="navigation-item icon icon-rooms" onClick={(event) => CreateLinkEvent("navigator/toggle")} />
             <Base pointer className="navigation-item icon icon-catalog" onClick={(event) => CreateLinkEvent("catalog/toggle")} />
