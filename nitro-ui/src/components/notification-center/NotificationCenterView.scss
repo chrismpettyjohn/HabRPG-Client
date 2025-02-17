@@ -8,7 +8,7 @@
     pointer-events: none;
 
     .nitro-notification-center {
-        background-color: $dark;
+        background-color: $bg-one;
         height: 100%;
         pointer-events: all;
     }
@@ -48,8 +48,8 @@
 .nitro-notification-bubble {
     pointer-events: all;
     padding: 6px 5px;
-    background-color: rgba($dark,.95);
-    box-shadow: inset 0px 5px lighten(rgba($dark,.6),2.5), inset 0 -4px darken(rgba($dark,.6),4);
+    background-color: rgba($bg-one,.95);
+    box-shadow: inset 0px 5px lighten(rgba($bg-one,.6),2.5), inset 0 -4px darken(rgba($bg-one,.6),4);
     font-size: $font-size-sm;
 
     .bubble-image-container {

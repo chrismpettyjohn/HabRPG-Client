@@ -342,7 +342,7 @@
         height: 100%;
         width: 100%;
         border-radius: $border-radius;
-        background-color: $light;
+        background-color: $bg-one;
         background-repeat: no-repeat;
         background-position: center;
         overflow: hidden;
@@ -535,7 +535,7 @@
     height: 20px;
     border-radius: $border-radius;
     overflow: hidden;
-    background: $primary;
+    background: $bg-one;
 
     &.large {
         height: 30px;
@@ -556,6 +556,11 @@
         text-shadow: 0px 4px 4px rgba($black, 0.25);
         z-index: 2;
     }
+}
+
+
+.bg-muted {
+  background: $bg-three !important;
 }
 
 @import './card/NitroCardView';

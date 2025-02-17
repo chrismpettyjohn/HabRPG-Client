@@ -15,7 +15,7 @@ $nitro-card-tabs-height: 33px;
         .nitro-card-header {
             min-height: 33px;
             max-height: 33px;
-            background: $primary;
+            background: $bg-one;
 
             .nitro-card-header-text {
                 color: $white;
@@ -81,8 +81,8 @@ $nitro-card-tabs-height: 33px;
                 margin-bottom: -1px;
 
                 &.active {
-                    background-color: $light;
-                    border-color: $border-color $border-color $light !important;
+                    background-color: $bg-one;
+                    border-color: $border-color $border-color $bg-one !important;
                     border-bottom: 1px solid black;
 
                     &:before {
@@ -107,7 +107,7 @@ $nitro-card-tabs-height: 33px;
         }
 
         .content-area {
-            background-color: $light;
+            background-color: $bg-one;
         }
     }
 
@@ -118,22 +118,12 @@ $nitro-card-tabs-height: 33px;
             position: relative;
             min-height: 28px;
             max-height: 28px;
-            background: repeating-linear-gradient($tertiary, $tertiary 50%, $quaternary 50%, $quaternary 100%);
+            background: $bg-two;
             border-bottom: 2px solid darken($quaternary, 5);
             box-shadow: 0 2px white;
             width: 100%;
             margin: 0;
             padding-top:2px;
-
-            &:before {
-                position: absolute;
-                content: ' ';
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 2px;
-                background-color: rgba($white, 0.3);
-            }
 
             .nitro-card-header-text {
                 color: $white;
@@ -197,7 +187,7 @@ $nitro-card-tabs-height: 33px;
         }
 
         .content-area {
-            background-color: $light;
+            background-color: $bg-one;
         }
     }
 }

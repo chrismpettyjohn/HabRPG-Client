@@ -24,10 +24,10 @@
 ::-webkit-scrollbar-thumb {
 
     &:horizontal {
-        border-bottom: 0.25rem solid rgba($primary, .4);
+        border-bottom: 0.25rem solid rgba($bg-one, .4);
 
         &:hover {
-            border-bottom: 0.25rem solid rgba($primary, .8);
+            border-bottom: 0.25rem solid rgba($bg-one, .8);
         }
     
         &:active {
@@ -36,10 +36,10 @@
     }
 
     &:not(:horizontal) {
-        border-right: 0.25rem solid rgba($primary, .4);
+        border-right: 0.25rem solid rgba($bg-one, .4);
 
         &:hover {
-            border-right: 0.25rem solid rgba($primary, .8);
+            border-right: 0.25rem solid rgba($bg-one, .8);
         }
 
         &:active {

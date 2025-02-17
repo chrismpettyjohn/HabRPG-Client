@@ -1,11 +1,3 @@
-$bg-one: rgba(20, 22, 20, 0.90); 
-$bg-two: rgba(50, 54, 60, 0.88);   
-$bg-three: rgba(75, 85, 95, 0.80); 
-$bg-four: rgba(40, 45, 55, 0.92);  
-
-$radius-one: 6px;
-$radius-two: 8px;
-
 $toolbar-me-zindex: 90;
 $chatinput-zindex: 80;
 $toolbar-zindex: 70;
@@ -103,3 +95,4 @@ $nitro-calendar-height: 400px;
 
 @import './common';
 @import './components';
+
