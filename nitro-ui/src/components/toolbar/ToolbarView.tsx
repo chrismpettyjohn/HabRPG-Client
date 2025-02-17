@@ -70,9 +70,6 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = (props) => {
         <ChatInputView />
         <Flex alignItems="center" gap={2} style={{ flex: 1, justifyContent: "flex-end" }}>
           <Flex gap={2}>
-            <Base pointer className="navigation-item icon icon-friendall" onClick={(event) => CreateLinkEvent("friends/toggle")}>
-              {requests.length > 0 && <LayoutItemCountView count={requests.length} />}
-            </Base>
             {(iconState === MessengerIconState.SHOW || iconState === MessengerIconState.UNREAD) && (
               <Base
                 pointer

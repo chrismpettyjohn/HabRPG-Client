@@ -106,45 +106,49 @@
 }
 
 .friend-bar {
-
-    .friend-bar-button {
-        z-index: 2;
-    }
+    background: $bg-two;
+    border-radius: $radius-two;
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0px;
+    right: 25px;
+    height: 400px;
+    width: 80px;
+    overflow: hidden;
 
     .friend-bar-item {
-        width: 130px;
-        margin: 0 3px;
-        z-index: 0;
-        position: relative;
-        padding-left:38px;
-        text-align: left;
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: fit-content;
+        font-size: 12px;
+        padding: 4px;
 
-        &.friend-bar-item-active {
-            margin-bottom:21px;
+        &:hover {
+            background: $bg-three;
         }
 
-        .friend-bar-item-head {
-            &.avatar {
-                top: -30px;
-                left: -30px;
-            }
-            &.group {
-                top: -5px;
-                left: -5px;
-            }
-
-            pointer-events: none;
+        .avatar {
+            height:70px; 
+            margin-top: -25px;
+            overflow: hidden;
         }
+    }
 
-        &.friend-bar-search {
-            .friend-bar-item-head {
-                top: -3px;
-                left: 5px;
-                width: 31px;
-                height: 34px;
-                background-image: url('@/assets/images/toolbar/friend-search.png');
-            }
-        }
+    .friend-bar-footer {
+        align-items: center;
+        background: #2C2F33;
+        cursor: pointer;
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin-top: auto;
+        width: 100%;
+        height: 40px;
     }
 }
 

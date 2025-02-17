@@ -34,19 +34,25 @@
 
 .nitro-chat-input-user {
     align-items: center;
-    background: $bg-four;
+    background: $bg-three;
     cursor: pointer;
     display: flex;
     justify-content: center;
-    width: fit-content;
+    width: 60px;
     height: 100%;
     padding-left: 4px;
     padding-right: 4px;
     position: relative;
+    object-fit: cover;
+
+    &:hover {
+        background: $bg-two;
+    }
 
     .avatar-image {
-        width: 45px;
+        width: 85px;
         height: 90px;
         pointer-events: all;
+        object-fit: cover;
     }
 }
