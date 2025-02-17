@@ -1,3 +1,4 @@
+import { CreateLinkEvent } from "../../../../api";
 import { LayoutAvatarImageView, Text } from "../../../../common";
 import { useCharacter } from "../../../../hooks";
 
@@ -21,7 +22,7 @@ export function CharacterContainer({ userId, onClose }: CharacterContainerProps)
         </div>
       )}
       <div className="user-info">
-        <div className="avatar">
+        <div className="avatar" onClick={() => CreateLinkEvent(`/profiles/${character.id}`)}>
           <LayoutAvatarImageView figure={character.figure} direction={2} headOnly={true} />
         </div>
         <div className="info">
