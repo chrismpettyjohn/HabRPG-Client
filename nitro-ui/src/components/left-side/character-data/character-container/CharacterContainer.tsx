@@ -3,9 +3,10 @@ import { useCharacter } from "../../../../hooks";
 
 export interface CharacterContainerProps {
   userId: number;
+  onClose?(): void;
 }
 
-export function CharacterContainer({ userId }: CharacterContainerProps) {
+export function CharacterContainer({ userId, onClose }: CharacterContainerProps) {
   const character = useCharacter(userId);
   if (!character) return null;
 
@@ -14,6 +15,11 @@ export function CharacterContainer({ userId }: CharacterContainerProps) {
 
   return (
     <div className="character-container">
+      {onClose && (
+        <div className="close-btn" onClick={onClose}>
+          x
+        </div>
+      )}
       <div className="user-info">
         <div className="avatar">
           <LayoutAvatarImageView figure={character.figure} direction={2} headOnly={true} />

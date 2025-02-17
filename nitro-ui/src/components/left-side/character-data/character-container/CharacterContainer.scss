@@ -1,4 +1,18 @@
 .character-container {
+    position: relative;
+
+    .close-btn {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        color: red;
+        cursor: pointer;
+
+        &:hover {
+            font-weight: bold;
+        }
+    }
+
     .user-info {
         background: $bg-two;
         border-top-left-radius: $radius-two;
