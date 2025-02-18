@@ -265,7 +265,7 @@ export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProp
           <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpStartWorkComposer())}>
             {character.isWorking ? "Stop" : "Start"} Shift
           </ContextMenuListItemView>
-          <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpQuitJobComposer())}>Quit Job</ContextMenuListItemView>
+          {character.corpId != 1 && <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpQuitJobComposer())}>Quit Job</ContextMenuListItemView>}
           <ContextMenuListItemView onClick={() => processAction("back")}>
             <FaChevronLeft className="left fa-icon" />
             {LocalizeText("generic.back")}
