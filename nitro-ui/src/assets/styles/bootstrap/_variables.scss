@@ -70,8 +70,9 @@ $colors: (
 // scss-docs-end colors-map
 
 // scss-docs-start theme-color-variables
-$secondary:     #185D79 !default;
-$tertiary:      #2DABC2 !default;
+$primary:     $bg-one !default;
+$secondary:     $bg-two !default;
+$tertiary:      #050506 !default;
 $quaternary:    #2B91A7 !default;
 $mirage:        #131e25 !default;
 $aztec:         #0d171d !default;
@@ -110,7 +111,7 @@ $bg-cello-split-background: repeating-linear-gradient($cello-light, $cello-light
 // scss-docs-start theme-colors-map
 $theme-colors: (
   "primary":    $bg-one,
-  "secondary":  $secondary,
+  "secondary":  $bg-two,
   "success":    $success,
   "info":       $info,
   "warning":    $warning,
@@ -761,7 +762,7 @@ $table-bg-scale:              -80% !default;
 // scss-docs-start table-loop
 $table-variants: (
   "primary":    shift-color($bg-one, $table-bg-scale),
-  "secondary":  shift-color($secondary, $table-bg-scale),
+  "secondary":  shift-color($bg-two, $table-bg-scale),
   "success":    shift-color($success, $table-bg-scale),
   "info":       shift-color($info, $table-bg-scale),
   "warning":    shift-color($warning, $table-bg-scale),

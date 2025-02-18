@@ -51,26 +51,6 @@
         border: $nav-tabs-border-width solid $nav-tabs-border-color;
         @include border-top-radius($nav-tabs-border-radius);
 
-        &.active {
-            &:before {
-                background: #ffffff;
-            }
-        }
-
-        &:before {
-            content: "";
-            position: absolute;
-            width: 93%;
-            height: 3px;
-            border-radius: $border-radius;
-            top: 1.5px;
-            left: 0;
-            right: 0;
-            margin: auto;
-            background: #c2c9d1;
-            z-index: 1;
-        }
-
         &:hover,
         &:focus {
             border-color: $nav-tabs-link-hover-border-color;

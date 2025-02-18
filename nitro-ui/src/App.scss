@@ -11,9 +11,9 @@ $quiz-zindex: 21;
 $chat-zindex: 20;
 $highscore-zindex: 19;
 
-$grid-bg-color: #cdd3d9;
+$grid-bg-color: $bg-two;
 $grid-border-color: $muted;
-$grid-active-bg-color: #ececec;
+$grid-active-bg-color: $bg-three;
 $grid-active-border-color: $white;
 
 $toolbar-height: 55px;

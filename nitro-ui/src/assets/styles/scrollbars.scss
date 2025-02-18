@@ -31,7 +31,7 @@
         }
     
         &:active {
-            border-bottom: 0.25rem solid $secondary;
+            border-bottom: 0.25rem solid $bg-two;
         }
     }
 
@@ -43,7 +43,7 @@
         }
 
         &:active {
-            border-right: 0.25rem solid $secondary;
+            border-right: 0.25rem solid $bg-two;
         }
     }
 }

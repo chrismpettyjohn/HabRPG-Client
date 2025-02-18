@@ -71,38 +71,21 @@ $nitro-card-tabs-height: 33px;
         }
 
         .nitro-card-tabs {
-            background-color: $secondary;
+            background-color: $bg-two;
 
             .nav-item {
                 padding: $nav-link-padding-y $nav-link-padding-x;
                 background-color: $muted;
-                color: $black;
+                color: $white;
                 z-index: 1;
                 margin-bottom: -1px;
 
                 &.active {
-                    background-color: $bg-one;
+                    background-color: $bg-three;
                     border-color: $border-color $border-color $bg-one !important;
                     border-bottom: 1px solid black;
-
-                    &:before {
-                        background: $white;
-                    }
                 }
 
-                &:before {
-                    content: '';
-                    position: absolute;
-                    width: 93%;
-                    height: 3px;
-                    border-radius: 0.25rem;
-                    top: 1.5px;
-                    left: 0;
-                    right: 0;
-                    margin: auto;
-                    background: #c2c9d1;
-                    z-index: 1;
-                }
             }
         }
 
@@ -183,7 +166,7 @@ $nitro-card-tabs-height: 33px;
         }
 
         .nitro-card-tabs {
-            background-color: $secondary;
+            background-color: $bg-two;
         }
 
         .content-area {
@@ -234,5 +217,13 @@ $nitro-card-tabs-height: 33px;
 
     .nitro-card-accordion-set-header {
         border-bottom: 1px solid rgba($black, 0.2);
+    }
+}
+
+
+.btn-primary {
+    background-color: $bg-two;
+    &:hover {
+        background-color: $bg-four;
     }
 }
