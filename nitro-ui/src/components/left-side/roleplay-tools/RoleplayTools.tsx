@@ -13,6 +13,12 @@ export function RoleplayTools() {
       <div className="navigation-item" onClick={() => CreateLinkEvent("leaderboard/toggle")}>
         <Base pointer className="icon icon-leaderboard" />
       </div>
+      <div className="navigation-item" onClick={() => CreateLinkEvent("help/show")}>
+        <Base pointer className="icon icon-help" />
+      </div>
+      <div className="navigation-item" onClick={() => CreateLinkEvent("user-settings/toggle")}>
+        <Base pointer className="icon icon-cog" />
+      </div>
     </div>
   );
 }

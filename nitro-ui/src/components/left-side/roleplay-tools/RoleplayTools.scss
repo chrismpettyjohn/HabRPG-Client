@@ -10,8 +10,14 @@
     left: 0px;
 
     .navigation-item {
+        align-items: center;
         border-radius: $radius-two;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 8px;
+        
         &:hover {
             background: $bg-three;
         }
