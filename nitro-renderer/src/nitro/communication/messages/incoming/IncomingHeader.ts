@@ -483,4 +483,5 @@ export class IncomingHeader {
 
   public static ROLEPLAY_CORP_LIST_ALL = 4008;
   public static ROLEPLAY_CORP_ROLE_LIST_ALL = 4009;
+  public static ROLEPLAY_USER_DIED = 4010;
 }

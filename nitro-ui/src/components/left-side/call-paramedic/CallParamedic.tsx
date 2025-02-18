@@ -5,22 +5,22 @@ import { SendMessageComposer } from "../../../api";
 import { CallParamedicComposer } from "@nitrots/nitro-renderer";
 
 export function CallParamedic() {
-    const [loading, setLoading] = useState(false);
-    const { userInfo } = useSessionInfo();
-    const character = useCharacter(userInfo?.userId);
+  const [loading, setLoading] = useState(false);
+  const { userInfo } = useSessionInfo();
+  const character = useCharacter(userInfo?.userId);
 
-    if (!character.isDead || loading) {
-        return null;
-    }
+  if (!character.isDead || loading) {
+    return null;
+  }
 
-    function onCallParamedic() {
-        SendMessageComposer(new CallParamedicComposer())
-        setLoading(true);
-    }
+  function onCallParamedic() {
+    SendMessageComposer(new CallParamedicComposer());
+    setLoading(true);
+  }
 
-    return (
-        <Button variant="primary" onClick={onCallParamedic}>
-            Call Paramedic
-        </Button>
-    )
+  return (
+    <Button variant="success" onClick={onCallParamedic}>
+      Call Paramedic
+    </Button>
+  );
 }

@@ -7,8 +7,8 @@ export const LeftSideView: FC<{}> = (props) => {
   return (
     <div className="nitro-left-side">
       <Column position="relative" gap={1}>
-        <CallParamedic />
         <CharacterData />
+        <CallParamedic />
       </Column>
     </div>
   );

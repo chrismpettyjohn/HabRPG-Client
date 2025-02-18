@@ -933,6 +933,7 @@ import {
   CorpStartWorkComposer,
   CorpQuitJobComposer,
   CorpAcceptJobOfferComposer,
+  UserDiedEvent,
 } from "./messages";
 import { CharacterUpdateByIdComposer } from "./messages/outgoing/roleplay/character/CharacterUpdateByIdComposer";
 
@@ -1499,6 +1500,7 @@ export class NitroMessages implements IMessageConfiguration {
     this._events.set(IncomingHeader.ROLEPLAY_CHARACTER_SKILLS_DATA, CharacterSkillsDataEvent);
     this._events.set(IncomingHeader.ROLEPLAY_CORP_LIST_ALL, CorpListAllEvent);
     this._events.set(IncomingHeader.ROLEPLAY_CORP_ROLE_LIST_ALL, CorpRoleListAllEvent);
+    this._events.set(IncomingHeader.ROLEPLAY_USER_DIED, UserDiedEvent);
   }
 
   private registerComposers(): void {
