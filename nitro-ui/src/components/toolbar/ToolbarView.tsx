@@ -55,7 +55,7 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = (props) => {
     <>
       <Flex alignItems="center" justifyContent="between" gap={2} className="nitro-toolbar py-4 px-4">
         <Flex gap={2} alignItems="center" style={{ flex: 1 }}>
-          <Flex alignItems="center" gap={2} className="toolbar-tools">
+          <Flex alignItems="center" gap={2} className="toolbar-tools" style={{ width: "fit-content" }}>
             <Text bold fontSize={3} variant="white">
               HabRPG
             </Text>
