@@ -261,7 +261,9 @@ export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProp
       )}
       {mode === MODE_CORP && (
         <>
-          <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpAcceptJobOfferComposer())}>Accept Job</ContextMenuListItemView>
+          {character.hasJobOffer && (
+            <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpAcceptJobOfferComposer())}>Accept Job</ContextMenuListItemView>
+          )}
           <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpStartWorkComposer())}>
             {character.isWorking ? "Stop" : "Start"} Shift
           </ContextMenuListItemView>

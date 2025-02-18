@@ -10,6 +10,7 @@ export interface CharacterData {
   isDead: boolean;
   isExhausted: boolean;
   isWorking: boolean;
+  hasJobOffer: boolean;
   corpId: number;
   corpName: string;
   corpRoleId: number;
@@ -41,6 +42,7 @@ export class CharacterDataEventParser implements IMessageParser {
       isDead: wrapper.readBoolean(),
       isExhausted: wrapper.readBoolean(),
       isWorking: wrapper.readBoolean(),
+      hasJobOffer: wrapper.readBoolean(),
       corpId: wrapper.readInt(),
       corpName: wrapper.readString(),
       corpRoleId: wrapper.readInt(),
