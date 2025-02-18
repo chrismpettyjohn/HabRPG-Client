@@ -1,15 +1,13 @@
-import { GetGuestRoomResultEvent, NavigatorSearchComposer, RateFlatMessageComposer } from "@nitrots/nitro-renderer";
-import { FC, useEffect, useState } from "react";
+import { GetGuestRoomResultEvent, NavigatorSearchComposer } from "@nitrots/nitro-renderer";
+import { FC, useState } from "react";
 import { CreateLinkEvent, LocalizeText, SendMessageComposer } from "../../../../api";
-import { Base, Column, Flex, Text, TransitionAnimation, TransitionAnimationTypes } from "../../../../common";
-import { useMessageEvent, useNavigator, useRoom } from "../../../../hooks";
+import { Base, Column, Flex, Text } from "../../../../common";
+import { useMessageEvent, useRoom } from "../../../../hooks";
 
 export const RoomToolsWidgetView: FC<{}> = (props) => {
   const [roomName, setRoomName] = useState<string>(null);
   const [roomOwner, setRoomOwner] = useState<string>(null);
   const [roomTags, setRoomTags] = useState<string[]>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { navigatorData = null } = useNavigator();
   const { roomSession = null } = useRoom();
 
   const handleToolClick = (action: string, value?: string) => {
@@ -19,9 +17,6 @@ export const RoomToolsWidgetView: FC<{}> = (props) => {
         return;
       case "chat_history":
         CreateLinkEvent("chat-history/toggle");
-        return;
-      case "like_room":
-        SendMessageComposer(new RateFlatMessageComposer(1));
         return;
       case "toggle_room_link":
         CreateLinkEvent("navigator/toggle-room-link");
@@ -43,22 +38,11 @@ export const RoomToolsWidgetView: FC<{}> = (props) => {
     if (roomTags !== parser.data.tags) setRoomTags(parser.data.tags);
   });
 
-  useEffect(() => {
-    setIsOpen(true);
-
-    const timeout = setTimeout(() => setIsOpen(false), 5000);
-
-    return () => clearTimeout(timeout);
-  }, [roomName, roomOwner, roomTags]);
-
   return (
     <Flex className="nitro-room-tools-container" gap={2}>
       <Column center className="nitro-room-tools p-2">
         <Base pointer title={LocalizeText("room.settings.button.text")} className="icon icon-cog" onClick={() => handleToolClick("settings")} />
         <Base pointer title={LocalizeText("room.chathistory.button.text")} onClick={() => handleToolClick("chat_history")} className="icon icon-chat-history" />
-        {navigatorData.canRate && (
-          <Base pointer title={LocalizeText("room.like.button.text")} onClick={() => handleToolClick("like_room")} className="icon icon-like-room" />
-        )}
       </Column>
       <Column justifyContent="center">
         <Column center>
