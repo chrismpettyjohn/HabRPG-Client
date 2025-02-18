@@ -1,12 +1,11 @@
 @import "./character-data/character-container/CharacterContainer.scss";
+@import "./roleplay-tools/RoleplayTools.scss";
 
 .nitro-left-side {
     position: absolute;
     pointer-events: none; 
     top: 20px;
-    left: 20px;
-    min-width: 200px;
-    max-width: 200px;
+    left: 26px;
     height: calc(100% - var(--toolbar-height)); 
     z-index: 100;
 }
