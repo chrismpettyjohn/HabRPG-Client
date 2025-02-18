@@ -1,70 +1,52 @@
 .nitro-loading {
     position: relative;
-    background: $bg-one;
+    background: linear-gradient(135deg, #111 0%, #222 100%);
     z-index: 100;
+    color: white;
 
-    .connecting-duck {
+    .connecting-crab {
         position: absolute;
         top: 0;
         bottom: 0;
         margin: auto;
         right: 0;
         left: 0;
-        background: url('@/assets/images/loading/connecting-duck-spritesheet.png') no-repeat top left;
-        width: 235px;
-        height: 127px;
-        animation: 1.5s connecting-duck infinite step-end;
-        transform: scale(0.5);
+        background: url('@/assets/images/nitro/crab.png') no-repeat center;
+        width: 278px;
+        height: 202px;
+        animation: 2s floating-crab infinite ease-in-out;
+        transform: scale(0.8);
+        filter: drop-shadow(0px 0px 15px rgba(255, 85, 85, 0.5));
     }
 
-    .nitro-logo {
-        width: 47px;
-        height: 65px;
-        background: transparent url('https://assets.nitrodev.co/logos/react-loader.png') no-repeat center;
-        z-index: 1;
-    }
-}
-
-@keyframes connecting-duck {
-    0% {
-        background-position: 0 0;
-        width: 235px;
-        height: 127px;
+    .loading-percent {
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+        animation: pulse 1.5s infinite alternate;
     }
 
-    15% {
-        background-position: 0 -132px;
-        width: 280px;
-        height: 151px;
+    .loading-tip {
+        opacity: 0;
+        animation: fadeIn 1s ease-in-out forwards;
+        font-style: italic;
+        margin-top: 10px;
+        transition: opacity 0.5s ease-in-out;
     }
 
-    30% {
-        background-position: 0 -288px;
-        width: 326px;
-        height: 174px;
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
-    45% {
-        background-position: 0 -467px;
-        width: 235px;
-        height: 127px;
+    @keyframes pulse {
+        from { transform: scale(1); }
+        to { transform: scale(1.1); }
     }
 
-    60% {
-        background-position: 0 -599px;
-        width: 280px;
-        height: 151px;
-    }
-
-    75% {
-        background-position: 0 -755px;
-        width: 326px;
-        height: 174px;
-    }
-
-    90% {
-        background-position: 0 -934px;
-        width: 190px;
-        height: 104px;
+    @keyframes floating-crab {
+        0% { transform: translateY(0) scale(0.8); }
+        50% { transform: translateY(-10px) scale(0.85); }
+        100% { transform: translateY(0) scale(0.8); }
     }
 }
