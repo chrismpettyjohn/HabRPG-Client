@@ -26,6 +26,7 @@ import { UserProfileView } from "../user-profile/UserProfileView";
 import { UserSettingsView } from "../user-settings/UserSettingsView";
 import { WiredView } from "../wired/WiredView";
 import { LeftSideView } from "../left-side/LeftSideView";
+import { Roleplay } from "../roleplay/Roleplay";
 
 export const MainView: FC<{}> = (props) => {
   const [isReady, setIsReady] = useState(false);
@@ -98,6 +99,7 @@ export const MainView: FC<{}> = (props) => {
       <HcCenterView />
       <CampaignView />
       <FloorplanEditorView />
+      <Roleplay />
     </Base>
   );
 };
