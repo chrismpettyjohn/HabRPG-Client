@@ -25,7 +25,7 @@ import {
 } from "../../../../../api";
 import { Flex, LayoutCurrencyIcon } from "../../../../../common";
 import { HelpNameChangeEvent } from "../../../../../events";
-import { useRoom } from "../../../../../hooks";
+import { useCharacter, useRoom } from "../../../../../hooks";
 import { ContextMenuHeaderView } from "../../context-menu/ContextMenuHeaderView";
 import { ContextMenuListItemView } from "../../context-menu/ContextMenuListItemView";
 import { ContextMenuView } from "../../context-menu/ContextMenuView";
@@ -47,6 +47,8 @@ export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProp
   const { avatarInfo = null, isDancing = false, setIsDecorating = null, onClose = null } = props;
   const [mode, setMode] = useState(isDancing && HasHabboClub() ? MODE_CLUB_DANCES : MODE_NORMAL);
   const { roomSession = null } = useRoom();
+
+  const character = useCharacter(avatarInfo?.webID);
 
   const processAction = (name: string) => {
     let hideMenu = true;
@@ -260,8 +262,9 @@ export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProp
       {mode === MODE_CORP && (
         <>
           <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpAcceptJobOfferComposer())}>Accept Job</ContextMenuListItemView>
-          <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpStartWorkComposer())}>Start Shift</ContextMenuListItemView>
-          <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpStartWorkComposer())}>Stop Shift</ContextMenuListItemView>
+          <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpStartWorkComposer())}>
+            {character.isWorking ? "Stop" : "Start"} Shift
+          </ContextMenuListItemView>
           <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpQuitJobComposer())}>Quit Job</ContextMenuListItemView>
           <ContextMenuListItemView onClick={() => processAction("back")}>
             <FaChevronLeft className="left fa-icon" />
