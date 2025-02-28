@@ -142,7 +142,7 @@ export const ModToolsView: FC<{}> = (props) => {
       {isVisible && (
         <NitroCardView uniqueKey="mod-tools" className="nitro-mod-tools" windowPosition={DraggableWindowPosition.TOP_LEFT} theme="primary-slim">
           <NitroCardHeaderView headerText={"Mod Tools"} onCloseClick={(event) => setIsVisible(false)} />
-          <NitroCardContentView className="text-black" gap={1}>
+          <NitroCardContentView className="text-white" gap={1}>
             <Button
               gap={1}
               onClick={(event) => CreateLinkEvent(`mod-tools/toggle-room-info/${currentRoomId}`)}

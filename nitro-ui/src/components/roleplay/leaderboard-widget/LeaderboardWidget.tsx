@@ -31,7 +31,7 @@ export function LeaderboardWidget() {
   if (!visible) return null;
 
   return (
-    <NitroCardView uniqueKey="nitro-leaderboard-list" theme="primary-slim">
+    <NitroCardView uniqueKey="nitro-leaderboard-list" theme="primary-slim" style={{ width: 450, height: 250 }}>
       <NitroCardHeaderView headerText="Leaderboard" onCloseClick={() => setVisible(false)} />
       <NitroCardContentView overflow="hidden">Leaderboard</NitroCardContentView>
     </NitroCardView>

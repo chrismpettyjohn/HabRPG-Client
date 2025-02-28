@@ -1,4 +1,4 @@
-import { useCorpList } from "../../../hooks/roleplay/useCorpListAll";
+import { useCorpList } from "../../../hooks/roleplay/useCorpList";
 
 export interface CorpSelectProps {
   corpId?: number;

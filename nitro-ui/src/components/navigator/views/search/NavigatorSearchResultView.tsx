@@ -82,7 +82,7 @@ export const NavigatorSearchResultView: FC<NavigatorSearchResultViewProps> = (pr
     </Column>
     // <div className="nitro-navigator-search-result bg-muted rounded mb-2 overflow-hidden">
     //     <div className="d-flex flex-column">
-    //         <div className="d-flex align-items-center px-2 py-1 text-black">
+    //         <div className="d-flex align-items-center px-2 py-1 text-white">
     //             <i className={ 'text-secondary fas ' + (isExtended ? 'fa-minus' : 'fa-plus') } onClick={ toggleExtended }></i>
     //             <div className="ms-2 flex-grow-1">{ LocalizeText(getResultTitle()) }</div>
     //             <i className={ 'text-secondary fas ' + classNames({ 'fa-bars': (displayMode === NavigatorSearchResultViewDisplayMode.LIST), 'fa-th': displayMode >= NavigatorSearchResultViewDisplayMode.THUMBNAILS })}></i>

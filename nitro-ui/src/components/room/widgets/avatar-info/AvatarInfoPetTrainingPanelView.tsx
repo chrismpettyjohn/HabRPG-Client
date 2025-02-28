@@ -34,7 +34,7 @@ export const AvatarInfoPetTrainingPanelView: FC<{}> = (props) => {
   return (
     <NitroCardView uniqueKey="user-settings" className="user-settings-window no-resize" theme="primary-slim">
       <NitroCardHeaderView headerText={LocalizeText("widgets.pet.commands.title")} onCloseClick={() => setPetTrainInformation(null)} />
-      <NitroCardContentView className="text-black">
+      <NitroCardContentView className="text-white">
         <Flex alignItems="center" justifyContent="center" gap={2}>
           <Grid columnCount={2}>
             <Column fullWidth overflow="hidden" className="body-image pet p-1">

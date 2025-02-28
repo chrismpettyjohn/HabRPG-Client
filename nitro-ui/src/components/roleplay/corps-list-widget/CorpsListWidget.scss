@@ -1,0 +1,25 @@
+.corps-list-widget {
+  display: flex;
+  gap: 14px;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  width: 100%;
+
+  .corp {
+    align-items: center;
+    background: $bg-three;
+    border: 2px solid transparent;
+    border-radius: $border-radius;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 80px;
+    width: 100%;
+    &:hover {
+      background: $bg-two;
+      border-color: $bg-two;
+    }
+  }
+}

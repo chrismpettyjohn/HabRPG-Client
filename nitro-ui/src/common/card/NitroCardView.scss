@@ -1,7 +1,8 @@
-$nitro-card-header-height: 33px;
-$nitro-card-tabs-height: 33px;
+$nitro-card-header-height: 40px;
+$nitro-card-tabs-height: 40px;
 
 .nitro-card {
+    border: 2px solid $bg-two;
     resize: both;
 
     @include media-breakpoint-down(lg) {
@@ -13,8 +14,8 @@ $nitro-card-tabs-height: 33px;
         border: $border-width solid $border-color;
 
         .nitro-card-header {
-            min-height: 33px;
-            max-height: 33px;
+            min-height: 40px;
+            max-height: 40px;
             background: $bg-one;
 
             .nitro-card-header-text {
@@ -72,20 +73,23 @@ $nitro-card-tabs-height: 33px;
 
         .nitro-card-tabs {
             background-color: $bg-two;
+            min-height: $nitro-card-tabs-height;
+            max-height: $nitro-card-tabs-height;
+            padding-bottom: 4px;
+            height: 100%;
 
             .nav-item {
                 padding: $nav-link-padding-y $nav-link-padding-x;
-                background-color: $muted;
+                background: $bg-three;
+                border: 2px solid transparent !important;
+                border-radius: $border-radius;
                 color: $white;
                 z-index: 1;
-                margin-bottom: -1px;
 
                 &.active {
-                    background-color: $bg-three;
-                    border-color: $border-color $border-color $bg-one !important;
-                    border-bottom: 1px solid black;
+                    background: $bg-two;
+                    border-color: $bg-four;
                 }
-
             }
         }
 
@@ -94,16 +98,11 @@ $nitro-card-tabs-height: 33px;
         }
     }
 
-    &.theme-primary-slim {
-        border: $border-width solid $border-color;
-
-        .nitro-card-header {
+    .nitro-card-header {
             position: relative;
             min-height: 28px;
             max-height: 28px;
             background: $bg-two;
-            border-bottom: 2px solid darken($quaternary, 5);
-            box-shadow: 0 2px white;
             width: 100%;
             margin: 0;
             padding-top:2px;
@@ -172,7 +171,6 @@ $nitro-card-tabs-height: 33px;
         .content-area {
             background-color: $bg-one;
         }
-    }
 }
 
 .content-area {
@@ -197,13 +195,6 @@ $nitro-card-tabs-height: 33px;
 .nitro-card-header {
     position: relative;
     height: 100%;
-}
-
-.nitro-card-tabs {
-    height: 100%;
-    min-height: $nitro-card-tabs-height;
-    max-height: $nitro-card-tabs-height;
-    border-bottom: $nav-tabs-border-width solid $nav-tabs-border-color;
 }
 
 .nitro-card-accordion-set {

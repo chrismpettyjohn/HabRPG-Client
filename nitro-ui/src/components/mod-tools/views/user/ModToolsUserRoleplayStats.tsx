@@ -93,7 +93,7 @@ export const ModToolsUserChangeCharacterView: FC<ModToolsUserChangeCharacterView
       style={{ width: 400 }}
     >
       <NitroCardHeaderView headerText="Roleplay Character" onCloseClick={() => onCloseClick()} />
-      <NitroCardContentView className="text-black">
+      <NitroCardContentView className="text-white">
         <Text bold fontSize={4}>
           Stats
         </Text>

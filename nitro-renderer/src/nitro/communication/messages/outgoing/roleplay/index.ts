@@ -14,6 +14,9 @@ export * from "./corp/CorpPromoteUserComposer";
 export * from "./corp/CorpStartWorkComposer";
 export * from "./corp/CorpQuitJobComposer";
 
+export * from "./gang/GangListAllComposer";
+export * from "./gang/GangRoleListAllComposer";
+
 export * from "./farming/SellFarmedCornComposer";
 
 export * from "./fishing/SellCaughtFishComposer";

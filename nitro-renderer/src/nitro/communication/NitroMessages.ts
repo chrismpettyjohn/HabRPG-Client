@@ -934,6 +934,10 @@ import {
   CorpQuitJobComposer,
   CorpAcceptJobOfferComposer,
   UserDiedEvent,
+  GangListAllEvent,
+  GangRoleListAllEvent,
+  GangListAllComposer,
+  GangRoleListAllComposer,
 } from "./messages";
 import { CharacterUpdateByIdComposer } from "./messages/outgoing/roleplay/character/CharacterUpdateByIdComposer";
 
@@ -1501,6 +1505,8 @@ export class NitroMessages implements IMessageConfiguration {
     this._events.set(IncomingHeader.ROLEPLAY_CORP_LIST_ALL, CorpListAllEvent);
     this._events.set(IncomingHeader.ROLEPLAY_CORP_ROLE_LIST_ALL, CorpRoleListAllEvent);
     this._events.set(IncomingHeader.ROLEPLAY_USER_DIED, UserDiedEvent);
+    this._events.set(IncomingHeader.ROLEPLAY_GANG_LIST_ALL, GangListAllEvent);
+    this._events.set(IncomingHeader.ROLEPLAY_GANG_ROLE_LIST_ALL, GangRoleListAllEvent);
   }
 
   private registerComposers(): void {
@@ -2130,6 +2136,8 @@ export class NitroMessages implements IMessageConfiguration {
     this._composers.set(OutgoingHeader.CORP_START_WORK, CorpStartWorkComposer);
     this._composers.set(OutgoingHeader.CORP_QUIT_JOB, CorpQuitJobComposer);
     this._composers.set(OutgoingHeader.CORP_ACCEPT_JOB, CorpAcceptJobOfferComposer);
+    this._composers.set(OutgoingHeader.GANG_LIST_ALL, GangListAllComposer);
+    this._composers.set(OutgoingHeader.GANG_ROLE_LIST_ALL, GangRoleListAllComposer);
   }
 
   public get events(): Map<number, Function> {
