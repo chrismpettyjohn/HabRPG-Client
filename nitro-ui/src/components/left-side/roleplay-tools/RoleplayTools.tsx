@@ -4,7 +4,7 @@ import { Base } from "../../../common";
 export function RoleplayTools() {
   return (
     <div className="roleplay-tools">
-      <div className="navigation-item" onClick={() => CreateLinkEvent("corps/list/toggle")}>
+      <div className="navigation-item" onClick={() => CreateLinkEvent("corps/toggle")}>
         <Base pointer className="icon icon-corp" />
       </div>
       <div className="navigation-item" onClick={() => CreateLinkEvent("gangs/list/toggle")}>

@@ -1,8 +1,8 @@
-import { CorpData } from "@nitrots/nitro-renderer";
+import { CorpListData } from "@nitrots/nitro-renderer";
 import { LayoutAvatarImageView, Text } from "../../../common";
 
 export interface ActiveGangProps {
-  gang: CorpData;
+  gang: CorpListData;
 }
 
 export function ActiveGang({ gang }: ActiveGangProps) {

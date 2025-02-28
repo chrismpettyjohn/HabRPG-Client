@@ -495,4 +495,6 @@ export class OutgoingHeader {
   public static CORP_ACCEPT_JOB = 4023;
   public static GANG_LIST_ALL = 4024;
   public static GANG_ROLE_LIST_ALL = 4025;
+  public static CORP_GET_BY_ID = 4026;
+  public static CORP_ROLE_GET_BY_ID = 4027;
 }

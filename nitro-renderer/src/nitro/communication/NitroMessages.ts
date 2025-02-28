@@ -938,6 +938,10 @@ import {
   GangRoleListAllEvent,
   GangListAllComposer,
   GangRoleListAllComposer,
+  CorpRoleGetByIdComposer,
+  CorpGetByIdComposer,
+  CorpDataEvent,
+  CorpRoleDataEvent,
 } from "./messages";
 import { CharacterUpdateByIdComposer } from "./messages/outgoing/roleplay/character/CharacterUpdateByIdComposer";
 
@@ -1507,6 +1511,8 @@ export class NitroMessages implements IMessageConfiguration {
     this._events.set(IncomingHeader.ROLEPLAY_USER_DIED, UserDiedEvent);
     this._events.set(IncomingHeader.ROLEPLAY_GANG_LIST_ALL, GangListAllEvent);
     this._events.set(IncomingHeader.ROLEPLAY_GANG_ROLE_LIST_ALL, GangRoleListAllEvent);
+    this._events.set(IncomingHeader.ROLEPLAY_CORP_DATA, CorpDataEvent);
+    this._events.set(IncomingHeader.ROLEPLAY_CORP_ROLE_DATA, CorpRoleDataEvent);
   }
 
   private registerComposers(): void {
@@ -2138,6 +2144,8 @@ export class NitroMessages implements IMessageConfiguration {
     this._composers.set(OutgoingHeader.CORP_ACCEPT_JOB, CorpAcceptJobOfferComposer);
     this._composers.set(OutgoingHeader.GANG_LIST_ALL, GangListAllComposer);
     this._composers.set(OutgoingHeader.GANG_ROLE_LIST_ALL, GangRoleListAllComposer);
+    this._composers.set(OutgoingHeader.CORP_GET_BY_ID, CorpGetByIdComposer);
+    this._composers.set(OutgoingHeader.CORP_ROLE_GET_BY_ID, CorpRoleGetByIdComposer);
   }
 
   public get events(): Map<number, Function> {

@@ -1,13 +1,13 @@
 import { IMessageDataWrapper, IMessageParser } from "../../../../../../api";
 
-export interface CorpRoleData {
+export interface CorpRoleListData {
   id: number;
   corpId: number;
   name: string;
 }
 
 export class CorpRoleListAllEventParser implements IMessageParser {
-  private _corpRoleData: CorpRoleData[] = [];
+  private _corpRoleData: CorpRoleListData[] = [];
 
   public flush(): boolean {
     this._corpRoleData = [];
@@ -31,7 +31,7 @@ export class CorpRoleListAllEventParser implements IMessageParser {
     return true;
   }
 
-  public get corpRoles(): CorpRoleData[] {
+  public get corpRoles(): CorpRoleListData[] {
     return this._corpRoleData;
   }
 }

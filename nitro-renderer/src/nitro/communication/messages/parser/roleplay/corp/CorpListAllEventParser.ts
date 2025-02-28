@@ -1,12 +1,12 @@
 import { IMessageDataWrapper, IMessageParser } from "../../../../../../api";
 
-export interface CorpData {
+export interface CorpListData {
   id: number;
   name: string;
 }
 
 export class CorpListAllEventParser implements IMessageParser {
-  private _corpData: CorpData[] = [];
+  private _corpData: CorpListData[] = [];
 
   public flush(): boolean {
     this._corpData = [];
@@ -29,7 +29,7 @@ export class CorpListAllEventParser implements IMessageParser {
     return true;
   }
 
-  public get corps(): CorpData[] {
+  public get corps(): CorpListData[] {
     return this._corpData;
   }
 }
