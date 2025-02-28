@@ -8,18 +8,82 @@
 
   .corp {
     align-items: center;
-    background: $bg-three;
+    background: $bg-two;
     border: 2px solid transparent;
     border-radius: $border-radius;
     cursor: pointer;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: 80px;
+    height: 45px;
     width: 100%;
+    
     &:hover {
-      background: $bg-two;
-      border-color: $bg-two;
+      background: $bg-three;
+      border-color: $bg-three;
     }
   }
+  
+  .active {
+    background: $bg-three;
+    border-color: $bg-three;
+  }
+
+}
+
+.corp-info-widget {
+
+  .corp-header {
+    align-items: center;;
+    background: $bg-three;
+    border-radius: $border-radius;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .corp-chip {
+    background: $bg-four;
+    border-radius: $border-radius;
+    padding: 8px;
+  }
+
+  .corp-users {
+   align-items: center;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 250px;
+    overflow-y: auto;
+    width: 100%;
+    margin-top: 8px;
+
+    .avatar {
+      height:  40px;
+      overflow: hidden;
+    }
+
+    .user {
+      align-items: center;
+      background: $bg-four;
+      border: 2px solid transparent;
+      border-radius: $border-radius;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8px;
+      height: 80px;
+      width: 90px;
+
+      &:hover {
+        background: $bg-two;
+        border-color: $bg-one;
+      }
+
+    }
+  }
+
 }

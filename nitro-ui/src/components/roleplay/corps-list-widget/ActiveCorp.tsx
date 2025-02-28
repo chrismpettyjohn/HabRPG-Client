@@ -7,38 +7,36 @@ export interface ActiveCorpProps {
 
 export function ActiveCorp({ corp }: ActiveCorpProps) {
   return (
-    <div className="active-corp-widget">
-      <div className="corp-header" style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <img src="https://swfs.habcrab.com/c_images/album1584/ADM.gif" style={{ objectFit: "contain", height: 52, width: 52, imageRendering: "pixelated" }} />
-        <Text bold fontSize={2}>
+    <div className="corp-info-widget">
+      <div className="corp-header">
+        <Text bold fontSize={3}>
           {corp.name}
         </Text>
+        <div className="corp-chip">$25,000 stock</div>
       </div>
-      <div className="corp-details" style={{ marginTop: 8 }}>
-        <Text fontSize={3}>Members:&nbsp;</Text>
+      <br />
+      <div className="corp-header">
         <Text bold fontSize={3}>
-          1
+          Employees
         </Text>
-        <br />
-        <Text fontSize={3}>Founded:&nbsp;</Text>
-        <Text bold fontSize={3}>
-          1/20/2025
-        </Text>
-        <div className="owner-info" style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 4 }}>
-          <LayoutAvatarImageView figure="hr-170-39.hd-3092-1.ch-3185-1198.lg-3078-1336.sh-800001536-1198.wa-2007-62.ca-1809-62" direction={2} headOnly />
-          <Text fontSize={2}>System</Text>
-        </div>
+        <div className="corp-chip">2 employees</div>
       </div>
-      <div className="corp-hierarchy-grid" style={{ marginTop: 8 }}>
-        <div style={{ marginBottom: 8 }}>
-          <Text bold fontSize={2}>
-            Director
-          </Text>
-          <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginTop: 4 }}>
-            <LayoutAvatarImageView figure="hr-170-39.hd-3092-1.ch-3185-1198.lg-3078-1336.sh-800001536-1198.wa-2007-62.ca-1809-62" direction={2} headOnly />
-            <Text fontSize={1}> Admin</Text>
+      <div className="corp-users">
+        {Array.from({ length: 200 }).map((_, i) => (
+          <div className="user" key={`user_${i}`}>
+            <div className="avatar">
+              <LayoutAvatarImageView
+                figure="sh-3035-110.hr-170-61.hd-205-1380.ch-255-1428.he-1609-110.lg-285-110.ha-1002-1428.cc-5829-110"
+                direction={2}
+                headOnly
+                style={{ marginTop: -25 }}
+              />
+            </div>
+            <Text bold fontSize={6}>
+              Bobman{i}
+            </Text>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
