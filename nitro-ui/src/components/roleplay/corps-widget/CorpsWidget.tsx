@@ -20,14 +20,13 @@ export function CorpsWidget() {
 
         const corpId = Number(parts[2]);
 
-        console.log(parts[1], corpId);
-
         switch (parts[1]) {
           case "toggle":
             setVisible((_) => !_);
             return;
           case "create":
             setVisible(true);
+            setCorpId(undefined);
             setView(<CorpCreate />);
             return;
           case "profile":

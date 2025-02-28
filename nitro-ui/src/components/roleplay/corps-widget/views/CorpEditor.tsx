@@ -35,6 +35,24 @@ export function CorpEditor({ defaultDTO, onSave }: CorpEditorProps) {
         </Text>
         <input className="form-control" value={dto.name} onChange={(e) => onChange({ name: e.target.value })} />
       </div>
+      <br />
+      <div>
+        <Text bold fontSize={4}>
+          Badge
+        </Text>
+        <div style={{ alignItems: "center", display: "flex", justifyContent: "center", gap: 24 }}>
+          <img src="https://swfs.habcrab.com/c_images/album1584/ADM.gif" style={{ width: 31, height: 31 }} />
+          <input className="form-control" value={dto.name} onChange={(e) => onChange({ name: e.target.value })} />
+        </div>
+      </div>
+      <br />
+      <div>
+        <Text bold fontSize={4}>
+          Mission
+        </Text>
+        <textarea className="form-control" value={dto.name} onChange={(e) => onChange({ name: e.target.value })} rows={2} />
+      </div>
+      <br />
       <div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
         <button className="btn btn-success" disabled={!isValid} type="submit">
           Save

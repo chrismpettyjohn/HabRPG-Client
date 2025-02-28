@@ -1,6 +1,7 @@
 import { Text } from "../../../../common";
 import { useCorpById } from "../../../../hooks/roleplay/useCorpById";
 import { CorpDTO, CorpEditor } from "./CorpEditor";
+import { LoadingIcon } from "../../../loading-icon/LoadingIcon";
 
 export interface CorpEditProps {
   corpId: number;
@@ -12,7 +13,7 @@ export function CorpEdit({ corpId }: CorpEditProps) {
   async function onUpdate(dto: CorpDTO) {}
 
   if (!corp) {
-    return null;
+    return <LoadingIcon>Loading corp {corpid}</LoadingIcon>;
   }
 
   return (
@@ -20,7 +21,6 @@ export function CorpEdit({ corpId }: CorpEditProps) {
       <Text bold fontSize={3}>
         Edit Corp
       </Text>
-      <br />
       <CorpEditor defaultDTO={corp} onSave={onUpdate} />
     </>
   );

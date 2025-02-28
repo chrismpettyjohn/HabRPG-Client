@@ -2,6 +2,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { CreateLinkEvent } from "../../../../api";
 import { LayoutAvatarImageView, Text } from "../../../../common";
 import { useCorpById } from "../../../../hooks/roleplay/useCorpById";
+import { LoadingIcon } from "../../../loading-icon/LoadingIcon";
 
 export interface CorpViewProps {
   corpId: number;
@@ -10,8 +11,19 @@ export interface CorpViewProps {
 export function CorpView({ corpId }: CorpViewProps) {
   const corp = useCorpById(corpId);
 
+  if (!corp) {
+    return <LoadingIcon>Loading corp {corpId}</LoadingIcon>;
+  }
+
   return (
     <div className="corp-info-widget">
+      <div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+        <div className="corp-chip" onClick={() => CreateLinkEvent(`corps/edit/${corpId}`)} style={{ cursor: "pointer" }}>
+          <FaPencilAlt style={{ marginRight: 8 }} />
+          Edit
+        </div>
+      </div>
+      <br />
       <div className="corp-header">
         <Text bold fontSize={3}>
           {corp?.name}
@@ -25,14 +37,10 @@ export function CorpView({ corpId }: CorpViewProps) {
         </Text>
         <div style={{ display: "flex", gap: 14 }}>
           <div className="corp-chip">2 employees</div>
-          <div className="corp-chip" onClick={() => CreateLinkEvent(`corps/edit/${corpId}`)} style={{ cursor: "pointer" }}>
-            <FaPencilAlt style={{ marginRight: 8 }} />
-            Edit
-          </div>
         </div>
       </div>
       <div className="corp-users">
-        {Array.from({ length: 200 }).map((_, i) => (
+        {Array.from({ length: 10 }).map((_, i) => (
           <div className="user" key={`user_${i}`}>
             <div className="avatar">
               <LayoutAvatarImageView

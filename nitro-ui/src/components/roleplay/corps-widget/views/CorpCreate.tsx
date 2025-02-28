@@ -16,7 +16,6 @@ export function CorpCreate() {
       <Text bold fontSize={3}>
         Create Corp
       </Text>
-      <br />
       <CorpEditor onSave={onCreate} />
     </>
   );

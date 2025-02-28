@@ -1,1 +1,20 @@
 @import "./corps-widget//CorpsWidget";
+
+.form-control {
+    background: $bg-two;
+    border-color: $bg-three;
+
+    &:focus {
+        background: $bg-three;
+        border-color: $bg-four;
+    }
+}
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
