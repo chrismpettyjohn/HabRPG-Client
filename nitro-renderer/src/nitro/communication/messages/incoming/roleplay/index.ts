@@ -10,6 +10,6 @@ export * from "./gang/GangDataEvent";
 export * from "./gang/GangInviteEvent";
 export * from "./gang/GangListAllEvent";
 export * from "./gang/GangRoleDataEvent";
-export * from "./gang/GangRoleListAllEvent";
+export * from "./gang/GangRoleListByGangEvent";
 
 export * from "./notification/UserDiedEvent";

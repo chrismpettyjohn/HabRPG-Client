@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { useCorpRoleList } from "../../../hooks/roleplay/useCorpRoleList";
+import { useCorpRoleListByCorp } from "../../../hooks/roleplay/useCorpRoleListByCorp";
 
 export interface CorpRoleSelectProps {
   corpId: number;
@@ -8,7 +8,7 @@ export interface CorpRoleSelectProps {
 }
 
 export function CorpRoleSelect({ corpId, corpRoleId, onChange }: CorpRoleSelectProps) {
-  const corpRoles = useCorpRoleList();
+  const corpRoles = useCorpRoleListByCorp(corpId);
 
   const filteredRoles = useMemo(() => corpRoles.filter((role) => role.corpId === corpId), [corpRoles, corpId]);
 

@@ -923,7 +923,7 @@ import {
   SellCaughtFishComposer,
   SellFarmedCornComposer,
   CorpListAllComposer,
-  CorpRoleListAllComposer,
+  CorpRoleListByCorpComposer,
   CorpRoleListAllEvent,
   CorpListAllEvent,
   CorpDemoteUserComposer,
@@ -935,8 +935,7 @@ import {
   CorpAcceptJobOfferComposer,
   UserDiedEvent,
   GangListAllEvent,
-  GangRoleListAllEvent,
-  GangRoleListAllComposer,
+  GangRoleListByGangEvent,
   CorpRoleGetByIdComposer,
   CorpGetByIdComposer,
   CorpDataEvent,
@@ -950,8 +949,8 @@ import {
   GangDemoteUserComposer,
   GangChangeOwnerComposer,
   GangAcceptInviteComposer,
-  GangDataEventParser,
   GangListAllComposer,
+  GangDataEvent,
 } from "./messages";
 import { GangRoleDataEvent } from "./messages/incoming/roleplay/gang/GangRoleDataEvent";
 import { CharacterUpdateByIdComposer } from "./messages/outgoing/roleplay/character/CharacterUpdateByIdComposer";
@@ -1522,10 +1521,10 @@ export class NitroMessages implements IMessageConfiguration {
     this._events.set(IncomingHeader.CORP_DATA, CorpDataEvent);
     this._events.set(IncomingHeader.CORP_ROLE_DATA, CorpRoleDataEvent);
     this._events.set(IncomingHeader.USER_DIED, UserDiedEvent);
-    this._events.set(IncomingHeader.GANG_DATA, GangDataEventParser);
+    this._events.set(IncomingHeader.GANG_DATA, GangDataEvent);
     this._events.set(IncomingHeader.GANG_LIST_ALL, GangListAllEvent);
     this._events.set(IncomingHeader.GANG_ROLE_DATA, GangRoleDataEvent);
-    this._events.set(IncomingHeader.GANG_ROLE_LIST_ALL, GangRoleListAllEvent);
+    this._events.set(IncomingHeader.GANG_ROLE_LIST_BY_GANG, GangRoleListByGangEvent);
   }
 
   private registerComposers(): void {
@@ -2147,7 +2146,7 @@ export class NitroMessages implements IMessageConfiguration {
     this._composers.set(OutgoingHeader.SELL_CAUGHT_FISH, SellCaughtFishComposer);
     this._composers.set(OutgoingHeader.SELL_FARMED_CORN, SellFarmedCornComposer);
     this._composers.set(OutgoingHeader.CORP_LIST_ALL, CorpListAllComposer);
-    this._composers.set(OutgoingHeader.CORP_ROLE_LIST_ALL, CorpRoleListAllComposer);
+    this._composers.set(OutgoingHeader.CORP_ROLE_LIST_BY_CORP, CorpRoleListByCorpComposer);
     this._composers.set(OutgoingHeader.CORP_OFFER_USER_JOB, CorpOfferUserJobComposer);
     this._composers.set(OutgoingHeader.CORP_FIRE_USER, CorpFireUserComposer);
     this._composers.set(OutgoingHeader.CORP_PROMOTE_USER, CorpPromoteUserComposer);
@@ -2166,7 +2165,7 @@ export class NitroMessages implements IMessageConfiguration {
     this._composers.set(OutgoingHeader.GANG_LIST_ALL, GangListAllComposer);
     this._composers.set(OutgoingHeader.GANG_LOOKUP_BY_ID, GangLookupByIdComposer);
     this._composers.set(OutgoingHeader.GANG_PROMOTE_USER, GangPromoteUserComposer);
-    this._composers.set(OutgoingHeader.GANG_ROLE_LIST_ALL, GangRoleListAllComposer);
+    this._composers.set(OutgoingHeader.GANG_ROLE_LIST_BY_ID, GangRoleListByGangEvent);
     this._composers.set(OutgoingHeader.GANG_ROLE_LOOKUP_BY_ID, GangRoleLookupByIdComposer);
   }
 

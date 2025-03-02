@@ -2,15 +2,18 @@ import { IMessageDataWrapper, IMessageParser } from "../../../../../../api";
 
 export interface CorpData {
   id: number;
+  userId: number;
   name: string;
 }
 
 export class CorpDataEventParser implements IMessageParser {
   private _id: number;
+  private _userId: number;
   private _name: string;
 
   public flush(): boolean {
     this._id = -1;
+    this._userId = -1;
     this._name = "";
     return true;
   }
@@ -19,6 +22,7 @@ export class CorpDataEventParser implements IMessageParser {
     if (!wrapper) return false;
 
     this._id = wrapper.readInt();
+    this._userId = wrapper.readInt();
     this._name = wrapper.readString();
 
     return true;
@@ -27,6 +31,7 @@ export class CorpDataEventParser implements IMessageParser {
   public get data(): CorpData {
     return {
       id: this._id,
+      userId: this._userId,
       name: this._name,
     };
   }

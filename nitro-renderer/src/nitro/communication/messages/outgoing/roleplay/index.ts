@@ -9,7 +9,7 @@ export * from "./corp/CorpDemoteUserComposer";
 export * from "./corp/CorpFireUserComposer";
 export * from "./corp/CorpGetByIdComposer";
 export * from "./corp/CorpListAllComposer";
-export * from "./corp/CorpRoleListAllComposer";
+export * from "./corp/CorpRoleListByCorpComposer";
 export * from "./corp/CorpOfferUserJobComposer";
 export * from "./corp/CorpPromoteUserComposer";
 export * from "./corp/CorpStartWorkComposer";
@@ -25,7 +25,7 @@ export * from "./gang/GangLeaveComposer";
 export * from "./gang/GangListAllComposer";
 export * from "./gang/GangLookupByIdComposer";
 export * from "./gang/GangPromoteUserComposer";
-export * from "./gang/GangRoleListAllComposer";
+export * from "./gang/GangRoleListByGangComposer";
 export * from "./gang/GangRoleLookupByIdComposer";
 
 export * from "./farming/SellFarmedCornComposer";

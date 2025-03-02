@@ -10,6 +10,6 @@ export * from "./gang/GangDataEventParser";
 export * from "./gang/GangInviteEventParser";
 export * from "./gang/GangListAllEventParser";
 export * from "./gang/GangRoleDataEventParser";
-export * from "./gang/GangRoleListAllEventParser";
+export * from "./gang/GangRoleListByGangEventParser";
 
 export * from "./notification/UserDiedEventParser";

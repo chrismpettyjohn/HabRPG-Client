@@ -487,5 +487,5 @@ export class IncomingHeader {
   public static GANG_INVITE = 4015;
   public static GANG_LIST_ALL = 4016;
   public static GANG_ROLE_DATA = 4017;
-  public static GANG_ROLE_LIST_ALL = 4018;
+  public static GANG_ROLE_LIST_BY_GANG = 4018;
 }
