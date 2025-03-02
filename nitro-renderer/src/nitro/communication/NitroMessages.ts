@@ -936,13 +936,24 @@ import {
   UserDiedEvent,
   GangListAllEvent,
   GangRoleListAllEvent,
-  GangListAllComposer,
   GangRoleListAllComposer,
   CorpRoleGetByIdComposer,
   CorpGetByIdComposer,
   CorpDataEvent,
   CorpRoleDataEvent,
+  GangRoleLookupByIdComposer,
+  GangPromoteUserComposer,
+  GangLookupByIdComposer,
+  GangLeaveComposer,
+  GangKickUserComposer,
+  GangDisbandComposer,
+  GangDemoteUserComposer,
+  GangChangeOwnerComposer,
+  GangAcceptInviteComposer,
+  GangDataEventParser,
+  GangListAllComposer,
 } from "./messages";
+import { GangRoleDataEvent } from "./messages/incoming/roleplay/gang/GangRoleDataEvent";
 import { CharacterUpdateByIdComposer } from "./messages/outgoing/roleplay/character/CharacterUpdateByIdComposer";
 
 export class NitroMessages implements IMessageConfiguration {
@@ -1504,15 +1515,17 @@ export class NitroMessages implements IMessageConfiguration {
     this._events.set(IncomingHeader.RENTABLE_FURNI_RENT_OR_BUYOUT_OFFER, FurniRentOrBuyoutOfferMessageEvent);
 
     // Roleplay
-    this._events.set(IncomingHeader.ROLEPLAY_CHARACTER_DATA, CharacterDataEvent);
-    this._events.set(IncomingHeader.ROLEPLAY_CHARACTER_SKILLS_DATA, CharacterSkillsDataEvent);
-    this._events.set(IncomingHeader.ROLEPLAY_CORP_LIST_ALL, CorpListAllEvent);
-    this._events.set(IncomingHeader.ROLEPLAY_CORP_ROLE_LIST_ALL, CorpRoleListAllEvent);
-    this._events.set(IncomingHeader.ROLEPLAY_USER_DIED, UserDiedEvent);
-    this._events.set(IncomingHeader.ROLEPLAY_GANG_LIST_ALL, GangListAllEvent);
-    this._events.set(IncomingHeader.ROLEPLAY_GANG_ROLE_LIST_ALL, GangRoleListAllEvent);
-    this._events.set(IncomingHeader.ROLEPLAY_CORP_DATA, CorpDataEvent);
-    this._events.set(IncomingHeader.ROLEPLAY_CORP_ROLE_DATA, CorpRoleDataEvent);
+    this._events.set(IncomingHeader.CHARACTER_DATA, CharacterDataEvent);
+    this._events.set(IncomingHeader.CHARACTER_SKILLS_DATA, CharacterSkillsDataEvent);
+    this._events.set(IncomingHeader.CORP_LIST_ALL, CorpListAllEvent);
+    this._events.set(IncomingHeader.CORP_ROLE_LIST_ALL, CorpRoleListAllEvent);
+    this._events.set(IncomingHeader.CORP_DATA, CorpDataEvent);
+    this._events.set(IncomingHeader.CORP_ROLE_DATA, CorpRoleDataEvent);
+    this._events.set(IncomingHeader.USER_DIED, UserDiedEvent);
+    this._events.set(IncomingHeader.GANG_DATA, GangDataEventParser);
+    this._events.set(IncomingHeader.GANG_LIST_ALL, GangListAllEvent);
+    this._events.set(IncomingHeader.GANG_ROLE_DATA, GangRoleDataEvent);
+    this._events.set(IncomingHeader.GANG_ROLE_LIST_ALL, GangRoleListAllEvent);
   }
 
   private registerComposers(): void {
@@ -2142,10 +2155,19 @@ export class NitroMessages implements IMessageConfiguration {
     this._composers.set(OutgoingHeader.CORP_START_WORK, CorpStartWorkComposer);
     this._composers.set(OutgoingHeader.CORP_QUIT_JOB, CorpQuitJobComposer);
     this._composers.set(OutgoingHeader.CORP_ACCEPT_JOB, CorpAcceptJobOfferComposer);
-    this._composers.set(OutgoingHeader.GANG_LIST_ALL, GangListAllComposer);
-    this._composers.set(OutgoingHeader.GANG_ROLE_LIST_ALL, GangRoleListAllComposer);
     this._composers.set(OutgoingHeader.CORP_GET_BY_ID, CorpGetByIdComposer);
     this._composers.set(OutgoingHeader.CORP_ROLE_GET_BY_ID, CorpRoleGetByIdComposer);
+    this._composers.set(OutgoingHeader.GANG_ACCEPT_INVITE, GangAcceptInviteComposer);
+    this._composers.set(OutgoingHeader.GANG_CHANGE_OWNER, GangChangeOwnerComposer);
+    this._composers.set(OutgoingHeader.GANG_DEMOTE_USER, GangDemoteUserComposer);
+    this._composers.set(OutgoingHeader.GANG_DISBAND, GangDisbandComposer);
+    this._composers.set(OutgoingHeader.GANG_KICK_USER, GangKickUserComposer);
+    this._composers.set(OutgoingHeader.GANG_LEAVE, GangLeaveComposer);
+    this._composers.set(OutgoingHeader.GANG_LIST_ALL, GangListAllComposer);
+    this._composers.set(OutgoingHeader.GANG_LOOKUP_BY_ID, GangLookupByIdComposer);
+    this._composers.set(OutgoingHeader.GANG_PROMOTE_USER, GangPromoteUserComposer);
+    this._composers.set(OutgoingHeader.GANG_ROLE_LIST_ALL, GangRoleListAllComposer);
+    this._composers.set(OutgoingHeader.GANG_ROLE_LOOKUP_BY_ID, GangRoleLookupByIdComposer);
   }
 
   public get events(): Map<number, Function> {

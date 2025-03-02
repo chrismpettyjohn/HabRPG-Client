@@ -1,7 +1,7 @@
 import { IMessageComposer } from "../../../../../../api";
 
-export class GangListAllComposer implements IMessageComposer<ConstructorParameters<typeof GangListAllComposer>> {
-  private _data: ConstructorParameters<typeof GangListAllComposer>;
+export class GangLeaveComposer implements IMessageComposer<ConstructorParameters<typeof GangLeaveComposer>> {
+  private _data: ConstructorParameters<typeof GangLeaveComposer>;
 
   constructor() {
     this._data = [];

@@ -470,22 +470,22 @@ export class IncomingHeader {
   public static RENTABLE_FURNI_RENT_OR_BUYOUT_OFFER = 35;
   public static HANDSHAKE_IDENTITY_ACCOUNT = 3523;
 
-  public static ROLEPLAY_CHARACTER_DATA = 4001;
-  public static ROLEPLAY_CHARACTER_SKILLS_DATA = 4002;
-
-  // Not Implemented
+  public static CHARACTER_DATA = 4001;
+  public static CHARACTER_SKILLS_DATA = 4002;
   public static CHARACTER_ROLEPLAY_ITEMS_DATA = 4003;
   public static ROLEPLAY_ITEMS_DATA = 4004;
-  public static ROLEPLAY_ITEMS_DATA_LIST = 4005;
-  public static ROLEPLAY_ITEMS_CREATED = 4006;
-  public static ROLEPLAY_ITEMS_DELETED = 4007;
-  //
-
-  public static ROLEPLAY_CORP_LIST_ALL = 4008;
-  public static ROLEPLAY_CORP_ROLE_LIST_ALL = 4009;
-  public static ROLEPLAY_USER_DIED = 4010;
-  public static ROLEPLAY_GANG_LIST_ALL = 4011;
-  public static ROLEPLAY_GANG_ROLE_LIST_ALL = 4012;
-  public static ROLEPLAY_CORP_DATA = 4013;
-  public static ROLEPLAY_CORP_ROLE_DATA = 4014;
+  public static ROLEPLAY_ITEMS_LIST = 4005;
+  public static ROLEPLAY_ITEMS_CREATE = 4006;
+  public static ROLEPLAY_ITEMS_DELETE = 4007;
+  public static CORP_LIST_ALL = 4008;
+  public static CORP_ROLE_LIST_ALL = 4009;
+  public static USER_DIED = 4010;
+  public static JOB_OFFER = 4011;
+  public static CORP_DATA = 4012;
+  public static CORP_ROLE_DATA = 4013;
+  public static GANG_DATA = 4014;
+  public static GANG_INVITE = 4015;
+  public static GANG_LIST_ALL = 4016;
+  public static GANG_ROLE_DATA = 4017;
+  public static GANG_ROLE_LIST_ALL = 4018;
 }

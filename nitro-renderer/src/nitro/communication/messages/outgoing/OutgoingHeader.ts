@@ -475,7 +475,6 @@ export class OutgoingHeader {
   public static ROLEPLAY_CALL_PARAMEDIC = 4004;
   public static ROLEPLAY_HEAL = 4005;
   public static CHARACTER_LOOKUP_ROLEPLAY_ITEMS = 4006;
-
   public static ROLEPLAY_ITEM_ADD_ONE = 4007;
   public static ROLEPLAY_ITEM_DELETE_ONE = 4008;
   public static ROLEPLAY_ITEM_LOOKUP_BY_TYPE = 4009;
@@ -493,8 +492,17 @@ export class OutgoingHeader {
   public static CORP_START_WORK = 4021;
   public static CORP_QUIT_JOB = 4022;
   public static CORP_ACCEPT_JOB = 4023;
-  public static GANG_LIST_ALL = 4024;
-  public static GANG_ROLE_LIST_ALL = 4025;
-  public static CORP_GET_BY_ID = 4026;
-  public static CORP_ROLE_GET_BY_ID = 4027;
+  public static CORP_GET_BY_ID = 4024;
+  public static CORP_ROLE_GET_BY_ID = 4025;
+  public static GANG_ACCEPT_INVITE = 4026;
+  public static GANG_CHANGE_OWNER = 4027;
+  public static GANG_DEMOTE_USER = 4028;
+  public static GANG_DISBAND = 4029;
+  public static GANG_KICK_USER = 4030;
+  public static GANG_LEAVE = 4031;
+  public static GANG_LIST_ALL = 4032;
+  public static GANG_LOOKUP_BY_ID = 4033;
+  public static GANG_PROMOTE_USER = 4034;
+  public static GANG_ROLE_LIST_ALL = 4035;
+  public static GANG_ROLE_LOOKUP_BY_ID = 4036;
 }

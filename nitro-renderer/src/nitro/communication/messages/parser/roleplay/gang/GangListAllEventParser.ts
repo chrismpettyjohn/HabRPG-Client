@@ -1,12 +1,12 @@
 import { IMessageDataWrapper, IMessageParser } from "../../../../../../api";
 
-export interface GangData {
+export interface GangListData {
   id: number;
   name: string;
 }
 
 export class GangListAllEventParser implements IMessageParser {
-  private _gangData: GangData[] = [];
+  private _gangData: GangListData[] = [];
 
   public flush(): boolean {
     this._gangData = [];
@@ -29,7 +29,7 @@ export class GangListAllEventParser implements IMessageParser {
     return true;
   }
 
-  public get gangs(): GangData[] {
+  public get gangs(): GangListData[] {
     return this._gangData;
   }
 }

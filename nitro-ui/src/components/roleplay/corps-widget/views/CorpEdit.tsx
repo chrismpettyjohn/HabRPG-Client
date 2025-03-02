@@ -13,7 +13,7 @@ export function CorpEdit({ corpId }: CorpEditProps) {
   async function onUpdate(dto: CorpDTO) {}
 
   if (!corp) {
-    return <LoadingIcon>Loading corp {corpid}</LoadingIcon>;
+    return <LoadingIcon>Loading corp {corpId}</LoadingIcon>;
   }
 
   return (
