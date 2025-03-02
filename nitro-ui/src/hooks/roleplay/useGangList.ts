@@ -1,10 +1,10 @@
-import { GangData, GangListAllComposer, GangListAllEvent } from "@nitrots/nitro-renderer";
+import { GangListData, GangListAllComposer, GangListAllEvent } from "@nitrots/nitro-renderer";
 import { useEffect, useState } from "react";
 import { SendMessageComposer } from "../../api";
 import { useMessageEvent } from "../events";
 
-export function useGangList(): GangData[] {
-  const [data, setData] = useState<GangData[]>([]);
+export function useGangList(): GangListData[] {
+  const [data, setData] = useState<GangListData[]>([]);
 
   useEffect(() => {
     SendMessageComposer(new GangListAllComposer());

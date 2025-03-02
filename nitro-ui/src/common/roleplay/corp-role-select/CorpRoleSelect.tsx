@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { useCorpRoleList } from "../../../hooks/roleplay/useCorpRoleListAll";
+import { useCorpRoleList } from "../../../hooks/roleplay/useCorpRoleList";
 
 export interface CorpRoleSelectProps {
   corpId: number;

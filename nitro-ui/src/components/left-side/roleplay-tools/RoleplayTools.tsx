@@ -7,7 +7,7 @@ export function RoleplayTools() {
       <div className="navigation-item" onClick={() => CreateLinkEvent("corps/toggle")}>
         <Base pointer className="icon icon-corp" />
       </div>
-      <div className="navigation-item" onClick={() => CreateLinkEvent("gangs/list/toggle")}>
+      <div className="navigation-item" onClick={() => CreateLinkEvent("gangs/toggle")}>
         <Base pointer className="icon icon-gang" />
       </div>
       <div className="navigation-item" onClick={() => CreateLinkEvent("leaderboard/toggle")}>

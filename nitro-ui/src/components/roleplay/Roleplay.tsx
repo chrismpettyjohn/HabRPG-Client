@@ -1,12 +1,12 @@
 import { CorpsWidget } from "./corps-widget/CorpsWidget";
-import { GangsListWidget } from "./gangs-list-widget/GangsListWidget";
+import { GangsWidget } from "./gangs-widget/GangsWidget";
 import { LeaderboardWidget } from "./leaderboard-widget/LeaderboardWidget";
 
 export function Roleplay() {
   return (
     <>
       <CorpsWidget />
-      <GangsListWidget />
+      <GangsWidget />
       <LeaderboardWidget />
     </>
   );
