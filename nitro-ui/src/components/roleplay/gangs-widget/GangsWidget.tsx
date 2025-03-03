@@ -64,7 +64,7 @@ export function GangsWidget() {
                   />
                 </div>
               ))}
-              <div className="gang" onClick={() => CreateLinkEvent("gangs/create")}>
+              <div className={`gang'`} onClick={() => CreateLinkEvent("gangs/create")}>
                 <FaPlus />
               </div>
             </div>
