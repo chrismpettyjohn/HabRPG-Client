@@ -45,11 +45,14 @@ export function GangView({ gangId }: GangViewProps) {
         )}
       </div>
       <br />
-      <div className="gang-header">
-        <Text bold fontSize={3}>
-          {gang?.name}
-        </Text>
-      </div>
+      <Text bold fontSize={2}>
+        {gang?.name}
+      </Text>
+      <br />
+      <Text bold fontSize={6}>
+        What we do
+      </Text>
+      <textarea className="form-control" value={gang?.description} rows={2} readOnly disabled />
       <br />
       {displayedGangRoles.length ? (
         displayedGangRoles.map((displayedRole) => (

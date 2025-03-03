@@ -45,18 +45,14 @@ export function CorpView({ corpId }: CorpViewProps) {
         )}
       </div>
       <br />
-      <div className="corp-header">
-        <Text bold fontSize={3}>
-          {corp?.name}
-        </Text>
-      </div>
+      <Text bold fontSize={2}>
+        {corp?.name}
+      </Text>
       <br />
-      <div>
-        <Text bold fontSize={4}>
-          Mission
-        </Text>
-        <textarea className="form-control" value={corp?.description} rows={2} readOnly disabled />
-      </div>
+      <Text bold fontSize={6}>
+        Our mission
+      </Text>
+      <textarea className="form-control" value={corp?.description} rows={2} readOnly disabled />
       <br />
       {displayedCorpRoles.length ? (
         displayedCorpRoles.map((displayedRole) => (

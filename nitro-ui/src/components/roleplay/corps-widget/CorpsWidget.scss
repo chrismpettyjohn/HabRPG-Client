@@ -2,8 +2,9 @@
   display: flex;
   gap: 14px;
   flex-direction: column;
-  height: 100%;
+  height: 340px;
   width: 100%;
+  overflow-y: auto; 
 
   .corp {
     align-items: center;
@@ -16,25 +17,26 @@
     flex-direction: column;
     height: 45px;
     width: 100%;
-    
+    flex-shrink: 0; 
+
     &:hover {
       background: $bg-three;
       border-color: $bg-three;
     }
   }
-  
+
   .active {
     background: $bg-three;
     border-color: $bg-three;
   }
-
 }
 
 .corp-info-widget {
-  overflow: hidden;
+  height: 340px;
+  overflow-y: auto;  
 
   .corp-header {
-    align-items: center;;
+    align-items: center;
     background: $bg-three;
     border-radius: $border-radius;
     display: flex;
@@ -60,7 +62,7 @@
     margin-top: 8px;
 
     .avatar {
-      height:  40px;
+      height: 40px;
       overflow: hidden;
     }
 
@@ -81,8 +83,6 @@
         background: $bg-two;
         border-color: $bg-one;
       }
-
     }
   }
-
 }

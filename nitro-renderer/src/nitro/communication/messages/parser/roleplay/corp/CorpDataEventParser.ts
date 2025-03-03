@@ -31,8 +31,11 @@ export class CorpDataEventParser implements IMessageParser {
     if (!wrapper) return false;
 
     this._id = wrapper.readInt();
+    this._roomId = wrapper.readInt();
     this._userId = wrapper.readInt();
     this._name = wrapper.readString();
+    this._description = wrapper.readString();
+    this._badgeCode = wrapper.readString();
 
     return true;
   }
