@@ -21,7 +21,7 @@
     }
 
     .table {
-        color: $black;
+        color: $white;
 
         > :not(caption)>*>* {
             box-shadow: none;
@@ -29,7 +29,7 @@
         }
 
         &.table-striped>tbody>tr:nth-of-type(odd) {
-            color: $black;
+            color: $white;
             background: rgba(0, 0, 0, .05);
         }
     }
