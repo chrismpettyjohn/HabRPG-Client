@@ -27,11 +27,12 @@ import {
   SendMessageComposer,
 } from "../../../../../api";
 import { Base, Flex } from "../../../../../common";
-import { useFriends, useHelp, useRoom, useSessionInfo } from "../../../../../hooks";
+import { useCharacter, useFriends, useHelp, useRoom, useSessionInfo } from "../../../../../hooks";
 import { ContextMenuHeaderView } from "../../context-menu/ContextMenuHeaderView";
 import { ContextMenuListItemView } from "../../context-menu/ContextMenuListItemView";
 import { ContextMenuView } from "../../context-menu/ContextMenuView";
-import { userInfo } from "os";
+import { useCorpRoleById } from "../../../../../hooks/roleplay/useCorpRoleById";
+import { useCorpRoleListByCorp } from "../../../../../hooks/roleplay/useCorpRoleListByCorp";
 
 interface AvatarInfoWidgetAvatarViewProps {
   avatarInfo: AvatarInfoUser;
@@ -53,7 +54,15 @@ export const AvatarInfoWidgetAvatarView: FC<AvatarInfoWidgetAvatarViewProps> = (
   const { canRequestFriend = null } = useFriends();
   const { report = null } = useHelp();
   const { roomSession = null } = useRoom();
-  const { userRespectRemaining = 0, respectUser = null } = useSessionInfo();
+  const { userRespectRemaining = 0, respectUser = null, userInfo } = useSessionInfo();
+
+  const avatarCharacter = useCharacter(avatarInfo?.webID);
+  const avatarRole = useCorpRoleById(avatarCharacter?.corpRoleId);
+
+  const avatarCorpRoles = useCorpRoleListByCorp(avatarCharacter?.corpId);
+
+  const myCharacter = useCharacter(userInfo?.userId);
+  const myRole = useCorpRoleById(myCharacter?.corpRoleId);
 
   const isShowGiveRights = useMemo(() => {
     return avatarInfo.amIOwner && avatarInfo.targetRoomControllerLevel < RoomControllerLevel.GUEST && !avatarInfo.isGuildRoom;
@@ -375,10 +384,20 @@ export const AvatarInfoWidgetAvatarView: FC<AvatarInfoWidgetAvatarViewProps> = (
       )}
       {mode === MODE_CORP && (
         <>
-          <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpOfferUserJobComposer(avatarInfo.webID, 1, 1))}>Offer Job</ContextMenuListItemView>
-          <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpFireUserComposer(avatarInfo.webID))}>Fire</ContextMenuListItemView>
-          <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpPromoteUserComposer(avatarInfo.webID))}>Promote</ContextMenuListItemView>
-          <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpDemoteUserComposer(avatarInfo.webID))}>Demote</ContextMenuListItemView>
+          {myCharacter?.isWorking && myRole?.canHire && (
+            <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpOfferUserJobComposer(avatarInfo.webID, 1, 1))}>
+              Offer Job
+            </ContextMenuListItemView>
+          )}
+          {myCharacter?.isWorking && myRole?.canFire && myRole?.orderId > avatarRole?.orderId && (
+            <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpFireUserComposer(avatarInfo.webID))}>Fire</ContextMenuListItemView>
+          )}
+          {myCharacter?.isWorking && myRole?.canPromote && myRole?.orderId > avatarRole?.orderId && avatarRole?.orderId < avatarCorpRoles.length && (
+            <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpPromoteUserComposer(avatarInfo.webID))}>Promote</ContextMenuListItemView>
+          )}
+          {myCharacter?.isWorking && myRole?.canDemote && myRole?.orderId > avatarRole?.orderId && avatarRole?.orderId > 1 && (
+            <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpDemoteUserComposer(avatarInfo.webID))}>Demote</ContextMenuListItemView>
+          )}
           <ContextMenuListItemView onClick={() => processAction("back")}>
             <FaChevronLeft className="left fa-icon" />
             {LocalizeText("generic.back")}

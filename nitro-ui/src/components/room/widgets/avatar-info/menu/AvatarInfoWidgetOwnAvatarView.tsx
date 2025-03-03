@@ -4,6 +4,8 @@ import {
   CorpAcceptJobOfferComposer,
   CorpQuitJobComposer,
   CorpStartWorkComposer,
+  GangAcceptInviteComposer,
+  GangLeaveComposer,
   RoomObjectCategory,
   RoomUnitDropHandItemComposer,
 } from "@nitrots/nitro-renderer";
@@ -11,6 +13,7 @@ import { Dispatch, FC, SetStateAction, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import {
   AvatarInfoUser,
+  CreateLinkEvent,
   DispatchUiEvent,
   GetCanStandUp,
   GetCanUseExpression,
@@ -42,6 +45,7 @@ const MODE_CLUB_DANCES = 1;
 const MODE_EXPRESSIONS = 3;
 const MODE_SIGNS = 4;
 const MODE_CORP = 5;
+const MODE_GANG = 6;
 
 export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProps> = (props) => {
   const { avatarInfo = null, isDancing = false, setIsDecorating = null, onClose = null } = props;
@@ -116,6 +120,10 @@ export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProp
             setMode(MODE_CORP);
             hideMenu = false;
             break;
+          case "view_gang":
+            setMode(MODE_GANG);
+            hideMenu = false;
+            break;
         }
       }
     }
@@ -135,6 +143,10 @@ export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProp
           <ContextMenuListItemView onClick={() => processAction("view_corp")}>
             <FaChevronRight className="right fa-icon" />
             Work
+          </ContextMenuListItemView>
+          <ContextMenuListItemView onClick={() => processAction("view_gang")}>
+            <FaChevronRight className="right fa-icon" />
+            Gang
           </ContextMenuListItemView>
           {avatarInfo.allowNameChange && (
             <ContextMenuListItemView onClick={() => processAction("change_name")}>{LocalizeText("widget.avatar.change_name")}</ContextMenuListItemView>
@@ -268,6 +280,20 @@ export const AvatarInfoWidgetOwnAvatarView: FC<AvatarInfoWidgetOwnAvatarViewProp
             {character.isWorking ? "Stop" : "Start"} Shift
           </ContextMenuListItemView>
           {character.corpId != 1 && <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpQuitJobComposer())}>Quit Job</ContextMenuListItemView>}
+          <ContextMenuListItemView onClick={() => processAction("back")}>
+            <FaChevronLeft className="left fa-icon" />
+            {LocalizeText("generic.back")}
+          </ContextMenuListItemView>
+        </>
+      )}
+      {mode === MODE_GANG && (
+        <>
+          {!character.gangId && <ContextMenuListItemView onClick={() => CreateLinkEvent("gangs/create")}>Create Gang</ContextMenuListItemView>}
+          {character.hasGangOffer && (
+            <ContextMenuListItemView onClick={() => SendMessageComposer(new GangAcceptInviteComposer())}>Accept Invite</ContextMenuListItemView>
+          )}
+
+          {character.gangId && <ContextMenuListItemView onClick={() => SendMessageComposer(new GangLeaveComposer())}>Leave Gang</ContextMenuListItemView>}
           <ContextMenuListItemView onClick={() => processAction("back")}>
             <FaChevronLeft className="left fa-icon" />
             {LocalizeText("generic.back")}

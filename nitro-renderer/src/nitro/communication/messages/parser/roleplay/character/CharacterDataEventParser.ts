@@ -11,10 +11,15 @@ export interface CharacterData {
   isExhausted: boolean;
   isWorking: boolean;
   hasJobOffer: boolean;
+  hasGangOffer: boolean;
   corpId: number;
   corpName: string;
   corpRoleId: number;
   corpRoleName: string;
+  gangId?: number;
+  gangName?: string;
+  gangRoleId?: number;
+  gangRoleName?: string;
   healthNow: number;
   healthMax: number;
   energyNow: number;
@@ -32,25 +37,54 @@ export class CharacterDataEventParser implements IMessageParser {
   public parse(wrapper: IMessageDataWrapper): boolean {
     if (!wrapper) return false;
 
+    const id = wrapper.readInt();
+    const botId = wrapper.readInt();
+    const userId = wrapper.readInt();
+    const petId = wrapper.readInt();
+    const username = wrapper.readString();
+    const figure = wrapper.readString();
+    const isDead = wrapper.readBoolean();
+    const isExhausted = wrapper.readBoolean();
+    const isWorking = wrapper.readBoolean();
+    const hasJobOffer = wrapper.readBoolean();
+    const hasGangOffer = wrapper.readBoolean();
+    const corpId = wrapper.readInt();
+    const corpName = wrapper.readString();
+    const corpRoleId = wrapper.readInt();
+    const corpRoleName = wrapper.readString();
+    const gangId = wrapper.readInt();
+    const gangName = wrapper.readString();
+    const gangRoleId = wrapper.readInt();
+    const gangRoleName = wrapper.readString();
+    const healthNow = wrapper.readInt();
+    const healthMax = wrapper.readInt();
+    const energyNow = wrapper.readInt();
+    const energyMax = wrapper.readInt();
+
     this._characterData = {
-      id: wrapper.readInt(),
-      botId: wrapper.readInt(),
-      userId: wrapper.readInt(),
-      petId: wrapper.readInt(),
-      username: wrapper.readString(),
-      figure: wrapper.readString(),
-      isDead: wrapper.readBoolean(),
-      isExhausted: wrapper.readBoolean(),
-      isWorking: wrapper.readBoolean(),
-      hasJobOffer: wrapper.readBoolean(),
-      corpId: wrapper.readInt(),
-      corpName: wrapper.readString(),
-      corpRoleId: wrapper.readInt(),
-      corpRoleName: wrapper.readString(),
-      healthNow: wrapper.readInt(),
-      healthMax: wrapper.readInt(),
-      energyNow: wrapper.readInt(),
-      energyMax: wrapper.readInt(),
+      id,
+      botId,
+      userId,
+      petId,
+      username,
+      figure,
+      isDead,
+      isExhausted,
+      isWorking,
+      hasJobOffer,
+      hasGangOffer,
+      corpId,
+      corpName,
+      corpRoleId,
+      corpRoleName,
+      gangId: !!gangId ? gangId : null,
+      gangName: !!gangName ? gangName : null,
+      gangRoleId: !!gangRoleId ? gangRoleId : null,
+      gangRoleName: !!gangRoleName ? gangRoleName : null,
+      healthNow,
+      healthMax,
+      energyNow,
+      energyMax,
     };
 
     return true;

@@ -61,8 +61,12 @@ export function CorpView({ corpId }: CorpViewProps) {
       <br />
       {displayedCorpRoles.length ? (
         displayedCorpRoles.map((displayedRole) => {
-          const canPromote = myCharacter?.isWorking && myRole?.canPromote && displayedRole.role.orderId < displayedCorpRoles.length;
-          const canDemote = myCharacter?.isWorking && myRole?.canDemote && displayedRole.role.orderId > 1;
+          const canPromote =
+            myCharacter?.isWorking &&
+            myRole?.canPromote &&
+            myRole?.orderId > displayedRole.role.orderId &&
+            displayedRole.role.orderId < displayedCorpRoles.length;
+          const canDemote = myCharacter?.isWorking && myRole?.canDemote && myRole?.orderId > displayedRole.role.orderId && displayedRole.role.orderId > 1;
           return (
             <div key={`role_${displayedRole.role.id}`} style={{ marginBottom: 14 }}>
               <div className="corp-header">
