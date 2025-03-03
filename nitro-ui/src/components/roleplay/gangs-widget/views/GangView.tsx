@@ -6,6 +6,8 @@ import { LoadingIcon } from "../../../loading-icon/LoadingIcon";
 import { useGangRoleListByGang } from "../../../../hooks/roleplay/useGangRoleListByGang";
 import { useGangMemberListByGang } from "../../../../hooks/roleplay/useGangMemberListByGang";
 import { useSessionInfo } from "../../../../hooks";
+import { GangMemberListData, GangRoleData, GangRoleListData } from "@nitrots/nitro-renderer";
+import { useMemo } from "react";
 
 export interface GangViewProps {
   gangId: number;
@@ -16,6 +18,15 @@ export function GangView({ gangId }: GangViewProps) {
   const gang = useGangById(gangId);
   const gangRoles = useGangRoleListByGang(gangId);
   const gangMembers = useGangMemberListByGang(gangId);
+
+  const displayedGangRoles: Array<{ role: GangRoleListData; members: GangMemberListData[] }> = useMemo(() => {
+    return gangRoles.map((role) => {
+      return {
+        role,
+        members: gangMembers.filter((m) => m.gangRoleId === role.id),
+      };
+    });
+  }, [gangRoles, gangMembers]);
 
   if (!gang) {
     return <LoadingIcon>Loading gang {gangId}</LoadingIcon>;
@@ -40,29 +51,37 @@ export function GangView({ gangId }: GangViewProps) {
         </Text>
       </div>
       <br />
-      <div className="gang-header">
-        <Text bold fontSize={3}>
-          Members
-        </Text>
-        <div style={{ display: "flex", gap: 14 }}>
-          <div className="gang-chip">{gangMembers.length} members</div>
-        </div>
-      </div>
-      {gangMembers.length ? (
-        <div className="corp-users">
-          {gangMembers.map((_) => (
-            <div className="user" key={`user_${_.userId}`}>
-              <div className="avatar">
-                <LayoutAvatarImageView figure={_.look} direction={2} headOnly style={{ marginTop: -25 }} />
-              </div>
-              <Text bold fontSize={6}>
-                {_.username}
+      {displayedGangRoles.length ? (
+        displayedGangRoles.map((displayedRole) => (
+          <div key={`role_${displayedRole.role.id}`}>
+            <div className="corp-header">
+              <Text bold fontSize={3}>
+                {displayedRole.role.name}
               </Text>
+              <div style={{ display: "flex", gap: 14 }}>
+                <div className="corp-chip">{displayedRole.members.length} members</div>
+              </div>
             </div>
-          ))}
-        </div>
+            {displayedRole.members.length ? (
+              <div className="corp-users">
+                {displayedRole.members.map((_) => (
+                  <div className="user" key={`user_${_.userId}`}>
+                    <div className="avatar">
+                      <LayoutAvatarImageView figure={_.look} direction={2} headOnly style={{ marginTop: -25 }} />
+                    </div>
+                    <Text bold fontSize={6}>
+                      {_.username}
+                    </Text>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p style={{ marginTop: 14 }}>No members found</p>
+            )}
+          </div>
+        ))
       ) : (
-        <p style={{ marginTop: 14 }}>No members found</p>
+        <p>No roles found</p>
       )}
     </div>
   );
