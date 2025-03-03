@@ -478,7 +478,7 @@ export class IncomingHeader {
   public static ROLEPLAY_ITEMS_CREATE = 4006;
   public static ROLEPLAY_ITEMS_DELETE = 4007;
   public static CORP_LIST_ALL = 4008;
-  public static CORP_ROLE_LIST_ALL = 4009;
+  public static CORP_ROLE_LIST_BY_CORP = 4009;
   public static USER_DIED = 4010;
   public static JOB_OFFER = 4011;
   public static CORP_DATA = 4012;
@@ -488,4 +488,6 @@ export class IncomingHeader {
   public static GANG_LIST_ALL = 4016;
   public static GANG_ROLE_DATA = 4017;
   public static GANG_ROLE_LIST_BY_GANG = 4018;
+  public static CORP_MEMBER_LIST_BY_CORP = 4019;
+  public static GANG_MEMBER_LIST_BY_GANG = 4020;
 }

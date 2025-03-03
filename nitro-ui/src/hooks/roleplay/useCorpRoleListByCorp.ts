@@ -1,4 +1,4 @@
-import { CorpRoleListData, CorpRoleListByCorpComposer, CorpRoleListAllEvent } from "@nitrots/nitro-renderer";
+import { CorpRoleListData, CorpRoleListByCorpComposer, CorpRoleListByCorpEvent } from "@nitrots/nitro-renderer";
 import { useEffect, useState } from "react";
 import { SendMessageComposer } from "../../api";
 import { useMessageEvent } from "../events";
@@ -10,7 +10,7 @@ export function useCorpRoleListByCorp(corpId: number): CorpRoleListData[] {
     SendMessageComposer(new CorpRoleListByCorpComposer(corpId));
   }, [corpId]);
 
-  useMessageEvent(CorpRoleListAllEvent, (event: CorpRoleListAllEvent) => {
+  useMessageEvent(CorpRoleListByCorpEvent, (event: CorpRoleListByCorpEvent) => {
     setData(event.getParser().corpRoles);
   });
 

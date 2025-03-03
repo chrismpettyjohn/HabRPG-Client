@@ -924,7 +924,6 @@ import {
   SellFarmedCornComposer,
   CorpListAllComposer,
   CorpRoleListByCorpComposer,
-  CorpRoleListAllEvent,
   CorpListAllEvent,
   CorpDemoteUserComposer,
   CorpPromoteUserComposer,
@@ -951,6 +950,11 @@ import {
   GangAcceptInviteComposer,
   GangListAllComposer,
   GangDataEvent,
+  GangMemberListByGangEvent,
+  CorpMemberListByCorpEvent,
+  GangMemberListByGangComposer,
+  CorpMemberListByCorpComposer,
+  CorpRoleListByCorpEvent,
 } from "./messages";
 import { GangRoleDataEvent } from "./messages/incoming/roleplay/gang/GangRoleDataEvent";
 import { CharacterUpdateByIdComposer } from "./messages/outgoing/roleplay/character/CharacterUpdateByIdComposer";
@@ -1517,7 +1521,7 @@ export class NitroMessages implements IMessageConfiguration {
     this._events.set(IncomingHeader.CHARACTER_DATA, CharacterDataEvent);
     this._events.set(IncomingHeader.CHARACTER_SKILLS_DATA, CharacterSkillsDataEvent);
     this._events.set(IncomingHeader.CORP_LIST_ALL, CorpListAllEvent);
-    this._events.set(IncomingHeader.CORP_ROLE_LIST_ALL, CorpRoleListAllEvent);
+    this._events.set(IncomingHeader.CORP_ROLE_LIST_BY_CORP, CorpRoleListByCorpEvent);
     this._events.set(IncomingHeader.CORP_DATA, CorpDataEvent);
     this._events.set(IncomingHeader.CORP_ROLE_DATA, CorpRoleDataEvent);
     this._events.set(IncomingHeader.USER_DIED, UserDiedEvent);
@@ -1525,6 +1529,8 @@ export class NitroMessages implements IMessageConfiguration {
     this._events.set(IncomingHeader.GANG_LIST_ALL, GangListAllEvent);
     this._events.set(IncomingHeader.GANG_ROLE_DATA, GangRoleDataEvent);
     this._events.set(IncomingHeader.GANG_ROLE_LIST_BY_GANG, GangRoleListByGangEvent);
+    this._events.set(IncomingHeader.CORP_MEMBER_LIST_BY_CORP, CorpMemberListByCorpEvent);
+    this._events.set(IncomingHeader.GANG_MEMBER_LIST_BY_GANG, GangMemberListByGangEvent);
   }
 
   private registerComposers(): void {
@@ -2165,8 +2171,10 @@ export class NitroMessages implements IMessageConfiguration {
     this._composers.set(OutgoingHeader.GANG_LIST_ALL, GangListAllComposer);
     this._composers.set(OutgoingHeader.GANG_LOOKUP_BY_ID, GangLookupByIdComposer);
     this._composers.set(OutgoingHeader.GANG_PROMOTE_USER, GangPromoteUserComposer);
-    this._composers.set(OutgoingHeader.GANG_ROLE_LIST_BY_ID, GangRoleListByGangEvent);
+    this._composers.set(OutgoingHeader.GANG_ROLE_LIST_BY_GANG, GangRoleListByGangEvent);
     this._composers.set(OutgoingHeader.GANG_ROLE_LOOKUP_BY_ID, GangRoleLookupByIdComposer);
+    this._composers.set(OutgoingHeader.CORP_MEMBER_LIST_BY_CORP, CorpMemberListByCorpComposer);
+    this._composers.set(OutgoingHeader.GANG_MEMBER_LIST_BY_GANG, GangMemberListByGangComposer);
   }
 
   public get events(): Map<number, Function> {

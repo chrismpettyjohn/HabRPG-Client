@@ -6,7 +6,7 @@ export interface CorpRoleListData {
   name: string;
 }
 
-export class CorpRoleListAllEventParser implements IMessageParser {
+export class CorpRoleListByCorpEventParser implements IMessageParser {
   private _corpRoleData: CorpRoleListData[] = [];
 
   public flush(): boolean {
