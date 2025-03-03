@@ -77,8 +77,27 @@
       flex-direction: column;
       justify-content: center;
       padding: 8px;
+      position: relative;
       height: 80px;
       width: 90px;
+
+
+      .actions {
+          display: flex;
+          gap: 2px;
+          position: absolute;
+          top: 0px;
+          right: 0px;
+
+          .action {
+            cursor: pointer;
+
+            &:hover {
+              background: $bg-one;
+            }
+
+          }
+      }
 
       &:hover {
         background: $bg-two;

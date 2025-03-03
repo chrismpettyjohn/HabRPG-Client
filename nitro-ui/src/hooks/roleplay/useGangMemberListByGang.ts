@@ -7,6 +7,8 @@ export function useGangMemberListByGang(gangId: number): GangMemberListData[] {
   const [data, setData] = useState<GangMemberListData[]>([]);
 
   useEffect(() => {
+    if (!gangId) return;
+    setData([]);
     SendMessageComposer(new GangMemberListByGangComposer(gangId));
   }, [gangId]);
 

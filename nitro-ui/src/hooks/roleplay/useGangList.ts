@@ -7,6 +7,7 @@ export function useGangList(): GangListData[] {
   const [data, setData] = useState<GangListData[]>([]);
 
   useEffect(() => {
+    setData([]);
     SendMessageComposer(new GangListAllComposer());
   }, []);
 

@@ -7,12 +7,13 @@ export function useCorpById(corpId: number): CorpData | null {
   const [data, setData] = useState<CorpData>();
 
   useEffect(() => {
+    if (!corpId) return;
+    setData(undefined);
     SendMessageComposer(new CorpGetByIdComposer(corpId));
   }, [corpId]);
 
   useMessageEvent(CorpDataEvent, (event: CorpDataEvent) => {
     const eventData: CorpData = event.getParser().data;
-    console.log(eventData.id, corpId);
     if (eventData.id !== corpId) {
       return;
     }

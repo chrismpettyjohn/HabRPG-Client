@@ -7,6 +7,8 @@ export function useCorpRoleById(corpId: number): CorpRoleData | null {
   const [data, setData] = useState<CorpRoleData>();
 
   useEffect(() => {
+    if (!corpId) return;
+    console.log({ corpId });
     SendMessageComposer(new CorpRoleGetByIdComposer(corpId));
   }, [corpId]);
 

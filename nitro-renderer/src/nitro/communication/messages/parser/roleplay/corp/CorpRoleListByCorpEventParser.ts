@@ -3,6 +3,7 @@ import { IMessageDataWrapper, IMessageParser } from "../../../../../../api";
 export interface CorpRoleListData {
   id: number;
   corpId: number;
+  orderId: number;
   name: string;
 }
 
@@ -20,10 +21,11 @@ export class CorpRoleListByCorpEventParser implements IMessageParser {
     const corpRoleCount = wrapper.readInt();
 
     for (let i = 0; i < corpRoleCount; i += 1) {
-      const [id, corpId, name] = wrapper.readString().split(";");
+      const [id, corpId, orderId, name] = wrapper.readString().split(";");
       this._corpRoleData.push({
         id: Number(id),
         corpId: Number(corpId),
+        orderId: Number(orderId),
         name,
       });
     }

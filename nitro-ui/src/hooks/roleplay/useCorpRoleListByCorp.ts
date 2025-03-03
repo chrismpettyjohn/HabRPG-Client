@@ -7,6 +7,8 @@ export function useCorpRoleListByCorp(corpId: number): CorpRoleListData[] {
   const [data, setData] = useState<CorpRoleListData[]>([]);
 
   useEffect(() => {
+    if (!corpId) return;
+    setData([]);
     SendMessageComposer(new CorpRoleListByCorpComposer(corpId));
   }, [corpId]);
 

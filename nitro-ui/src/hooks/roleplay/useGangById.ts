@@ -7,6 +7,8 @@ export function useGangById(gangId: number): GangData | null {
   const [data, setData] = useState<GangData>();
 
   useEffect(() => {
+    if (!gangId) return;
+    setData(undefined);
     SendMessageComposer(new GangLookupByIdComposer(gangId));
   }, [gangId]);
 

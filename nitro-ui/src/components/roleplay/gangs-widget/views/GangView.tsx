@@ -20,12 +20,13 @@ export function GangView({ gangId }: GangViewProps) {
   const gangMembers = useGangMemberListByGang(gangId);
 
   const displayedGangRoles: Array<{ role: GangRoleListData; members: GangMemberListData[] }> = useMemo(() => {
-    return gangRoles.map((role) => {
-      return {
+    return gangRoles
+      .slice()
+      .sort((a, b) => a.orderId - b.orderId)
+      .map((role) => ({
         role,
         members: gangMembers.filter((m) => m.gangRoleId === role.id),
-      };
-    });
+      }));
   }, [gangRoles, gangMembers]);
 
   if (!gang) {

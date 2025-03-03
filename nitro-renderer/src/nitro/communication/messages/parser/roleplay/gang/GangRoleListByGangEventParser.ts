@@ -3,6 +3,7 @@ import { IMessageDataWrapper, IMessageParser } from "../../../../../../api";
 export interface GangRoleListData {
   id: number;
   gangId: number;
+  orderId: number;
   name: string;
 }
 
@@ -24,10 +25,11 @@ export class GangRoleListByGangEventParser implements IMessageParser {
     const gangRoleCount = wrapper.readInt();
 
     for (let i = 0; i < gangRoleCount; i += 1) {
-      const [id, gangId, name] = wrapper.readString().split(";");
+      const [id, gangId, orderId, name] = wrapper.readString().split(";");
       this._gangRoleData.push({
         id: Number(id),
         gangId: Number(gangId),
+        orderId: Number(orderId),
         name,
       });
     }

@@ -7,6 +7,8 @@ export function useCorpMemberListByCorp(corpId: number): CorpMemberListData[] {
   const [data, setData] = useState<CorpMemberListData[]>([]);
 
   useEffect(() => {
+    if (!corpId) return;
+    setData([]);
     SendMessageComposer(new CorpMemberListByCorpComposer(corpId));
   }, [corpId]);
 
