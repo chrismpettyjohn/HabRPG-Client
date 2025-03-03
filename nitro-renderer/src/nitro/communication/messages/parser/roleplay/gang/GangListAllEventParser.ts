@@ -3,6 +3,7 @@ import { IMessageDataWrapper, IMessageParser } from "../../../../../../api";
 export interface GangListData {
   id: number;
   name: string;
+  badgeCode: string;
 }
 
 export class GangListAllEventParser implements IMessageParser {
@@ -19,10 +20,11 @@ export class GangListAllEventParser implements IMessageParser {
     const gangCount = wrapper.readInt();
 
     for (let i = 0; i < gangCount; i += 1) {
-      const [id, name] = wrapper.readString().split(";");
+      const [id, name, badgeCode] = wrapper.readString().split(";");
       this._gangData.push({
         id: Number(id),
         name,
+        badgeCode,
       });
     }
 

@@ -12,7 +12,7 @@ export function useCorpById(corpId: number): CorpData | null {
 
   useMessageEvent(CorpDataEvent, (event: CorpDataEvent) => {
     const eventData: CorpData = event.getParser().data;
-    console.log(eventData.id, corpId)
+    console.log(eventData.id, corpId);
     if (eventData.id !== corpId) {
       return;
     }

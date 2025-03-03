@@ -3,7 +3,6 @@
   gap: 14px;
   flex-direction: column;
   height: 100%;
-  overflow-y: auto;
   width: 100%;
 
   .corp {
@@ -32,6 +31,7 @@
 }
 
 .corp-info-widget {
+  overflow: hidden;
 
   .corp-header {
     align-items: center;;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AddEventLinkTracker, CreateLinkEvent, RemoveLinkEventTracker } from "../../../api";
+import { AddEventLinkTracker, CreateLinkEvent, GetConfiguration, RemoveLinkEventTracker } from "../../../api";
 import { Column, Grid, NitroCardContentView, NitroCardHeaderView, NitroCardView, Text } from "../../../common";
 import { useGangList } from "../../../hooks/roleplay/useGangList";
 import { FaInfoCircle, FaPlus } from "react-icons/fa";
@@ -54,12 +54,12 @@ export function GangsWidget() {
       <NitroCardHeaderView headerText="Gangs" onCloseClick={() => setVisible(false)} />
       <NitroCardContentView overflow="hidden">
         <Grid>
-          <Column size={2}>
+          <Column size={2} style={{ overflowY: "auto" }}>
             <div className="gangs-list-widget">
               {gangs.map((_) => (
                 <div className={`gang ${gangId === _.id ? "active" : ""}`} key={`gang_${_.id}`} onClick={() => CreateLinkEvent(`gangs/profile/${_.id}`)}>
                   <img
-                    src="https://swfs.habcrab.com/c_images/album1584/ADM.gif"
+                    src={GetConfiguration<string>("badge.asset.url").replace("%badgename%", _.badgeCode)}
                     style={{ objectFit: "contain", height: 30, width: 30, imageRendering: "pixelated" }}
                   />
                 </div>

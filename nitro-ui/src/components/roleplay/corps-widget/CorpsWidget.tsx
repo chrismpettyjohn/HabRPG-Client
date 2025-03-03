@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AddEventLinkTracker, CreateLinkEvent, RemoveLinkEventTracker } from "../../../api";
+import { AddEventLinkTracker, CreateLinkEvent, GetConfiguration, RemoveLinkEventTracker } from "../../../api";
 import { Column, Grid, NitroCardContentView, NitroCardHeaderView, NitroCardView, Text } from "../../../common";
 import { useCorpList } from "../../../hooks/roleplay/useCorpList";
 import { FaInfoCircle, FaPlus } from "react-icons/fa";
@@ -59,7 +59,7 @@ export function CorpsWidget() {
               {corps.map((_) => (
                 <div className={`corp ${corpId === _.id ? "active" : ""}`} key={`corp_${_.id}`} onClick={() => CreateLinkEvent(`corps/profile/${_.id}`)}>
                   <img
-                    src="https://swfs.habcrab.com/c_images/album1584/ADM.gif"
+                    src={GetConfiguration<string>("badge.asset.url").replace("%badgename%", _.badgeCode)}
                     style={{ objectFit: "contain", height: 30, width: 30, imageRendering: "pixelated" }}
                   />
                 </div>
