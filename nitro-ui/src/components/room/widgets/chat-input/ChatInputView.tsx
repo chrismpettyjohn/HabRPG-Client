@@ -87,7 +87,7 @@ export const ChatInputView: FC<{}> = () => {
           setChatValue("");
         } else {
           setChatValue("");
-          sendChat(text, chatType, recipientName, 0);
+          sendChat(text, chatType, recipientName);
         }
       }
 
