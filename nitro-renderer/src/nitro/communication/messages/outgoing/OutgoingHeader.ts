@@ -506,5 +506,5 @@ export class OutgoingHeader {
   public static GANG_ROLE_LIST_BY_GANG = 4035;
   public static GANG_ROLE_LOOKUP_BY_ID = 4036;
   public static CORP_MEMBER_LIST_BY_CORP = 4037;
-  public static GANG_MEMBER_LIST_BY_GANG = 403;
+  public static GANG_MEMBER_LIST_BY_GANG = 4038;
 }

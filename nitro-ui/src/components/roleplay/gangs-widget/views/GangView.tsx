@@ -3,13 +3,19 @@ import { CreateLinkEvent } from "../../../../api";
 import { LayoutAvatarImageView, Text } from "../../../../common";
 import { useGangById } from "../../../../hooks/roleplay/useGangById";
 import { LoadingIcon } from "../../../loading-icon/LoadingIcon";
+import { useGangRoleListByGang } from "../../../../hooks/roleplay/useGangRoleListByGang";
+import { useGangMemberListByGang } from "../../../../hooks/roleplay/useGangMemberListByGang";
+import { useSessionInfo } from "../../../../hooks";
 
 export interface GangViewProps {
   gangId: number;
 }
 
 export function GangView({ gangId }: GangViewProps) {
+  const { userInfo } = useSessionInfo();
   const gang = useGangById(gangId);
+  const gangRoles = useGangRoleListByGang(gangId);
+  const gangMembers = useGangMemberListByGang(gangId);
 
   if (!gang) {
     return <LoadingIcon>Loading gang {gangId}</LoadingIcon>;
@@ -18,44 +24,46 @@ export function GangView({ gangId }: GangViewProps) {
   return (
     <div className="gang-info-widget">
       <div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
-        <div className="gang-chip" onClick={() => CreateLinkEvent(`gangs/edit/${gangId}`)} style={{ cursor: "pointer" }}>
-          <FaPencilAlt style={{ marginRight: 8 }} />
-          Edit
-        </div>
+        {gang?.userId === userInfo?.userId ? (
+          <div className="corp-chip" onClick={() => CreateLinkEvent(`gangs/edit/${gangId}`)} style={{ cursor: "pointer" }}>
+            <FaPencilAlt style={{ marginRight: 8 }} />
+            Edit
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <br />
       <div className="gang-header">
         <Text bold fontSize={3}>
           {gang?.name}
         </Text>
-        <div className="gang-chip">$25,000 stock</div>
       </div>
       <br />
       <div className="gang-header">
         <Text bold fontSize={3}>
-          Employees
+          Members
         </Text>
         <div style={{ display: "flex", gap: 14 }}>
-          <div className="gang-chip">2 employees</div>
+          <div className="gang-chip">{gangMembers.length} members</div>
         </div>
       </div>
-      <div className="gang-users">
-        {Array.from({ length: 10 }).map((_, i) => (
-          <div className="user" key={`user_${i}`}>
-            <div className="avatar">
-              <LayoutAvatarImageView
-                figure="sh-3035-110.hr-170-61.hd-205-1380.ch-255-1428.he-1609-110.lg-285-110.ha-1002-1428.cc-5829-110"
-                direction={2}
-                headOnly
-                style={{ marginTop: -25 }}
-              />
+      {gangMembers.length ? (
+        <div className="corp-users">
+          {gangMembers.map((_) => (
+            <div className="user" key={`user_${_.userId}`}>
+              <div className="avatar">
+                <LayoutAvatarImageView figure={_.look} direction={2} headOnly style={{ marginTop: -25 }} />
+              </div>
+              <Text bold fontSize={6}>
+                {_.username}
+              </Text>
             </div>
-            <Text bold fontSize={6}>
-              Bobman{i}
-            </Text>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <p style={{ marginTop: 14 }}>No members found</p>
+      )}
     </div>
   );
 }

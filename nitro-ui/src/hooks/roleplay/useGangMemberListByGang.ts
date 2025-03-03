@@ -11,6 +11,9 @@ export function useGangMemberListByGang(gangId: number): GangMemberListData[] {
   }, [gangId]);
 
   useMessageEvent(GangMemberListByGangEvent, (event: GangMemberListByGangEvent) => {
+    if (event.getParser().gangId !== gangId) {
+      return;
+    }
     setData(event.getParser().gangMembers);
   });
 

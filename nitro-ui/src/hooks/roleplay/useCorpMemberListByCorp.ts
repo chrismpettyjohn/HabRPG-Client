@@ -11,6 +11,9 @@ export function useCorpMemberListByCorp(corpId: number): CorpMemberListData[] {
   }, [corpId]);
 
   useMessageEvent(CorpMemberListByCorpEvent, (event: CorpMemberListByCorpEvent) => {
+    if (event.getParser().corpId !== corpId) {
+      return;
+    }
     setData(event.getParser().corpMembers);
   });
 
