@@ -3,8 +3,8 @@ import { IMessageComposer } from "../../../../../../api";
 export class GangPromoteUserComposer implements IMessageComposer<ConstructorParameters<typeof GangPromoteUserComposer>> {
   private _data: ConstructorParameters<typeof GangPromoteUserComposer>;
 
-  constructor(username: string) {
-    this._data = [username];
+  constructor(userId: number) {
+    this._data = [userId];
   }
 
   public getMessageArray() {

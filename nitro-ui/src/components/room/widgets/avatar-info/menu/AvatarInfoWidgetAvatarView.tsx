@@ -3,6 +3,10 @@ import {
   CorpFireUserComposer,
   CorpOfferUserJobComposer,
   CorpPromoteUserComposer,
+  GangDemoteUserComposer,
+  GangInviteUserComposer,
+  GangKickUserComposer,
+  GangPromoteUserComposer,
   HealComposer,
   RoomControllerLevel,
   RoomObjectCategory,
@@ -33,6 +37,7 @@ import { ContextMenuListItemView } from "../../context-menu/ContextMenuListItemV
 import { ContextMenuView } from "../../context-menu/ContextMenuView";
 import { useCorpRoleById } from "../../../../../hooks/roleplay/useCorpRoleById";
 import { useCorpRoleListByCorp } from "../../../../../hooks/roleplay/useCorpRoleListByCorp";
+import { useGangRoleById } from "../../../../../hooks/roleplay/useGangRoleById";
 
 interface AvatarInfoWidgetAvatarViewProps {
   avatarInfo: AvatarInfoUser;
@@ -47,6 +52,7 @@ const MODE_AMBASSADOR = 4;
 const MODE_AMBASSADOR_MUTE = 5;
 const MODE_RELATIONSHIP = 6;
 const MODE_CORP = 7;
+const MODE_GANG = 8;
 
 export const AvatarInfoWidgetAvatarView: FC<AvatarInfoWidgetAvatarViewProps> = (props) => {
   const { avatarInfo = null, onClose = null } = props;
@@ -62,7 +68,8 @@ export const AvatarInfoWidgetAvatarView: FC<AvatarInfoWidgetAvatarViewProps> = (
   const avatarCorpRoles = useCorpRoleListByCorp(avatarCharacter?.corpId);
 
   const myCharacter = useCharacter(userInfo?.userId);
-  const myRole = useCorpRoleById(myCharacter?.corpRoleId);
+  const myCorpRole = useCorpRoleById(myCharacter?.corpRoleId);
+  const myGangRole = useGangRoleById(myCharacter?.gangRoleId);
 
   const isShowGiveRights = useMemo(() => {
     return avatarInfo.amIOwner && avatarInfo.targetRoomControllerLevel < RoomControllerLevel.GUEST && !avatarInfo.isGuildRoom;
@@ -223,6 +230,10 @@ export const AvatarInfoWidgetAvatarView: FC<AvatarInfoWidgetAvatarViewProps> = (
           setMode(MODE_CORP);
           hideMenu = false;
           break;
+        case "view_gang":
+          setMode(MODE_GANG);
+          hideMenu = false;
+          break;
       }
     }
 
@@ -243,6 +254,10 @@ export const AvatarInfoWidgetAvatarView: FC<AvatarInfoWidgetAvatarViewProps> = (
           <ContextMenuListItemView onClick={() => processAction("heal")}>{LocalizeText("infostand.button.heal")}</ContextMenuListItemView>{" "}
           <ContextMenuListItemView onClick={() => processAction("view_corp")}>
             Work
+            <FaChevronRight className="right fa-icon" />
+          </ContextMenuListItemView>
+          <ContextMenuListItemView onClick={() => processAction("view_gang")}>
+            Gang
             <FaChevronRight className="right fa-icon" />
           </ContextMenuListItemView>
           {canRequestFriend(avatarInfo.webID) && (
@@ -384,19 +399,39 @@ export const AvatarInfoWidgetAvatarView: FC<AvatarInfoWidgetAvatarViewProps> = (
       )}
       {mode === MODE_CORP && (
         <>
-          {myCharacter?.isWorking && myRole?.canHire && (
+          {myCharacter?.isWorking && myCorpRole?.canHire && (
             <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpOfferUserJobComposer(avatarInfo.webID, 1, 1))}>
               Offer Job
             </ContextMenuListItemView>
           )}
-          {myCharacter?.isWorking && myRole?.canFire && myRole?.orderId > avatarRole?.orderId && (
+          {myCharacter?.isWorking && myCorpRole?.canFire && myCorpRole?.orderId > avatarRole?.orderId && (
             <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpFireUserComposer(avatarInfo.webID))}>Fire</ContextMenuListItemView>
           )}
-          {myCharacter?.isWorking && myRole?.canPromote && myRole?.orderId > avatarRole?.orderId && avatarRole?.orderId < avatarCorpRoles.length && (
+          {myCharacter?.isWorking && myCorpRole?.canPromote && myCorpRole?.orderId > avatarRole?.orderId && avatarRole?.orderId < avatarCorpRoles.length && (
             <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpPromoteUserComposer(avatarInfo.webID))}>Promote</ContextMenuListItemView>
           )}
-          {myCharacter?.isWorking && myRole?.canDemote && myRole?.orderId > avatarRole?.orderId && avatarRole?.orderId > 1 && (
+          {myCharacter?.isWorking && myCorpRole?.canDemote && myCorpRole?.orderId > avatarRole?.orderId && avatarRole?.orderId > 1 && (
             <ContextMenuListItemView onClick={() => SendMessageComposer(new CorpDemoteUserComposer(avatarInfo.webID))}>Demote</ContextMenuListItemView>
+          )}
+          <ContextMenuListItemView onClick={() => processAction("back")}>
+            <FaChevronLeft className="left fa-icon" />
+            {LocalizeText("generic.back")}
+          </ContextMenuListItemView>
+        </>
+      )}
+      {mode === MODE_GANG && (
+        <>
+          {myGangRole.canInvite && (
+            <ContextMenuListItemView onClick={() => SendMessageComposer(new GangInviteUserComposer(avatarInfo.webID))}>Invite to Gang</ContextMenuListItemView>
+          )}
+          {myGangRole?.canKick && myCorpRole?.orderId > avatarRole?.orderId && (
+            <ContextMenuListItemView onClick={() => SendMessageComposer(new GangKickUserComposer(avatarInfo.webID))}>Fire</ContextMenuListItemView>
+          )}
+          {myGangRole?.canPromote && myCorpRole?.orderId > avatarRole?.orderId && avatarRole?.orderId < avatarCorpRoles.length && (
+            <ContextMenuListItemView onClick={() => SendMessageComposer(new GangPromoteUserComposer(avatarInfo.webID))}>Promote</ContextMenuListItemView>
+          )}
+          {myGangRole?.canDemote && myCorpRole?.orderId > avatarRole?.orderId && avatarRole?.orderId > 1 && (
+            <ContextMenuListItemView onClick={() => SendMessageComposer(new GangDemoteUserComposer(avatarInfo.webID))}>Demote</ContextMenuListItemView>
           )}
           <ContextMenuListItemView onClick={() => processAction("back")}>
             <FaChevronLeft className="left fa-icon" />

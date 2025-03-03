@@ -21,6 +21,7 @@ export * from "./gang/GangAcceptInviteComposer";
 export * from "./gang/GangChangeOwnerComposer";
 export * from "./gang/GangDemoteUserComposer";
 export * from "./gang/GangDisbandComposer";
+export * from "./gang/GangInviteUserComposer";
 export * from "./gang/GangKickUserComposer";
 export * from "./gang/GangLeaveComposer";
 export * from "./gang/GangListAllComposer";

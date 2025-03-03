@@ -955,6 +955,7 @@ import {
   GangMemberListByGangComposer,
   CorpMemberListByCorpComposer,
   CorpRoleListByCorpEvent,
+  GangInviteUserComposer,
 } from "./messages";
 import { GangRoleDataEvent } from "./messages/incoming/roleplay/gang/GangRoleDataEvent";
 import { CharacterUpdateByIdComposer } from "./messages/outgoing/roleplay/character/CharacterUpdateByIdComposer";
@@ -2175,6 +2176,7 @@ export class NitroMessages implements IMessageConfiguration {
     this._composers.set(OutgoingHeader.GANG_ROLE_LOOKUP_BY_ID, GangRoleLookupByIdComposer);
     this._composers.set(OutgoingHeader.CORP_MEMBER_LIST_BY_CORP, CorpMemberListByCorpComposer);
     this._composers.set(OutgoingHeader.GANG_MEMBER_LIST_BY_GANG, GangMemberListByGangComposer);
+    this._composers.set(OutgoingHeader.GANG_INVITE_USER, GangInviteUserComposer);
   }
 
   public get events(): Map<number, Function> {

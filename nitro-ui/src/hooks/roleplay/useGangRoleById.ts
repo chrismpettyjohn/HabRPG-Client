@@ -1,20 +1,20 @@
-import { GangDataEvent, GangData, GangRoleLookupByIdComposer } from "@nitrots/nitro-renderer";
+import { GangRoleLookupByIdComposer, GangRoleData, GangRoleDataEvent } from "@nitrots/nitro-renderer";
 import { useEffect, useState } from "react";
 import { SendMessageComposer } from "../../api";
 import { useMessageEvent } from "../events";
 
-export function useGangById(gangId: number): GangData | null {
-  const [data, setData] = useState<GangData>();
+export function useGangRoleById(gangRoleId: number): GangRoleData | null {
+  const [data, setData] = useState<GangRoleData>();
 
   useEffect(() => {
-    if (!gangId) return;
+    if (!gangRoleId) return;
     setData(undefined);
-    SendMessageComposer(new GangRoleLookupByIdComposer(gangId));
-  }, [gangId]);
+    SendMessageComposer(new GangRoleLookupByIdComposer(gangRoleId));
+  }, [gangRoleId]);
 
-  useMessageEvent(GangDataEvent, (event: GangDataEvent) => {
-    const eventData: GangData = event.getParser().data;
-    if (eventData.id !== gangId) {
+  useMessageEvent(GangRoleDataEvent, (event: GangRoleDataEvent) => {
+    const eventData: GangRoleData = event.getParser().data;
+    if (eventData.id !== gangRoleId) {
       return;
     }
     setData(eventData);
